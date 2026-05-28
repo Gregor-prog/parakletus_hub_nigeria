@@ -3,94 +3,204 @@
 import React, { useState, useEffect, useRef } from "react";
 
 export default function Home() {
-  // --- Client-Side States ---
-  const [scrolled, setScrolled] = useState(false);
+  // ─── State ───────────────────────────────────────────────────────
+  const [scrolled, setScrolled]             = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [timeStr, setTimeStr] = useState("20:00:00");
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [timeStr, setTimeStr]               = useState("20:00:00");
+  const [activeIdx, setActiveIdx]           = useState(0);
+  const [menuOpen, setMenuOpen]             = useState(false);
 
-  // --- Dynamic Navigation Pill State ---
-  const navRef = useRef<HTMLDivElement>(null);
-  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  // ─── Refs ─────────────────────────────────────────────────────────
+  const navRef       = useRef<HTMLDivElement>(null);
+  const linkRefs     = useRef<(HTMLAnchorElement | null)[]>([]);
+  const heroSunRef   = useRef<HTMLDivElement>(null);
+  const heroGrainRef = useRef<HTMLDivElement>(null);
+
   const [pillStyle, setPillStyle] = useState({
     transform: "translateX(0px)",
     width: "0px",
     opacity: 0,
   });
 
-  // Navigation Links definition
   const navLinks = [
-    { label: "Home", href: "#home" },
+    { label: "Home",      href: "#home"      },
     { label: "Manifesto", href: "#manifesto" },
-    { label: "Pillars", href: "#pillars" },
+    { label: "Pillars",   href: "#pillars"   },
     { label: "Solutions", href: "#solutions" },
-    { label: "Impact", href: "#impact" },
-    { label: "Team", href: "#team" },
+    { label: "Impact",    href: "#impact"    },
+    { label: "Team",      href: "#team"      },
   ];
 
-  // --- Scroll Detection & Progress Bar ---
+  // ─── Scroll detection + progress ─────────────────────────────────
   useEffect(() => {
-    const handleScroll = () => {
+    const handle = () => {
       setScrolled(window.scrollY > 50);
-      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalScroll > 0) {
-        setScrollProgress(window.scrollY / totalScroll);
-      }
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      if (total > 0) setScrollProgress(window.scrollY / total);
     };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handle, { passive: true });
+    handle();
+    return () => window.removeEventListener("scroll", handle);
   }, []);
 
-  // --- West Africa Time (WAT) Clock (Nigeria) ---
+  // ─── WAT clock ───────────────────────────────────────────────────
   useEffect(() => {
-    const updateClock = () => {
+    const tick = () => {
       const now = new Date();
-      // Nigeria is at UTC+1 (WAT)
       const utc = now.getTime() + now.getTimezoneOffset() * 60000;
       const wat = new Date(utc + 3600000);
-      const hrs = String(wat.getHours()).padStart(2, "0");
-      const mins = String(wat.getMinutes()).padStart(2, "0");
-      const secs = String(wat.getSeconds()).padStart(2, "0");
-      setTimeStr(`${hrs}:${mins}:${secs}`);
+      const h = String(wat.getHours()).padStart(2, "0");
+      const m = String(wat.getMinutes()).padStart(2, "0");
+      const s = String(wat.getSeconds()).padStart(2, "0");
+      setTimeStr(`${h}:${m}:${s}`);
     };
-    updateClock();
-    const interval = setInterval(updateClock, 1000);
-    return () => clearInterval(interval);
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
   }, []);
 
-  // --- Dynamic Sliding Pill Calculation ---
+  // ─── Nav pill geometry ────────────────────────────────────────────
   useEffect(() => {
-    const updatePill = () => {
-      const activeEl = linkRefs.current[activeIdx];
+    const update = () => {
+      const activeEl    = linkRefs.current[activeIdx];
       const containerEl = navRef.current;
       if (activeEl && containerEl) {
-        const activeRect = activeEl.getBoundingClientRect();
-        const containerRect = containerEl.getBoundingClientRect();
-        const left = activeRect.left - containerRect.left;
-        const width = activeRect.width;
+        const ar = activeEl.getBoundingClientRect();
+        const cr = containerEl.getBoundingClientRect();
         setPillStyle({
-          transform: `translateX(${left}px)`,
-          width: `${width}px`,
-          opacity: 1,
+          transform: `translateX(${ar.left - cr.left}px)`,
+          width:     `${ar.width}px`,
+          opacity:   1,
         });
       }
     };
-    updatePill();
-    // Re-calculate on resize
-    window.addEventListener("resize", updatePill);
-    // Short delay to ensure browser layout is ready
-    const timer = setTimeout(updatePill, 100);
-    return () => {
-      window.removeEventListener("resize", updatePill);
-      clearTimeout(timer);
-    };
+    update();
+    window.addEventListener("resize", update);
+    const t = setTimeout(update, 100);
+    return () => { window.removeEventListener("resize", update); clearTimeout(t); };
   }, [activeIdx]);
 
+  // ─── Scroll-reveal (IntersectionObserver) ────────────────────────
+  useEffect(() => {
+    const els = document.querySelectorAll(".reveal");
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("reveal--visible");
+            obs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -48px 0px" }
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
+  // ─── Impact counter animation ─────────────────────────────────────
+  useEffect(() => {
+    const counterEls = document.querySelectorAll<HTMLElement>(
+      ".impactrow__k[data-target]"
+    );
+
+    const animate = (el: HTMLElement) => {
+      const raw    = el.dataset.target!;
+      const match  = raw.match(/[\d.]+/);
+      if (!match) return;
+      const numStr  = match[0];
+      const numIdx  = raw.indexOf(numStr);
+      const prefix  = raw.slice(0, numIdx);
+      const suffix  = raw.slice(numIdx + numStr.length);
+      const target  = parseFloat(numStr);
+      const decimal = numStr.includes(".");
+      const dur     = 1600;
+      const t0      = performance.now();
+
+      const tick = (now: number) => {
+        const p     = Math.min((now - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const v     = eased * target;
+        el.textContent =
+          prefix + (decimal ? v.toFixed(1) : Math.round(v).toString()) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = raw;
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            animate(e.target as HTMLElement);
+            obs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    counterEls.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
+  // ─── Parallax: hero sun + grain ──────────────────────────────────
+  useEffect(() => {
+    let raf: number;
+    let lastY  = window.scrollY;
+    let ticking = false;
+
+    const apply = () => {
+      const y = lastY;
+      if (heroSunRef.current)
+        heroSunRef.current.style.transform = `translateY(${y * 0.15}px)`;
+      if (heroGrainRef.current)
+        heroGrainRef.current.style.transform = `translateY(${y * 0.08}px)`;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      lastY = window.scrollY;
+      if (!ticking) { raf = requestAnimationFrame(apply); ticking = true; }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf); };
+  }, []);
+
+  // ─── Active section tracking ──────────────────────────────────────
+  useEffect(() => {
+    const ids      = ["home", "manifesto", "pillars", "solutions", "impact", "team"];
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            const idx = ids.indexOf(e.target.id);
+            if (idx >= 0) setActiveIdx(idx);
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+    sections.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
+  }, []);
+
+  // ─── Body scroll-lock when overlay is open ────────────────────────
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  // ─── JSX ──────────────────────────────────────────────────────────
   return (
     <div id="home" style={{ scrollBehavior: "smooth" }}>
-      {/* ─── SCROLLBAR TRACKER ─── */}
+
+      {/* SCROLLBAR TRACKER */}
       <div className="scrollbar">
         <div
           className="scrollbar__fill"
@@ -98,24 +208,47 @@ export default function Home() {
         />
       </div>
 
-      {/* ─── PREMIUM GLASS NAVIGATION RAIL ─── */}
+      {/* MOBILE OVERLAY NAV */}
+      <div className={`nav__overlay ${menuOpen ? "is-open" : ""}`}>
+        <nav className="nav__overlay-links">
+          {navLinks.map((link, idx) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="nav__overlay-link"
+              onClick={() => { setActiveIdx(idx); setMenuOpen(false); }}
+            >
+              {link.label}
+              <div className="nav__overlay-arrow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            </a>
+          ))}
+        </nav>
+        <div className="nav__overlay-cta-row">
+          <a href="#contact" className="btn btn--primary" onClick={() => setMenuOpen(false)}>
+            Partner With Us
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ display: "inline", marginLeft: 4 }}>
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      {/* PREMIUM GLASS NAVIGATION RAIL */}
       <header className={`nav ${scrolled ? "is-scrolled" : ""}`}>
         <div className="nav__inner">
-          {/* Brand Lockup */}
+
+          {/* Brand */}
           <a href="#home" className="brand">
             <div className="brand__mark">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 2L2 7l10 5 10-5-10-5z"
-                  fill="var(--c-ember)"
-                />
-                <path
-                  d="M2 17l10 5 10-5M2 12l10 5 10-5"
-                  stroke="var(--c-ember-deep)"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <path d="M12 2L2 7l10 5 10-5-10-5z" fill="var(--c-grove)" />
+                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--c-grove-mid)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
             <div className="brand__word">
@@ -126,35 +259,30 @@ export default function Home() {
             </div>
           </a>
 
-          {/* Sliding Pill Center Menu */}
+          {/* Sliding pill center rail */}
           <nav ref={navRef} className="nav__rail">
             <div
               className="nav__pill"
               style={{
                 transform: pillStyle.transform,
-                width: pillStyle.width,
-                opacity: pillStyle.opacity,
+                width:     pillStyle.width,
+                opacity:   pillStyle.opacity,
               }}
             />
             {navLinks.map((link, idx) => (
               <a
                 key={link.label}
-                ref={(el) => {
-                  linkRefs.current[idx] = el;
-                }}
+                ref={(el) => { linkRefs.current[idx] = el; }}
                 href={link.href}
                 className={`nav__link ${activeIdx === idx ? "is-active" : ""}`}
-                onClick={() => {
-                  setActiveIdx(idx);
-                  setMenuOpen(false);
-                }}
+                onClick={() => { setActiveIdx(idx); setMenuOpen(false); }}
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          {/* Right Cluster: Live Status & CTA */}
+          {/* Right cluster */}
           <div className="nav__right">
             <div className="nav__status">
               <span className="nav__status-dot" />
@@ -168,25 +296,32 @@ export default function Home() {
               <span className="nav__cta-label">Partner With Us</span>
               <div className="nav__cta-arrow">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M5 12h14M12 5l7 7-7 7"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
             </a>
+
+            {/* Hamburger (mobile only) */}
+            <button
+              className={`nav__burger ${menuOpen ? "is-open" : ""}`}
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+              aria-expanded={menuOpen}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
           </div>
+
         </div>
       </header>
 
-      {/* ─── HERO SECTION ─── */}
+      {/* HERO */}
       <section className="hero">
-        <div className="hero__grain" />
-        <div className="hero__sun" />
-        
+        <div className="hero__grain" ref={heroGrainRef} />
+        <div className="hero__sun"   ref={heroSunRef}   />
+
         <div className="hero__container">
           <div className="hero__chip">
             <span className="hero__chip-dot" />
@@ -194,14 +329,13 @@ export default function Home() {
           </div>
 
           <h1 className="hero__title">
-            Architecting <span className="serif-italic">Educational</span> and Technological{" "}
+            Building <span className="serif-italic">Education</span> and Technology{" "}
             <span className="hero__title-accent">Infrastructure</span>.
           </h1>
 
           <div className="hero__row">
             <p className="hero__lede">
-              Parakletus Hub Nigeria designs, develops, and delivers the essential platforms
-              the Global South needs to innovate, collaborate, and compete on the world stage.
+              We build the platforms Africa needs to innovate, grow, and lead.
             </p>
             <div className="hero__ctas">
               <a href="#solutions" className="btn btn--primary">
@@ -218,26 +352,24 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Interactive Floating Stage */}
+          {/* Stage */}
           <div className="hero__stage">
             <div className="stage">
-              {/* Backing Abstract Editorial Grid/Sun */}
               <div className="stage__photo">
                 <div className="stage__photo-inner">
                   <svg className="stage__svg" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="800" height="450" fill="#FFFDF7" />
+                    <rect width="800" height="450" fill="var(--c-cream)" />
                     <circle cx="650" cy="150" r="280" fill="url(#heroSunGlow)" opacity="0.4" />
-                    <line x1="50" y1="50" x2="750" y2="50" stroke="#E8DFCB" strokeDasharray="4 4" />
-                    <line x1="50" y1="200" x2="750" y2="200" stroke="#E8DFCB" strokeDasharray="4 4" />
-                    <line x1="50" y1="350" x2="750" y2="350" stroke="#E8DFCB" strokeDasharray="4 4" />
-                    <line x1="200" y1="0" x2="200" y2="450" stroke="#E8DFCB" strokeDasharray="4 4" />
-                    <line x1="500" y1="0" x2="500" y2="450" stroke="#E8DFCB" strokeDasharray="4 4" />
-                    <path d="M50 380 Q 250 180, 500 280 T 800 120" stroke="var(--c-ember)" strokeWidth="3" opacity="0.3" fill="none" />
-                    <path d="M50 400 Q 300 280, 550 320 T 800 180" stroke="var(--c-ember-deep)" strokeWidth="1.5" opacity="0.15" fill="none" />
-                    
+                    <line x1="50" y1="50"  x2="750" y2="50"  stroke="var(--c-line)" strokeDasharray="4 4" />
+                    <line x1="50" y1="200" x2="750" y2="200" stroke="var(--c-line)" strokeDasharray="4 4" />
+                    <line x1="50" y1="350" x2="750" y2="350" stroke="var(--c-line)" strokeDasharray="4 4" />
+                    <line x1="200" y1="0" x2="200" y2="450" stroke="var(--c-line)" strokeDasharray="4 4" />
+                    <line x1="500" y1="0" x2="500" y2="450" stroke="var(--c-line)" strokeDasharray="4 4" />
+                    <path d="M50 380 Q 250 180, 500 280 T 800 120" stroke="var(--c-grove-mid)" strokeWidth="3" opacity="0.35" fill="none" />
+                    <path d="M50 400 Q 300 280, 550 320 T 800 180" stroke="var(--c-grove)" strokeWidth="1.5" opacity="0.18" fill="none" />
                     <defs>
                       <radialGradient id="heroSunGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(650 150) rotate(90) scale(280)">
-                        <stop stopColor="var(--c-ember-soft)" />
+                        <stop stopColor="var(--c-grove-soft)" />
                         <stop offset="1" stopColor="var(--c-cream)" stopOpacity="0" />
                       </radialGradient>
                     </defs>
@@ -246,10 +378,10 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Floating Card 1: Top Left - LMS Portal */}
+              {/* Floating Card 1 — top left */}
               <div className="stage__card stage__card--tl">
                 <div className="stage__card-row">
-                  <div className="stage__card-icon" style={{ background: "rgba(238, 124, 36, 0.1)", color: "var(--c-ember-deep)" }}>
+                  <div className="stage__card-icon" style={{ background: "rgba(28,94,60,0.1)", color: "var(--c-grove)" }}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M22 10v6M2 10l10-5 10 5-10 5zM6 12.5V16a6 6 0 0012 0v-3.5" />
                     </svg>
@@ -259,18 +391,14 @@ export default function Home() {
                     <div className="stage__card-meta">AI school software</div>
                   </div>
                 </div>
-                <div className="stage__card-bar">
-                  <span style={{ width: "78%" }} />
-                </div>
-                <div className="stage__card-foot">
-                  Active Operations: <b>78% Efficiency</b>
-                </div>
+                <div className="stage__card-bar"><span style={{ width: "78%" }} /></div>
+                <div className="stage__card-foot">Active Operations: <b>78% Efficiency</b></div>
               </div>
 
-              {/* Floating Card 2: Center - Network Nodes */}
+              {/* Floating Card 2 — center */}
               <div className="stage__card stage__card--ml">
                 <div className="stage__card-row">
-                  <div className="stage__card-icon" style={{ background: "rgba(31, 138, 91, 0.1)", color: "var(--c-green)" }}>
+                  <div className="stage__card-icon" style={{ background: "rgba(31,138,91,0.1)", color: "var(--c-green)" }}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <circle cx="12" cy="12" r="3" />
                       <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
@@ -281,15 +409,13 @@ export default function Home() {
                     <div className="stage__card-meta">International Expo</div>
                   </div>
                 </div>
-                <div className="stage__card-amount">
-                  2,800+ <span>ATTENDEES</span>
-                </div>
+                <div className="stage__card-amount">2,800+ <span>ATTENDEES</span></div>
               </div>
 
-              {/* Floating Card 3: Bottom Right - Ayọ̀lọ̀ Remittances */}
+              {/* Floating Card 3 — bottom right */}
               <div className="stage__card stage__card--br">
                 <div className="stage__card-row">
-                  <div className="stage__card-icon" style={{ background: "rgba(122, 90, 224, 0.1)", color: "var(--c-ember)" }}>
+                  <div className="stage__card-icon" style={{ background: "rgba(238,124,36,0.12)", color: "var(--c-ember-deep)" }}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <rect x="2" y="5" width="20" height="14" rx="2" />
                       <line x1="2" y1="10" x2="22" y2="10" />
@@ -301,16 +427,14 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="stage__card-bar">
-                  <span style={{ width: "94%", background: "linear-gradient(90deg, var(--c-green), #7A5AE0)" }} />
+                  <span style={{ width: "94%", background: "linear-gradient(90deg,var(--c-grove),var(--c-ember))" }} />
                 </div>
-                <div className="stage__card-foot">
-                  Cross-Border Settlement: <b>94% speedup</b>
-                </div>
+                <div className="stage__card-foot">Cross-Border Settlement: <b>94% speedup</b></div>
               </div>
             </div>
           </div>
 
-          {/* Ticker Strip */}
+          {/* Ticker strip */}
           <div className="hero__strip">
             <span className="hero__strip-label">CORE FOCUS AREAS</span>
             <ul className="hero__strip-list">
@@ -323,15 +447,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── MANIFESTO SECTION ─── */}
+      {/* MANIFESTO */}
       <section id="manifesto" className="manifesto">
-        <div className="manifesto__inner">
+        <div className="manifesto__inner reveal">
           <div className="section-eyebrow">
             <span className="section-eyebrow__dot" />
             Our Creed
           </div>
           <blockquote className="manifesto__copy">
-            We believe that the <span className="serif-italic">Global South</span> must not merely consume the technological future, but actively <span className="serif-italic">architect</span> it.
+            We believe that the <span className="serif-italic">Global South</span> must not merely
+            consume the technological future, but actively <span className="serif-italic">architect</span> it.
           </blockquote>
           <div className="manifesto__signoff">
             PARAKLETUS HUB NIGERIA — BOARD OF TRUSTEES
@@ -339,38 +464,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── ECOSYSTEM PILLARS ─── */}
+      {/* ECOSYSTEM PILLARS */}
       <section id="pillars" className="pillars">
-        <div className="pillars__head">
+        <div className="pillars__head reveal">
           <div className="section-eyebrow">
             <span className="section-eyebrow__dot" />
             The Framework
           </div>
           <h2 className="section-title">An Integrated Ecosystem</h2>
           <p className="section-lede">
-            By coordinating engineering, training, and literature, we create a self-sustaining
-            circle of innovation. Knowledge informs technology, and technology powers dissemination.
+            Engineering, training, and publishing — each feeds the next.
           </p>
         </div>
 
         <div className="pillars__grid">
-          {/* Pillar 1: Technology */}
-          <div className="pillar pillar--tech">
+          <div className="pillar pillar--tech reveal" data-delay="1">
             <span className="pillar__num">01</span>
             <span className="pillar__kicker">INFRASTRUCTURE</span>
             <h3 className="pillar__title">Parakletus Technologies</h3>
             <p className="pillar__lede">
-              We design robust cloud networks, local school management systems, and specialized
-              blockchain tools to facilitate micro-payments and decentralized logistics.
+              Cloud networks, school management systems, and blockchain tools built for African operations.
             </p>
             <div className="pillar__surface">
               <span className="pillar__surface-label">ENGINEERING STANDARD</span>
               <p>Scalable APIs, Rust/Go microservices, and AI-enabled diagnostics.</p>
             </div>
-            <a href="#solutions" className="pillar__link">
-              Explore Tech Solutions
-            </a>
-            {/* Abstract background etch */}
+            <a href="#solutions" className="pillar__link">Explore Tech Solutions</a>
             <div className="pillar__etch">
               <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none">
                 <rect x="10" y="10" width="80" height="80" rx="10" stroke="currentColor" strokeWidth="0.5" strokeDasharray="3 3" />
@@ -379,23 +498,18 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Pillar 2: Publishing */}
-          <div className="pillar pillar--pub">
+          <div className="pillar pillar--pub reveal" data-delay="2">
             <span className="pillar__num">02</span>
             <span className="pillar__kicker">LITERATURE</span>
             <h3 className="pillar__title">Parakletus Publishing</h3>
             <p className="pillar__lede">
-              Fostering intellectual autonomy by editing, refining, and publishing rigorous,
-              peer-reviewed textbooks, professional journals, and cultural literature.
+              Peer-reviewed textbooks, professional journals, and cultural literature — written for Africa.
             </p>
             <div className="pillar__surface">
               <span className="pillar__surface-label">EDITORIAL REACH</span>
               <p>Textbooks aligned with national curricula, digital-first distribution.</p>
             </div>
-            <a href="#solutions" className="pillar__link">
-              Explore Catalogues
-            </a>
-            {/* Abstract background etch */}
+            <a href="#solutions" className="pillar__link">Explore Catalogues</a>
             <div className="pillar__etch">
               <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none">
                 <line x1="20" y1="30" x2="80" y2="30" stroke="currentColor" strokeWidth="0.5" />
@@ -407,19 +521,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── SOLUTIONS BENTO SPOTLIGHT ─── */}
+      {/* SOLUTIONS BENTO */}
       <section id="solutions" className="solutions">
-        <div className="solutions__head">
+        <div className="solutions__head reveal">
           <h2 className="section-title">Spotlight Solutions</h2>
           <p className="section-lede">
-            Each project is built to address critical structural constraints, providing stable,
-            high-capacity tools tailored for African institutional realities.
+            Built for African realities: low bandwidth, variable power, high-demand institutions.
           </p>
         </div>
 
         <div className="solutions__bento">
-          {/* Main Bento Spotlight: ParaLearn LMS */}
-          <div className="sol sol--lg sol--ember">
+          <div className="sol sol--lg sol--ember reveal" data-delay="1">
             <div className="sol__head">
               <div className="sol__icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -430,10 +542,8 @@ export default function Home() {
             </div>
             <h3 className="sol__name">ParaLearn LMS Platform</h3>
             <p className="sol__desc">
-              A comprehensive, cloud-based School Management System (SMS) and Learning Management
-              System (LMS). Built to operate under low-bandwidth constraints, ParaLearn streamlines
-              grade-books, timetables, and fee-management while hosting interactive student learning
-              modules offline.
+              School and learning management built for low-bandwidth classrooms. Grade books, timetables,
+              fee management, and offline learning modules — in one platform.
             </p>
             <ul className="sol__chips" style={{ marginTop: 16 }}>
               <li>Offline Synchronous Sync</li>
@@ -445,8 +555,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Medium Bento: Ayọ̀lọ̀ Ledger */}
-          <div className="sol sol--md sol--ink">
+          <div className="sol sol--md sol--ink reveal" data-delay="2">
             <div className="sol__head">
               <div className="sol__icon">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -458,16 +567,14 @@ export default function Home() {
             </div>
             <h3 className="sol__name">Ayọ̀lọ̀ Settlement Rail</h3>
             <p className="sol__desc">
-              Leveraging stablecoin networks to enable secure, compliant, and near-zero-fee
-              remittance and payments for developers and businesses across West Africa.
+              Stablecoin rails for secure, near-zero-fee payments across West Africa.
             </p>
             <div className="sol__foot" style={{ marginTop: "auto" }}>
               <a href="#contact" className="sol__more">Read Technical Spec →</a>
             </div>
           </div>
 
-          {/* Medium Bento: SabiNote */}
-          <div className="sol sol--md sol--cream">
+          <div className="sol sol--md sol--cream reveal" data-delay="3">
             <div className="sol__head">
               <div className="sol__icon">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -478,20 +585,16 @@ export default function Home() {
             </div>
             <h3 className="sol__name">SabiNote</h3>
             <p className="sol__desc">
-              A collaborative academic publishing network hosting crowdsourced lecture summaries,
-              peer-reviewed notes, and standardized study guides.
+              Lecture notes, peer-reviewed summaries, and study guides — built collaboratively by students.
             </p>
             <div className="sol__foot" style={{ marginTop: "auto" }}>
               <a href="#contact" className="sol__more">Browse SabiNote Hub →</a>
             </div>
           </div>
 
-          {/* Status Flag Card */}
-          <div className="sol sol--flag">
+          <div className="sol sol--flag reveal" data-delay="4">
             <div className="sol-flag__pulse">
-              <span />
-              <span />
-              <span />
+              <span /><span /><span />
             </div>
             <div className="sol-flag__num">24/7</div>
             <div className="sol-flag__label">CORE SYSTEM OPERATIONS ONLINE</div>
@@ -502,17 +605,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── ZEBRA SECTION ─── */}
+      {/* ZEBRA — technological sovereignty */}
       <section className="zebra">
         <div className="zebra__stripes">
-          <span />
-          <span />
-          <span />
-          <span />
+          <span /><span /><span /><span />
         </div>
 
         <div className="zebra__inner">
-          <div className="zebra__head">
+          <div className="zebra__head reveal">
             <div className="section-eyebrow section-eyebrow--light">
               <span className="section-eyebrow__dot" />
               Structural Alignment
@@ -523,40 +623,36 @@ export default function Home() {
           </div>
 
           <div className="zebra__body">
-            <p className="zebra__copy">
-              We design tools that respect regional realities: high mobile-first reliance, expensive
-              metered internet, and intermittent power grids. We do not copy-paste Silicon Valley templates;
-              we construct native infrastructure.
+            <p className="zebra__copy reveal" data-delay="1">
+              Our tools are built for Africa: mobile-first, low-bandwidth, resilient off-grid. No Silicon Valley templates.
             </p>
 
-            <ul className="zebra__pillars">
+            <ul className="zebra__pillars reveal" data-delay="2">
               <li>
                 <span className="zebra__k">Locally Hosted Nodes</span>
-                <span className="zebra__v">Edge servers situated inside regional schools ensure instant platform load times.</span>
+                <span className="zebra__v">In-school edge servers for fast, always-on platform access.</span>
               </li>
               <li>
                 <span className="zebra__k">Stable Ledger Compliant</span>
-                <span className="zebra__v">Full alignment with regulatory bodies regarding digital assets and fiscal flows.</span>
+                <span className="zebra__v">Fully compliant with local digital asset regulations.</span>
               </li>
             </ul>
           </div>
 
-          {/* Premium Blockquote */}
-          <div className="zebra__quote">
-            <div className="zebra__quote-mark">“</div>
+          <div className="zebra__quote reveal" data-delay="1">
+            <div className="zebra__quote-mark">"</div>
             <div>
               <p>
-                By building robust operating software for schools and seamless settlement rails for
-                engineers, we pave the way for sustainable development that starts from within.
+                School software and settlement rails — sustainable development that starts from within.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── SUBSIDIARY BRANDS ─── */}
+      {/* SUBSIDIARY BRANDS */}
       <section className="brands">
-        <div className="brands__head" style={{ maxWidth: 1180, margin: "0 auto 48px" }}>
+        <div className="brands__head reveal" style={{ maxWidth: 1180, margin: "0 auto 48px" }}>
           <div className="section-eyebrow">
             <span className="section-eyebrow__dot" />
             Our Operations
@@ -565,41 +661,38 @@ export default function Home() {
         </div>
 
         <div className="brands__grid">
-          {/* Brand Card 1 */}
-          <div className="brandcard">
+          <div className="brandcard reveal" data-delay="1">
             <div className="brandcard__top">
               <span className="brandcard__code">PARALEARN</span>
               <span className="brandcard__idx">01 // EDU</span>
             </div>
             <h3 className="brandcard__name">ParaLearn Academy</h3>
-            <p className="brandcard__desc"> Fostering technical competence through high-yield software development bootcamps and executive digital training. </p>
+            <p className="brandcard__desc">Software bootcamps and digital training for technical professionals.</p>
           </div>
 
-          {/* Brand Card 2 */}
-          <div className="brandcard">
+          <div className="brandcard reveal" data-delay="2">
             <div className="brandcard__top">
               <span className="brandcard__code">AYỌ̀LỌ̀</span>
               <span className="brandcard__idx">02 // TECH</span>
             </div>
             <h3 className="brandcard__name">Ayọ̀lọ̀ Systems</h3>
-            <p className="brandcard__desc"> Architecting and deploying distributed ledger gateways and stablecoin infrastructure for business transactions. </p>
+            <p className="brandcard__desc">Stablecoin gateways and ledger infrastructure for West African businesses.</p>
           </div>
 
-          {/* Brand Card 3 */}
-          <div className="brandcard">
+          <div className="brandcard reveal" data-delay="3">
             <div className="brandcard__top">
               <span className="brandcard__code">SABINOTE</span>
               <span className="brandcard__idx">03 // PUB</span>
             </div>
             <h3 className="brandcard__name">SabiNote Publishing</h3>
-            <p className="brandcard__desc"> Commissioning and printing high-utility physical textbooks, study aids, and peer-reviewed educational literature. </p>
+            <p className="brandcard__desc">Textbooks, study aids, and peer-reviewed publications for Nigerian students.</p>
           </div>
         </div>
       </section>
 
-      {/* ─── IMPACT SECTION ─── */}
+      {/* IMPACT */}
       <section id="impact" className="impact">
-        <div className="impact__head">
+        <div className="impact__head reveal">
           <div className="section-eyebrow">
             <span className="section-eyebrow__dot" />
             Empirical Results
@@ -608,44 +701,40 @@ export default function Home() {
         </div>
 
         <div className="impact__grid">
-          {/* Metric 1 */}
-          <div className="impactrow">
-            <div className="impactrow__k">24k</div>
+          <div className="impactrow reveal" data-delay="1">
+            <div className="impactrow__k" data-target="24k">24k</div>
             <div className="impactrow__body">
               <div className="impactrow__label">Students Enrolled</div>
-              <div className="impactrow__note">Actively utilizing our LMS software daily.</div>
+              <div className="impactrow__note">Using our LMS daily.</div>
             </div>
           </div>
-          {/* Metric 2 */}
-          <div className="impactrow">
-            <div className="impactrow__k">₦8.5B</div>
+          <div className="impactrow reveal" data-delay="2">
+            <div className="impactrow__k" data-target="₦8.5B">₦8.5B</div>
             <div className="impactrow__body">
               <div className="impactrow__label">Settled Value</div>
-              <div className="impactrow__note">On-chain transaction throughput processed.</div>
+              <div className="impactrow__note">Settled on-chain.</div>
             </div>
           </div>
-          {/* Metric 3 */}
-          <div className="impactrow">
-            <div className="impactrow__k">140+</div>
+          <div className="impactrow reveal" data-delay="3">
+            <div className="impactrow__k" data-target="140+">140+</div>
             <div className="impactrow__body">
               <div className="impactrow__label">Institutions</div>
               <div className="impactrow__note">Primary and secondary schools integrated.</div>
             </div>
           </div>
-          {/* Metric 4 */}
-          <div className="impactrow">
-            <div className="impactrow__k">18k</div>
+          <div className="impactrow reveal" data-delay="4">
+            <div className="impactrow__k" data-target="18k">18k</div>
             <div className="impactrow__body">
               <div className="impactrow__label">Textbooks</div>
-              <div className="impactrow__note">Rigorous reference materials printed and shipped.</div>
+              <div className="impactrow__note">Printed and shipped.</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── TEAM SECTION ─── */}
+      {/* TEAM */}
       <section id="team" className="team">
-        <div className="team__head">
+        <div className="team__head reveal">
           <div className="section-eyebrow">
             <span className="section-eyebrow__dot" />
             Leadership
@@ -654,73 +743,68 @@ export default function Home() {
         </div>
 
         <div className="team__grid">
-          {/* Member 1 */}
-          <div className="member">
+          <div className="member reveal" data-delay="1">
             <div className="member__portrait">
-              <div className="member__portrait-bg" style={{ background: "linear-gradient(135deg, #FFE0C2 0%, #FFFDF7 100%)" }} />
+              <div className="member__portrait-bg" style={{ background: "linear-gradient(135deg,#BDE8CE 0%,#F7FCF9 100%)" }} />
               <div className="member__monogram">OA</div>
               <div className="member__placeholder">EXECUTIVE</div>
             </div>
             <span className="member__role">CEO & FOUNDER</span>
             <h3 className="member__name">Oluwatobi O. A.</h3>
-            <p className="member__bio"> Fostering technological enterprise and directing operational strategy across technological, financial, and publishing spheres. </p>
+            <p className="member__bio">Directing strategy across technology, finance, and publishing.</p>
           </div>
 
-          {/* Member 2 */}
-          <div className="member">
+          <div className="member reveal" data-delay="2">
             <div className="member__portrait">
-              <div className="member__portrait-bg" style={{ background: "linear-gradient(135deg, #FFE9CD 0%, #FFFDF7 100%)" }} />
+              <div className="member__portrait-bg" style={{ background: "linear-gradient(135deg,#C8EDD9 0%,#F7FCF9 100%)" }} />
               <div className="member__monogram">CN</div>
               <div className="member__placeholder">TECHNOLOGY</div>
             </div>
             <span className="member__role">CHIEF TECH ARCHITECT</span>
             <h3 className="member__name">Chidi N.</h3>
-            <p className="member__bio"> Leading microservice engineering, stablecoin rail architecture, and core ParaLearn software development. </p>
+            <p className="member__bio">Building the microservices, stablecoin rails, and ParaLearn core.</p>
           </div>
 
-          {/* Member 3 */}
-          <div className="member">
+          <div className="member reveal" data-delay="3">
             <div className="member__portrait">
-              <div className="member__portrait-bg" style={{ background: "linear-gradient(135deg, #FFEFDD 0%, #FFFDF7 100%)" }} />
+              <div className="member__portrait-bg" style={{ background: "linear-gradient(135deg,#D6F0E4 0%,#F7FCF9 100%)" }} />
               <div className="member__monogram">AO</div>
               <div className="member__placeholder">EDITORIAL</div>
             </div>
             <span className="member__role">CHIEF EDITOR & ADVISOR</span>
             <h3 className="member__name">Prof. Adebayo O.</h3>
-            <p className="member__bio"> Curating educational textbooks, academic review standards, and coordinating national syllabus alignment. </p>
+            <p className="member__bio">Textbooks, review standards, and national syllabus alignment.</p>
           </div>
         </div>
       </section>
 
-      {/* ─── GLOBAL CALL-TO-ACTION ─── */}
+      {/* GLOBAL CTA */}
       <section id="contact" className="cta">
         <div className="cta__sun" />
         <div className="cta__inner">
-          <div className="section-eyebrow section-eyebrow--light">
+          <div className="section-eyebrow section-eyebrow--light reveal">
             <span className="section-eyebrow__dot" />
             Next Step
           </div>
-          <h2 className="cta__title">
+          <h2 className="cta__title reveal" data-delay="1">
             Partner With <span className="serif-italic">Parakletus</span> today.
           </h2>
-          <p className="cta__lede">
-            Whether you are a school director wishing to integrate ParaLearn, a business needing
-            compliantly structured stablecoin billing, or an academic writer seeking publication,
-            reach out to our Lagos desk today.
+          <p className="cta__lede reveal" data-delay="2">
+            School director, fintech builder, or academic writer — our Lagos desk is ready.
           </p>
 
           <div className="cta__lanes">
-            <div className="lane">
+            <div className="lane reveal" data-delay="1">
               <span className="lane__kicker">SCHOOL OPERATION</span>
               <h3 className="lane__title">Integrate ParaLearn</h3>
-              <p className="lane__meta">Request custom software onboarding &edge node deployment.</p>
+              <p className="lane__meta">Request custom software onboarding &amp; edge node deployment.</p>
             </div>
-            <div className="lane">
+            <div className="lane reveal" data-delay="2">
               <span className="lane__kicker">FINANCIAL BILLING</span>
               <h3 className="lane__title">Utilize Ayọ̀lọ̀ Rails</h3>
               <p className="lane__meta">Apply for API keys to support stablecoin settlements.</p>
             </div>
-            <div className="lane">
+            <div className="lane reveal" data-delay="3">
               <span className="lane__kicker">ACADEMIC PRESS</span>
               <h3 className="lane__title">Submit Manuscripts</h3>
               <p className="lane__meta">Get rigorous textbook publication services.</p>
@@ -729,7 +813,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── EDITORIAL FOOTER ─── */}
+      {/* FOOTER */}
       <footer className="footer">
         <div className="footer__inner">
           <div className="footer__brand">
@@ -741,11 +825,9 @@ export default function Home() {
               <span className="footer__name">PARAKLETUS HUB NIGERIA</span>
             </div>
             <p className="footer__caption">
-              Rigorous technology and educational systems built for African operational realities.
+              Technology and education built for Africa.
             </p>
-            <div className="footer__cac">
-              RC NUMBER: 1845920
-            </div>
+            <div className="footer__cac">RC NUMBER: 1845920</div>
           </div>
 
           <div className="footer__cols">
@@ -788,6 +870,7 @@ export default function Home() {
           <span>CREATING HORIZONS IN THE GLOBAL SOUTH</span>
         </div>
       </footer>
+
     </div>
   );
 }
