@@ -23,12 +23,8 @@ export default function Home() {
   });
 
   const navLinks = [
-    { label: "Home",      href: "#home"      },
-    { label: "Manifesto", href: "#manifesto" },
-    { label: "Pillars",   href: "#pillars"   },
-    { label: "Solutions", href: "#solutions" },
-    { label: "Impact",    href: "#impact"    },
-    { label: "Team",      href: "#team"      },
+    { label: "About Us",     href: "/about"        },
+    { label: "Subsidiaries", href: "/subsidiaries" },
   ];
 
   // ─── Scroll detection + progress ─────────────────────────────────
@@ -170,7 +166,7 @@ export default function Home() {
 
   // ─── Active section tracking ──────────────────────────────────────
   useEffect(() => {
-    const ids      = ["home", "manifesto", "pillars", "solutions", "impact", "team"];
+    const ids      = ["home", "manifesto", "pillars", "solutions", "impact"];
     const sections = ids
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
@@ -246,10 +242,7 @@ export default function Home() {
           {/* Brand */}
           <a href="#home" className="brand">
             <div className="brand__mark">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L2 7l10 5 10-5-10-5z" fill="var(--c-grove)" />
-                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--c-grove-mid)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <img src="/favicon.png" alt="Parakletus Hub Nigeria" width="36" height="36" style={{ objectFit: "contain", display: "block" }} />
             </div>
             <div className="brand__word">
               <span className="brand__lockup">PARAKLETUS</span>
@@ -335,7 +328,7 @@ export default function Home() {
 
           <div className="hero__row">
             <p className="hero__lede">
-              We build the platforms Africa needs to innovate, grow, and lead.
+              Parakletus Hub Nigeria builds the educational and technological infrastructure the Global South needs to compete, innovate, and lead.
             </p>
             <div className="hero__ctas">
               <a href="#solutions" className="btn btn--primary">
@@ -387,8 +380,8 @@ export default function Home() {
                     </svg>
                   </div>
                   <div>
-                    <div className="stage__card-name">ParaLearn LMS</div>
-                    <div className="stage__card-meta">AI school software</div>
+                    <div className="stage__card-name">ParaLearn</div>
+                    <div className="stage__card-meta">Educational Infrastructure software</div>
                   </div>
                 </div>
                 <div className="stage__card-bar"><span style={{ width: "78%" }} /></div>
@@ -438,7 +431,7 @@ export default function Home() {
           <div className="hero__strip">
             <span className="hero__strip-label">CORE FOCUS AREAS</span>
             <ul className="hero__strip-list">
-              <li>School Management (LMS)</li>
+              <li>School Management</li>
               <li>Stablecoin Rails</li>
               <li>Educational Publishing</li>
               <li>Professional Skill Bootcamps</li>
@@ -473,7 +466,7 @@ export default function Home() {
           </div>
           <h2 className="section-title">An Integrated Ecosystem</h2>
           <p className="section-lede">
-            Engineering, training, and publishing — each feeds the next.
+            By connecting engineering, training, and literature, we build a self-sustaining ecosystem where knowledge shapes technology, and technology accelerates dissemination.
           </p>
         </div>
 
@@ -483,7 +476,7 @@ export default function Home() {
             <span className="pillar__kicker">INFRASTRUCTURE</span>
             <h3 className="pillar__title">Parakletus Technologies</h3>
             <p className="pillar__lede">
-              Cloud networks, school management systems, and blockchain tools built for African operations.
+              We design and deploy cloud networks, school management platforms, and blockchain tools calibrated for African operational constraints.
             </p>
             <div className="pillar__surface">
               <span className="pillar__surface-label">ENGINEERING STANDARD</span>
@@ -503,7 +496,7 @@ export default function Home() {
             <span className="pillar__kicker">LITERATURE</span>
             <h3 className="pillar__title">Parakletus Publishing</h3>
             <p className="pillar__lede">
-              Peer-reviewed textbooks, professional journals, and cultural literature — written for Africa.
+              We edit, design, and publish peer-reviewed textbooks, professional journals, and cultural literature aligned to African curricula and voices.
             </p>
             <div className="pillar__surface">
               <span className="pillar__surface-label">EDITORIAL REACH</span>
@@ -540,7 +533,7 @@ export default function Home() {
               </div>
               <span className="sol__tag">FLAGSHIP SOFTWARE</span>
             </div>
-            <h3 className="sol__name">ParaLearn LMS Platform</h3>
+            <h3 className="sol__name">ParaLearn Platform</h3>
             <p className="sol__desc">
               School and learning management built for low-bandwidth classrooms. Grade books, timetables,
               fee management, and offline learning modules — in one platform.
@@ -567,7 +560,7 @@ export default function Home() {
             </div>
             <h3 className="sol__name">Ayọ̀lọ̀ Settlement Rail</h3>
             <p className="sol__desc">
-              Stablecoin rails for secure, near-zero-fee payments across West Africa.
+              Stablecoin-powered payment rails enabling secure, compliant, near-zero-fee remittance and settlements for developers and businesses across West Africa.
             </p>
             <div className="sol__foot" style={{ marginTop: "auto" }}>
               <a href="#contact" className="sol__more">Read Technical Spec →</a>
@@ -624,7 +617,7 @@ export default function Home() {
 
           <div className="zebra__body">
             <p className="zebra__copy reveal" data-delay="1">
-              Our tools are built for Africa: mobile-first, low-bandwidth, resilient off-grid. No Silicon Valley templates.
+              We build tools that respect African realities — high mobile usage, expensive metered data, and intermittent power grids. We don't copy Silicon Valley templates; we construct native infrastructure.
             </p>
 
             <ul className="zebra__pillars reveal" data-delay="2">
@@ -643,7 +636,7 @@ export default function Home() {
             <div className="zebra__quote-mark">"</div>
             <div>
               <p>
-                School software and settlement rails — sustainable development that starts from within.
+                By building operating software for schools and settlement rails for engineers, we lay the groundwork for sustainable development that starts from within.
               </p>
             </div>
           </div>
@@ -667,7 +660,7 @@ export default function Home() {
               <span className="brandcard__idx">01 // EDU</span>
             </div>
             <h3 className="brandcard__name">ParaLearn Academy</h3>
-            <p className="brandcard__desc">Software bootcamps and digital training for technical professionals.</p>
+            <p className="brandcard__desc">Technical competence through focused software bootcamps and executive digital training programs.</p>
           </div>
 
           <div className="brandcard reveal" data-delay="2">
@@ -676,16 +669,16 @@ export default function Home() {
               <span className="brandcard__idx">02 // TECH</span>
             </div>
             <h3 className="brandcard__name">Ayọ̀lọ̀ Systems</h3>
-            <p className="brandcard__desc">Stablecoin gateways and ledger infrastructure for West African businesses.</p>
+            <p className="brandcard__desc">Distributed ledger gateways and stablecoin infrastructure powering compliant business transactions across West Africa.</p>
           </div>
 
           <div className="brandcard reveal" data-delay="3">
             <div className="brandcard__top">
-              <span className="brandcard__code">SABINOTE</span>
+              <span className="brandcard__code">PUBLISHING</span>
               <span className="brandcard__idx">03 // PUB</span>
             </div>
-            <h3 className="brandcard__name">SabiNote Publishing</h3>
-            <p className="brandcard__desc">Textbooks, study aids, and peer-reviewed publications for Nigerian students.</p>
+            <h3 className="brandcard__name">Parakletus Publishing</h3>
+            <p className="brandcard__desc">High-quality textbooks, study aids, and peer-reviewed literature designed for Nigerian students and institutions.</p>
           </div>
         </div>
       </section>
@@ -705,14 +698,14 @@ export default function Home() {
             <div className="impactrow__k" data-target="24k">24k</div>
             <div className="impactrow__body">
               <div className="impactrow__label">Students Enrolled</div>
-              <div className="impactrow__note">Using our LMS daily.</div>
+              <div className="impactrow__note">Active daily across our LMS platform.</div>
             </div>
           </div>
           <div className="impactrow reveal" data-delay="2">
             <div className="impactrow__k" data-target="₦8.5B">₦8.5B</div>
             <div className="impactrow__body">
               <div className="impactrow__label">Settled Value</div>
-              <div className="impactrow__note">Settled on-chain.</div>
+              <div className="impactrow__note">Processed across our stablecoin rails.</div>
             </div>
           </div>
           <div className="impactrow reveal" data-delay="3">
@@ -726,54 +719,8 @@ export default function Home() {
             <div className="impactrow__k" data-target="18k">18k</div>
             <div className="impactrow__body">
               <div className="impactrow__label">Textbooks</div>
-              <div className="impactrow__note">Printed and shipped.</div>
+              <div className="impactrow__note">Printed and distributed across Nigerian schools.</div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* TEAM */}
-      <section id="team" className="team">
-        <div className="team__head reveal">
-          <div className="section-eyebrow">
-            <span className="section-eyebrow__dot" />
-            Leadership
-          </div>
-          <h2 className="section-title">Hub Directors</h2>
-        </div>
-
-        <div className="team__grid">
-          <div className="member reveal" data-delay="1">
-            <div className="member__portrait">
-              <div className="member__portrait-bg" style={{ background: "linear-gradient(135deg,#BDE8CE 0%,#F7FCF9 100%)" }} />
-              <div className="member__monogram">OA</div>
-              <div className="member__placeholder">EXECUTIVE</div>
-            </div>
-            <span className="member__role">CEO & FOUNDER</span>
-            <h3 className="member__name">Oluwatobi O. A.</h3>
-            <p className="member__bio">Directing strategy across technology, finance, and publishing.</p>
-          </div>
-
-          <div className="member reveal" data-delay="2">
-            <div className="member__portrait">
-              <div className="member__portrait-bg" style={{ background: "linear-gradient(135deg,#C8EDD9 0%,#F7FCF9 100%)" }} />
-              <div className="member__monogram">CN</div>
-              <div className="member__placeholder">TECHNOLOGY</div>
-            </div>
-            <span className="member__role">CHIEF TECH ARCHITECT</span>
-            <h3 className="member__name">Chidi N.</h3>
-            <p className="member__bio">Building the microservices, stablecoin rails, and ParaLearn core.</p>
-          </div>
-
-          <div className="member reveal" data-delay="3">
-            <div className="member__portrait">
-              <div className="member__portrait-bg" style={{ background: "linear-gradient(135deg,#D6F0E4 0%,#F7FCF9 100%)" }} />
-              <div className="member__monogram">AO</div>
-              <div className="member__placeholder">EDITORIAL</div>
-            </div>
-            <span className="member__role">CHIEF EDITOR & ADVISOR</span>
-            <h3 className="member__name">Prof. Adebayo O.</h3>
-            <p className="member__bio">Textbooks, review standards, and national syllabus alignment.</p>
           </div>
         </div>
       </section>
@@ -790,7 +737,7 @@ export default function Home() {
             Partner With <span className="serif-italic">Parakletus</span> today.
           </h2>
           <p className="cta__lede reveal" data-delay="2">
-            School director, fintech builder, or academic writer — our Lagos desk is ready.
+            Whether you're a school director integrating ParaLearn, a business running on stablecoin rails, or an academic writer seeking publication — our Lagos desk is ready.
           </p>
 
           <div className="cta__lanes">
@@ -818,14 +765,11 @@ export default function Home() {
         <div className="footer__inner">
           <div className="footer__brand">
             <div className="footer__lockup">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L2 7l10 5 10-5-10-5z" fill="var(--c-ember)" />
-                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--c-ember-soft)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <img src="/favicon.png" alt="Parakletus Hub Nigeria" width="24" height="24" style={{ objectFit: "contain", display: "block" }} />
               <span className="footer__name">PARAKLETUS HUB NIGERIA</span>
             </div>
             <p className="footer__caption">
-              Technology and education built for Africa.
+              Rigorous technology and educational systems built for African institutional realities.
             </p>
             <div className="footer__cac">RC NUMBER: 1845920</div>
           </div>
@@ -834,7 +778,7 @@ export default function Home() {
             <div className="footer__col">
               <div className="footer__h">Solutions</div>
               <ul>
-                <li><a href="#solutions">ParaLearn LMS</a></li>
+                <li><a href="#solutions">ParaLearn</a></li>
                 <li><a href="#solutions">Ayọ̀lọ̀ Payments</a></li>
                 <li><a href="#solutions">SabiNote Pubs</a></li>
               </ul>
