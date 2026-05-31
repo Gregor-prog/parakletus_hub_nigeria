@@ -1,0 +1,1233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>GSI Buildathon — Port Harcourt, August 22, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ====================================================================
+   GSI Buildathon — refined v3
+   Quiet product taste: one green, generous whitespace, single sans,
+   tabular numerals, soft scroll motion, no decoration.
+   ==================================================================== */
+
+/* ============ TOKENS ============ */
+:root{
+  --bg:#FFFFFF;
+  --bg-2:#FAFAFA;
+  --bg-3:#F4F4F5;
+  --ink:#0A0A0A;
+  --ink-2:#171717;
+  --mute:#737373;
+  --mute-2:#A3A3A3;
+  --line:rgba(10,10,10,0.08);
+  --line-2:rgba(10,10,10,0.14);
+  --line-3:rgba(10,10,10,0.22);
+
+  /* official GSI brand */
+  --green:#298937;
+  --green-hover:#1F6B2A;
+  --green-deep:#13491C;
+  --green-tint:#EEF6EF;
+
+  /* dark mode tokens for footer / accents */
+  --ink-bg:#0A0A0A;
+  --ink-bg-2:#141414;
+  --ink-line:rgba(255,255,255,0.10);
+  --ink-line-2:rgba(255,255,255,0.16);
+  --ink-mute:rgba(255,255,255,0.55);
+  --ink-mute-2:rgba(255,255,255,0.72);
+
+  --sans:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --radius-s:8px;
+  --radius-m:12px;
+  --radius-l:20px;
+  --radius-xl:28px;
+
+  --maxw:1200px;
+  --gutter:32px;
+
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease-out:cubic-bezier(.22,1,.36,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-weight:400;font-size:15px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  font-feature-settings:"ss01","cv11","cv02";
+  font-synthesis:none;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;transition:color .2s var(--ease)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,textarea,select{font:inherit;color:inherit;background:transparent;border:0;outline:0;width:100%}
+img{display:block;max-width:100%}
+::selection{background:var(--green);color:#fff}
+
+/* numerals — tabular everywhere ints/digits matter */
+.num,
+[data-cd], .cd-num, .stat-num, .price, .mono, .eyebrow, .strip-track,
+.coord-v, .hero-meta .v, .tl-date{font-variant-numeric:tabular-nums}
+
+/* ============ TYPE SYSTEM ============ */
+.display-1{font-size:clamp(52px,7.6vw,92px);line-height:.98;letter-spacing:-.04em;font-weight:600}
+.display-2{font-size:clamp(36px,4.6vw,58px);line-height:1.02;letter-spacing:-.032em;font-weight:600}
+.display-3{font-size:clamp(26px,3vw,34px);line-height:1.12;letter-spacing:-.022em;font-weight:600}
+.title-1{font-size:20px;line-height:1.3;letter-spacing:-.014em;font-weight:600}
+.title-2{font-size:17px;line-height:1.4;letter-spacing:-.008em;font-weight:600}
+.lede{font-size:17px;line-height:1.55;color:var(--mute);font-weight:400;letter-spacing:-.005em}
+.body{font-size:15px;line-height:1.55;color:var(--ink-2)}
+.body-mute{font-size:14px;line-height:1.55;color:var(--mute)}
+.label{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:500}
+
+/* ============ LAYOUT ============ */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+@media(max-width:600px){:root{--gutter:20px}}
+
+.section{padding:120px 0;position:relative}
+@media(max-width:780px){.section{padding:80px 0}}
+.section + .section{border-top:1px solid var(--line)}
+
+.section-head{display:flex;flex-direction:column;gap:18px;margin-bottom:64px;max-width:780px}
+.section-head .lede{max-width:56ch}
+
+/* one-line label with thin rule before */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--green);font-weight:500;
+}
+.eyebrow::before{content:"";width:18px;height:1px;background:var(--green)}
+
+/* ============ ANNOUNCE STRIP ============ */
+.strip{
+  position:relative;z-index:5;background:var(--ink);color:#fff;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  overflow:hidden;border-bottom:1px solid var(--ink);
+}
+.strip-track{display:flex;gap:48px;white-space:nowrap;padding:10px 0;animation:slide 60s linear infinite;width:max-content}
+.strip-track span{display:inline-flex;align-items:center;gap:14px;color:rgba(255,255,255,.88)}
+.strip-track .sep{color:rgba(255,255,255,.35)}
+.strip-track .dot{width:4px;height:4px;border-radius:50%;background:var(--green);display:inline-block}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============ NAV ============ */
+.nav{
+  position:sticky;top:0;z-index:40;background:rgba(255,255,255,0.85);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:saturate(1.2) blur(12px);-webkit-backdrop-filter:saturate(1.2) blur(12px);
+}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:14px var(--gutter);display:flex;align-items:center;gap:28px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:600;letter-spacing:-.014em;font-size:15px}
+.brand-mark{
+  width:22px;height:22px;border-radius:6px;background:var(--green);
+  display:grid;place-items:center;flex:0 0 auto;
+}
+.brand-mark::after{
+  content:"";width:10px;height:13px;background:#fff;
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);
+}
+.nav-links{display:none;gap:28px;margin-left:32px;font-size:14px;color:var(--mute)}
+@media(min-width:980px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{margin-left:auto;display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:9px 16px;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:-.005em;transition:background .2s var(--ease),transform .2s var(--ease)}
+.nav-cta:hover{background:var(--green-hover);transform:translateY(-1px)}
+.nav-cta .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(41,137,55,.5);animation:pulse 2.4s infinite}
+.nav-cta:hover .dot{background:#fff;box-shadow:none;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(41,137,55,.45)}70%{box-shadow:0 0 0 6px rgba(41,137,55,0)}100%{box-shadow:0 0 0 0 rgba(41,137,55,0)}}
+
+/* ============ HERO ============ */
+/* ============ HERO — manifesto + vitals ============ */
+.hero{padding:80px 0 100px;position:relative}
+@media(max-width:780px){.hero{padding:56px 0 64px}}
+.hero .wrap{max-width:1240px}
+
+.hero-layout{
+  display:grid;grid-template-columns:1.35fr 1fr;gap:72px;align-items:start;
+}
+@media(max-width:880px){.hero-layout{grid-template-columns:1fr;gap:48px}}
+
+.hero-main{min-width:0}
+
+.hero-status{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  padding:6px 14px;border:1px solid var(--line-2);border-radius:999px;
+  color:var(--ink-2);margin-bottom:40px;background:#fff;
+}
+.hero-status .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(41,137,55,.14);flex:0 0 auto}
+
+h1.hero-title{
+  font-size:clamp(40px,5.6vw,72px);
+  line-height:1.0;letter-spacing:-.038em;font-weight:600;
+  color:var(--ink);max-width:18ch;text-wrap:balance;
+}
+h1.hero-title .accent{color:var(--green)}
+
+.manifesto{margin-top:36px;display:flex;flex-direction:column;gap:18px;max-width:54ch}
+.manifesto p{font-size:17px;line-height:1.55;color:var(--ink-2);letter-spacing:-.005em;font-weight:400}
+.manifesto .mf-emph{font-size:19px;color:var(--ink);font-weight:500;letter-spacing:-.01em}
+.manifesto .mf-close{font-size:17px;color:var(--ink);font-weight:500;letter-spacing:-.005em}
+
+.hero-bridge{
+  margin-top:36px;display:flex;align-items:center;gap:14px;
+  font-family:var(--mono);font-size:13px;letter-spacing:-.005em;color:var(--mute);
+  max-width:520px;
+}
+.hero-bridge .line{flex:0 0 28px;height:1px;background:var(--ink)}
+.hero-bridge .text{font-family:var(--sans);font-size:14px;letter-spacing:-.005em;color:var(--ink-2)}
+.hero-bridge strong{color:var(--ink);font-weight:600}
+
+/* ----- vitals card (right column) ----- */
+.vitals{
+  position:sticky;top:88px;
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius-l);
+  padding:24px;display:flex;flex-direction:column;gap:20px;
+  box-shadow:0 1px 0 rgba(11,22,13,.02), 0 24px 60px -32px rgba(11,22,13,.10);
+}
+@media(max-width:880px){.vitals{position:static}}
+
+.vitals-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:16px;border-bottom:1px solid var(--line);
+}
+.vitals-tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.vitals-live{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--green);font-weight:500;
+}
+.vitals-live .d{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(41,137,55,.5);animation:pulse 2.4s infinite}
+
+.vitals-list{display:flex;flex-direction:column}
+.vitals-row{
+  display:grid;grid-template-columns:80px 1fr;gap:16px;align-items:start;
+  padding:14px 0;border-top:1px solid var(--line);
+}
+.vitals-row:first-child{border-top:0;padding-top:0}
+.vitals-row dt{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding-top:3px;font-weight:500}
+.vitals-row dd{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-.008em;line-height:1.35}
+.vitals-row dd span{display:block;font-weight:400;color:var(--mute);font-size:13px;margin-top:2px;letter-spacing:-.003em}
+
+.vitals-cd{
+  padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--bg-2);
+  display:flex;flex-direction:column;gap:12px;
+}
+.vitals-cd-head{display:flex;justify-content:space-between;align-items:center}
+.vitals-cd-lab{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.vitals-cd-date{font-family:var(--mono);font-size:11px;color:var(--ink);font-weight:500;letter-spacing:.02em}
+.vitals-cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.vitals-cd-grid > div{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px;background:#fff;border:1px solid var(--line);border-radius:8px}
+.vitals-cd-grid .n{font-size:20px;font-weight:600;letter-spacing:-.025em;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
+.vitals-cd-grid .u{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+
+.vitals-cta{display:flex;flex-direction:column;gap:8px}
+.vitals-cta .btn{justify-content:center;width:100%}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;font-size:14px;font-weight:500;letter-spacing:-.005em;border:1px solid transparent;cursor:pointer;transition:all .2s var(--ease);white-space:nowrap}
+.btn .arr{font-family:var(--mono);font-weight:500;transition:transform .25s var(--ease)}
+.btn:hover .arr{transform:translateX(3px)}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{background:var(--green-hover);transform:translateY(-1px)}
+.btn-ghost{border-color:var(--line-2);color:var(--ink);background:#fff}
+.btn-ghost:hover{border-color:var(--ink);background:var(--bg-2)}
+
+/* hero meta strip — removed; manifesto is the hero */
+
+/* countdown card — small inline variant for apply section */
+.countdown{
+  display:inline-flex;align-items:stretch;gap:0;margin-top:24px;
+  background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;
+}
+.countdown .cd-left{
+  padding:16px 20px;display:flex;flex-direction:column;justify-content:center;gap:2px;
+  border-right:1px solid var(--line);min-width:0;
+}
+.countdown .cd-lab{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.countdown .cd-msg{font-size:14px;font-weight:500;color:var(--ink);letter-spacing:-.005em}
+.countdown .cd-grid{display:flex;align-items:stretch}
+.countdown .cd-cell{padding:14px 14px;text-align:center;border-right:1px solid var(--line);min-width:54px}
+.countdown .cd-cell:last-child{border-right:0}
+.countdown .cd-num{font-size:22px;font-weight:600;letter-spacing:-.02em;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
+.countdown .cd-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-top:4px}
+@media(max-width:480px){.countdown{display:flex;flex-direction:column;align-items:stretch}.countdown .cd-left{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* ============ MISSION ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+@media(max-width:980px){.about-grid{grid-template-columns:1fr;gap:48px}}
+.about-left p{font-size:22px;line-height:1.4;color:var(--ink);letter-spacing:-.015em;font-weight:500}
+.about-left p em{font-style:normal;color:var(--green-deep)}
+.signature{margin-top:32px;display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);line-height:1.7}
+.signature::before{content:"";width:32px;height:1px;background:var(--ink)}
+
+.stat-list{display:flex;flex-direction:column}
+.stat{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start;padding:24px 0;border-top:1px solid var(--line)}
+.stat:last-child{border-bottom:1px solid var(--line)}
+.stat-num{font-size:48px;line-height:.9;letter-spacing:-.04em;color:var(--ink);font-weight:600;min-width:80px;font-variant-numeric:tabular-nums}
+.stat-num sup{font-size:16px;vertical-align:top;margin-top:4px;display:inline-block;color:var(--mute);font-weight:400}
+.stat-body h3{font-size:16px;font-weight:600;margin-bottom:4px;letter-spacing:-.008em}
+.stat-body p{font-size:14px;color:var(--mute);line-height:1.55}
+
+/* ============ CHALLENGE ============ */
+.challenge{background:var(--ink-bg);color:#fff;border-top:0}
+.challenge .lede{color:var(--ink-mute-2)}
+.challenge .eyebrow{color:#9BE36A}
+.challenge .eyebrow::before{background:#9BE36A}
+
+.chal-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media(max-width:980px){.chal-grid{grid-template-columns:1fr;gap:32px}}
+
+.chal-steps{display:flex;flex-direction:column}
+.chal-step{
+  display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;
+  padding:24px 0;border-top:1px solid var(--ink-line);
+}
+.chal-step:last-child{border-bottom:1px solid var(--ink-line)}
+.chal-step .n{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-mute);min-width:24px;padding-top:3px}
+.chal-step h4{font-size:17px;font-weight:600;margin-bottom:6px;letter-spacing:-.01em}
+.chal-step p{font-size:14px;line-height:1.55;color:var(--ink-mute-2)}
+
+/* dashboard mock */
+.preview{
+  background:#0F0F0F;border:1px solid var(--ink-line);border-radius:16px;overflow:hidden;
+  box-shadow:0 30px 60px -32px rgba(0,0,0,.6);
+}
+.preview-bar{
+  display:flex;align-items:center;gap:10px;padding:11px 14px;
+  border-bottom:1px solid var(--ink-line);
+  font-family:var(--mono);font-size:11px;color:var(--ink-mute);
+}
+.preview-bar .lights{display:flex;gap:5px}
+.preview-bar .lights span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.15)}
+.preview-body{padding:24px;display:flex;flex-direction:column;gap:14px}
+.prev-h{font-size:18px;font-weight:600;letter-spacing:-.014em}
+.prev-h em{font-style:normal;color:#9BE36A}
+.prev-row{
+  display:grid;grid-template-columns:1fr auto;gap:16px;
+  padding:14px 16px;border:1px solid var(--ink-line);border-radius:10px;align-items:center;
+  transition:border-color .2s var(--ease),background .2s var(--ease);
+}
+.prev-row:hover{border-color:var(--ink-line-2);background:rgba(255,255,255,.02)}
+.prev-row .t{font-size:13px;color:rgba(255,255,255,.92)}
+.prev-row .sub{font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:.06em;margin-top:3px}
+.prev-row .score{font-size:22px;color:#9BE36A;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.prev-cta{
+  display:flex;justify-content:space-between;align-items:center;margin-top:4px;
+  padding:14px 16px;background:var(--green);color:#fff;border-radius:10px;
+  font-size:13px;font-weight:500;letter-spacing:-.005em;
+}
+
+.no-crypto{
+  margin-top:24px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-mute);
+}
+.no-crypto .strike{padding:4px 10px;border:1px solid var(--ink-line);border-radius:999px;text-decoration:line-through;text-decoration-color:#9BE36A;text-decoration-thickness:1.5px}
+.no-crypto .ok{color:#9BE36A}
+
+/* ============ TIMELINE ============ */
+.tl{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media(max-width:1100px){.tl{grid-template-columns:1fr 1fr}.tl-phase{border-bottom:1px solid var(--line)}.tl-phase:nth-child(2n){border-right:0}.tl-phase:last-child{border-bottom:0}}
+@media(max-width:600px){.tl{grid-template-columns:1fr}.tl-phase{border-right:0}.tl-phase:last-child{border-bottom:0}}
+
+.tl-phase{
+  padding:24px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:14px;
+  min-height:240px;position:relative;transition:background .2s var(--ease);
+}
+.tl-phase:last-child{border-right:0}
+.tl-phase:hover{background:var(--bg-2)}
+.tl-phase.now{background:var(--green-tint)}
+.tl-num{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:8px}
+.tl-num .d{width:6px;height:6px;border-radius:50%;background:var(--mute-2)}
+.tl-phase.now .tl-num{color:var(--green-deep)}
+.tl-phase.now .tl-num .d{background:var(--green);box-shadow:0 0 0 3px rgba(41,137,55,.16)}
+.tl-date{font-family:var(--mono);font-size:12px;color:var(--ink-2);letter-spacing:.02em}
+.tl-name{font-size:18px;font-weight:600;line-height:1.2;letter-spacing:-.014em;margin-top:0}
+.tl-name em{font-style:normal;color:var(--green)}
+.tl-desc{font-size:13px;color:var(--mute);line-height:1.55;margin-top:auto}
+
+/* ============ APPLY ============ */
+.apply-wrap{background:var(--bg-2)}
+.apply-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;
+}
+@media(max-width:980px){.apply-grid{grid-template-columns:1fr;gap:40px}}
+.apply-meta-list{display:flex;flex-direction:column;margin-top:32px}
+.apply-meta-list li{
+  list-style:none;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;
+  padding:14px 0;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2);
+}
+.apply-meta-list li:last-child{border-bottom:1px solid var(--line)}
+.apply-meta-list .check{
+  width:18px;height:18px;border-radius:50%;background:var(--green);color:#fff;
+  display:grid;place-items:center;font-size:10px;font-weight:700;
+}
+
+.applybox{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius-l);padding:32px;
+}
+@media(max-width:600px){.applybox{padding:24px}}
+.applybox-head{display:flex;justify-content:space-between;align-items:start;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.applybox .form-h{font-size:20px;font-weight:600;letter-spacing:-.018em}
+.applybox .form-sub{font-size:14px;color:var(--mute);margin-top:6px}
+.applybox .countdown{margin-top:0}
+.applybox .countdown .cd-cell{padding:8px 10px;min-width:42px}
+.applybox .countdown .cd-num{font-size:18px}
+.applybox .countdown .cd-left{padding:10px 14px}
+.applybox .countdown .cd-msg{font-size:13px}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.form-grid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.field .input{
+  padding:12px 14px;border:1px solid var(--line-2);border-radius:10px;background:#fff;
+  font-size:14px;color:var(--ink);transition:all .15s var(--ease);
+}
+.field .input::placeholder{color:var(--mute-2)}
+.field .input:hover{border-color:var(--line-3)}
+.field .input:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(10,10,10,.06)}
+.field textarea.input{resize:none;min-height:80px;font-family:inherit;line-height:1.55}
+
+.role-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+@media(max-width:560px){.role-pick{grid-template-columns:1fr}}
+.role-pick > div{position:relative}
+.role-pick input{position:absolute;opacity:0;pointer-events:none}
+.role-pick label{
+  cursor:pointer;padding:10px 12px;border:1px solid var(--line-2);border-radius:10px;
+  text-align:center;font-size:13px;font-weight:500;transition:all .15s var(--ease);
+  display:block;letter-spacing:-.005em;background:#fff;
+}
+.role-pick label:hover{border-color:var(--line-3);background:var(--bg-2)}
+.role-pick input:checked + label{border-color:var(--ink);background:var(--ink);color:#fff}
+
+.form-submit-row{margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.form-submit-row .legal{font-size:11px;color:var(--mute);max-width:36ch;line-height:1.5}
+.form-submit{
+  background:var(--green);color:#fff;padding:11px 18px;border-radius:999px;
+  font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:0;
+  transition:all .2s var(--ease);letter-spacing:-.005em;
+}
+.form-submit:hover{background:var(--green-hover);transform:translateY(-1px)}
+.form-submit:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.form-success{display:none;padding:14px 16px;background:var(--green-tint);border:1px solid rgba(41,137,55,.2);border-radius:10px;font-size:13px;color:var(--green-deep);margin-top:14px;gap:10px;align-items:center}
+.form-success.show{display:flex}
+.form-success::before{content:"";display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--green);color:#fff;font-size:10px;font-weight:700;flex:0 0 auto;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M3 6.5L5 8.5L9 4' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");background-repeat:no-repeat;background-position:center}
+
+/* ============ ROLES ============ */
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:880px){.who-grid{grid-template-columns:1fr}}
+.who-card{
+  border:1px solid var(--line);border-radius:var(--radius-l);padding:32px;background:#fff;
+  display:flex;flex-direction:column;gap:22px;min-height:340px;
+  transition:border-color .2s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease);
+  position:relative;overflow:hidden;
+}
+.who-card:hover{border-color:var(--line-3);transform:translateY(-2px);box-shadow:0 12px 32px -16px rgba(0,0,0,.08)}
+.role-tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);font-weight:500}
+.who-card h3{font-size:30px;font-weight:600;line-height:1.05;letter-spacing:-.028em;margin-top:-2px}
+.who-card h3 em{font-style:normal;color:var(--green)}
+.who-card ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.who-card li{font-size:14px;color:var(--ink-2);display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;line-height:1.5}
+.who-card li::before{content:"";width:12px;height:1px;background:var(--ink);margin-top:.7em;flex:0 0 auto}
+.who-card .who-foot{display:flex;justify-content:space-between;align-items:end;border-top:1px solid var(--line);padding-top:16px;margin-top:auto;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.who-card .who-foot strong{font-family:var(--sans);font-size:14px;letter-spacing:-.005em;color:var(--ink);font-weight:500;text-transform:none}
+
+/* ============ PRIZES ============ */
+.prize-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
+@media(max-width:980px){.prize-grid{grid-template-columns:1fr 1fr}.prize.featured{grid-column:1/-1}}
+@media(max-width:600px){.prize-grid{grid-template-columns:1fr}.prize.featured{grid-column:auto}}
+.prize{
+  padding:28px;border:1px solid var(--line);border-radius:var(--radius-l);background:#fff;
+  display:flex;flex-direction:column;gap:14px;min-height:230px;position:relative;overflow:hidden;
+  transition:border-color .2s var(--ease),transform .25s var(--ease);
+}
+.prize:hover{border-color:var(--line-3);transform:translateY(-2px)}
+.prize.featured{background:var(--ink);color:#fff;border-color:var(--ink)}
+.prize.featured:hover{transform:translateY(-2px);box-shadow:0 16px 40px -16px rgba(0,0,0,.3)}
+.prize .rank{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.prize.featured .rank{color:rgba(255,255,255,.6)}
+.prize h4{font-size:22px;font-weight:600;line-height:1.15;letter-spacing:-.018em}
+.prize.featured h4 em{font-style:normal;color:#9BE36A}
+.prize .price{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--green)}
+.prize.featured .price{color:#9BE36A}
+.prize p{font-size:13px;line-height:1.55;color:var(--mute);margin-top:auto}
+.prize.featured p{color:rgba(255,255,255,.6)}
+
+/* ============ PARTNERS ============ */
+.presenting{
+  padding:24px 28px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-l);
+  display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;margin-bottom:16px;
+}
+@media(max-width:600px){.presenting{grid-template-columns:1fr;padding:20px}}
+.presenting .lab{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.presenting .mark{
+  width:44px;height:44px;border-radius:10px;background:var(--ink);color:#fff;
+  display:grid;place-items:center;flex:0 0 auto;font-weight:600;font-size:14px;letter-spacing:-.02em;
+}
+.presenting .name{font-size:20px;font-weight:600;letter-spacing:-.018em}
+
+.partners-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:980px){.partners-cats{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.partners-cats{grid-template-columns:1fr}}
+.partners-cat{
+  background:#fff;padding:24px;display:flex;flex-direction:column;gap:14px;min-height:180px;
+  border:1px solid var(--line);border-radius:var(--radius-l);transition:border-color .2s var(--ease);
+}
+.partners-cat:hover{border-color:var(--line-3)}
+.partners-cat .cat-h{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);font-weight:500}
+.partners-cat .cat-t{font-size:16px;font-weight:600;line-height:1.25;letter-spacing:-.012em}
+.partners-cat .cat-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.partners-cat .placeholder{font-family:var(--mono);font-size:11px;padding:4px 9px;border:1px dashed var(--line-2);border-radius:6px;color:var(--mute);background:var(--bg-2);letter-spacing:0}
+
+/* ============ FAQ ============ */
+.faq-list{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line);cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;padding:22px 0;transition:padding .25s var(--ease)}
+.faq-q{font-size:16px;font-weight:500;line-height:1.4;letter-spacing:-.008em;color:var(--ink)}
+.faq-item .icn{width:22px;height:22px;border:1px solid var(--line-2);border-radius:50%;display:grid;place-items:center;position:relative;flex:0 0 auto;transition:all .25s var(--ease);margin-top:2px}
+.faq-item .icn::before,.faq-item .icn::after{content:"";position:absolute;background:var(--ink);transition:all .25s var(--ease)}
+.faq-item .icn::before{width:9px;height:1.2px}
+.faq-item .icn::after{width:1.2px;height:9px}
+.faq-a{grid-column:1/-1;max-height:0;overflow:hidden;transition:max-height .35s var(--ease),margin .25s var(--ease);color:var(--mute);font-size:14px;line-height:1.6;max-width:64ch}
+.faq-item.open .faq-a{max-height:220px;margin-top:14px}
+.faq-item.open .icn{background:var(--ink);border-color:var(--ink)}
+.faq-item.open .icn::before,.faq-item.open .icn::after{background:#fff}
+.faq-item.open .icn::after{transform:scaleY(0)}
+
+/* ============ CTA STRIP ============ */
+.endcap{padding:120px 0;text-align:center;background:var(--ink);color:#fff;position:relative;overflow:hidden;border-top:0}
+@media(max-width:780px){.endcap{padding:88px 0}}
+.endcap h2{font-size:clamp(40px,5.5vw,68px);line-height:1.05;letter-spacing:-.03em;font-weight:600;margin-bottom:16px}
+.endcap h2 em{font-style:normal;color:#9BE36A}
+.endcap p{font-size:17px;color:var(--ink-mute-2);max-width:48ch;margin:0 auto 32px;line-height:1.55;font-weight:400}
+.endcap .btn-primary{background:#fff;color:var(--ink)}
+.endcap .btn-primary:hover{background:var(--green);color:#fff}
+.endcap-foot{margin-top:40px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute)}
+
+/* ============ FOOTER ============ */
+footer{background:#0A0A0A;color:#fff;padding:64px 0 28px;border-top:0}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:64px}
+@media(max-width:780px){.foot-grid{grid-template-columns:1fr 1fr;gap:32px}}
+@media(max-width:520px){.foot-grid{grid-template-columns:1fr}}
+.foot-brand .brand{color:#fff}
+.foot-brand p{font-size:14px;line-height:1.55;margin-top:18px;max-width:38ch;color:var(--ink-mute-2)}
+.foot-grid h5{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);font-weight:500;margin-bottom:18px}
+.foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14px}
+.foot-grid a{color:var(--ink-mute-2)}
+.foot-grid a:hover{color:#fff}
+.socials{display:flex;gap:8px;margin-top:24px}
+.soc{
+  width:36px;height:36px;border:1px solid var(--ink-line);border-radius:50%;
+  display:grid;place-items:center;transition:all .2s var(--ease);color:var(--ink-mute-2);
+}
+.soc:hover{background:#fff;color:var(--ink);border-color:#fff;transform:translateY(-2px)}
+.soc svg{width:14px;height:14px}
+.foot-bot{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:24px;border-top:1px solid var(--ink-line);
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-mute);
+  gap:32px;flex-wrap:wrap;
+}
+
+/* ============ MOTION ============ */
+.fade-up{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.fade-up.in{opacity:1;transform:translateY(0)}
+.fade-up.d1{transition-delay:.05s}
+.fade-up.d2{transition-delay:.12s}
+.fade-up.d3{transition-delay:.18s}
+.fade-up.d4{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){
+  .fade-up{opacity:1;transform:none;transition:none}
+  .strip-track{animation:none}
+  .nav-cta .dot{animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>GSI Buildathon</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#challenge">Challenge</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#apply">Apply</a>
+      <a href="#prizes">Prizes</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="nav-cta" href="#apply">
+      <span class="dot"></span>Get notified
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO — manifesto + vitals ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-layout">
+      <div class="hero-main">
+        <div class="hero-status fade-up in">
+          <span class="dot"></span>
+          <span>Something significant is coming · Aug 22, 2026</span>
+        </div>
+
+        <h1 class="hero-title fade-up in d1">
+          African research deserves<br>a <span class="accent">global stage.</span>
+        </h1>
+
+        <div class="manifesto fade-up in d2">
+          <p>For too long, the systems that decide which academic work gets seen — and which gets ignored — have not been built for us.</p>
+          <p class="mf-emph">The Global South Index (GSI) is changing that.</p>
+          <p>A new academic indexing platform, designed specifically to give African and Global South researchers the recognition, reach, and permanence their work deserves. Built on technology that is fair, transparent, and community-owned.</p>
+          <p class="mf-close">Because the future of global knowledge includes all of us.</p>
+        </div>
+
+        <div class="hero-bridge fade-up in d3">
+          <span class="line"></span>
+          <span class="text">Something significant is coming. <strong>Stay close.</strong></span>
+        </div>
+      </div>
+
+      <aside class="vitals fade-up in d2">
+        <div class="vitals-head">
+          <span class="vitals-tag">Buildathon · Vol. 01</span>
+          <span class="vitals-live"><span class="d"></span>Coming</span>
+        </div>
+
+        <dl class="vitals-list">
+          <div class="vitals-row">
+            <dt>Finale</dt>
+            <dd>Aug 22, 2026<span>Port Harcourt, Nigeria</span></dd>
+          </div>
+          <div class="vitals-row">
+            <dt>Sprint</dt>
+            <dd>72 hours<span>Remote · Jul 20–23</span></dd>
+          </div>
+          <div class="vitals-row">
+            <dt>Format</dt>
+            <dd>2 builders / team<span>1 designer + 1 engineer</span></dd>
+          </div>
+          <div class="vitals-row">
+            <dt>Reward</dt>
+            <dd>Founding team offer<span>+ talent pipeline</span></dd>
+          </div>
+        </dl>
+
+        <div class="vitals-cd" id="countdown" aria-label="Countdown to applications opening">
+          <div class="vitals-cd-head">
+            <span class="vitals-cd-lab">Applications open in</span>
+            <span class="vitals-cd-date">May 30</span>
+          </div>
+          <div class="vitals-cd-grid">
+            <div><span class="n" data-cd="d">00</span><span class="u">Days</span></div>
+            <div><span class="n" data-cd="h">00</span><span class="u">Hrs</span></div>
+            <div><span class="n" data-cd="m">00</span><span class="u">Min</span></div>
+            <div><span class="n" data-cd="s">00</span><span class="u">Sec</span></div>
+          </div>
+        </div>
+
+        <div class="vitals-cta">
+          <a class="btn btn-primary" href="#apply">
+            Get notified
+            <span class="arr">→</span>
+          </a>
+          <a class="btn btn-ghost" href="#about">
+            About the Buildathon
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ABOUT — the Buildathon ============ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="eyebrow">The Buildathon</div>
+      <h2 class="display-2">And this is how we build it.</h2>
+      <p class="lede">The GSI Buildathon is how we're hiring the founding team — and how we're mapping the top 1% of design and engineering talent across Southern and Eastern Nigeria. Three days. Two builders per team. One MVP that has to feel inevitable.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-left fade-up">
+        <p>We didn't want to write a job posting. <em>So we built a stage.</em></p>
+        <div class="signature">
+          The GSI Team<br>
+          Port Harcourt, Nigeria
+        </div>
+      </div>
+      <div class="stat-list fade-up d2">
+        <div class="stat">
+          <div class="stat-num">1<sup>%</sup></div>
+          <div class="stat-body">
+            <h3>Top-tier talent only</h3>
+            <p>Open call across community chapters, GDGs, and tech hubs in the South and East.</p>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-body">
+            <h3>Founding roles on offer</h3>
+            <p>One product designer. One software engineer. Hired live from the finale stage.</p>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">72<sup>h</sup></div>
+          <div class="stat-body">
+            <h3>Remote sprint</h3>
+            <p>Three days to ship a working MVP — the Journal Onboarding Flow.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHALLENGE ============ -->
+<section class="section challenge" id="challenge">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="eyebrow">The brief</div>
+      <h2 class="display-2">Build the onboarding a professor would actually use.</h2>
+      <p class="lede">Your task is the MVP every researcher meets first — the Journal Onboarding Flow. A clean dashboard that pulls academic history from OpenAlex, calculates a researcher's GSI Score, and writes their journal to the blockchain. The hard part isn't the chain — it's making the chain disappear.</p>
+    </div>
+
+    <div class="chal-grid">
+      <div class="chal-steps fade-up">
+        <div class="chal-step">
+          <div class="n">01</div>
+          <div>
+            <h4>Pull academic history</h4>
+            <p>Use the OpenAlex API to import a researcher's publications, citations and co-authorships into a single, calm view.</p>
+          </div>
+        </div>
+        <div class="chal-step">
+          <div class="n">02</div>
+          <div>
+            <h4>Compute the GSI Score</h4>
+            <p>Transparent, fair and explainable — the score should reward depth and rigour, not Western citation politics.</p>
+          </div>
+        </div>
+        <div class="chal-step">
+          <div class="n">03</div>
+          <div>
+            <h4>Save to the blockchain — invisibly</h4>
+            <p>One button. No wallets. No gas. No seed phrases on screen. If a professor sees crypto jargon, you've already lost.</p>
+          </div>
+        </div>
+        <div class="chal-step">
+          <div class="n">04</div>
+          <div>
+            <h4>Make it feel inevitable</h4>
+            <p>Prestigious-meets-modern. Bold typography, generous whitespace, real data, no slop. Ship something a VC would screenshot.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up d2">
+        <div class="preview" aria-hidden="true">
+          <div class="preview-bar">
+            <div class="lights"><span></span><span></span><span></span></div>
+            <span>gsi.app / onboarding</span>
+          </div>
+          <div class="preview-body">
+            <div class="prev-h">Welcome back.</div>
+            <div class="prev-row">
+              <div>
+                <div class="t">Journal of African Sociology · Vol. 14</div>
+                <div class="sub">openalex · 42 citations · Q2</div>
+              </div>
+              <div class="score">8.4</div>
+            </div>
+            <div class="prev-row">
+              <div>
+                <div class="t">Indigenous Knowledge Systems Review</div>
+                <div class="sub">openalex · 28 citations · Q1</div>
+              </div>
+              <div class="score">9.1</div>
+            </div>
+            <div class="prev-row">
+              <div>
+                <div class="t">Niger Delta Public Health Quarterly</div>
+                <div class="sub">openalex · 17 citations · Q3</div>
+              </div>
+              <div class="score">7.6</div>
+            </div>
+            <div class="prev-cta">
+              <span>Save journal · permanent record</span>
+              <span class="mono">→</span>
+            </div>
+          </div>
+        </div>
+        <div class="no-crypto">
+          <span>No</span>
+          <span class="strike">gas fees</span>
+          <span class="strike">wallets</span>
+          <span class="strike">seed phrases</span>
+          <span class="strike">"Web3 magic"</span>
+          <span class="ok">— just product.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section class="section" id="timeline">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="eyebrow">Timeline</div>
+      <h2 class="display-2">Five phases, one finale.</h2>
+      <p class="lede">From open call to live hiring on stage in Port Harcourt — here's how the next four months unfold.</p>
+    </div>
+
+    <div class="tl fade-up">
+      <div class="tl-phase now">
+        <div class="tl-num"><i class="d"></i>Phase 01 · Now</div>
+        <div class="tl-date">May 30 → Jul 1</div>
+        <div class="tl-name">Marketing &amp; <em>applications</em></div>
+        <div class="tl-desc">Open call across community chapters, GDGs, and tech hubs in the South and East. We collect portfolios and GitHub.</div>
+      </div>
+      <div class="tl-phase">
+        <div class="tl-num"><i class="d"></i>Phase 02</div>
+        <div class="tl-date">Jul 1 → Jul 15</div>
+        <div class="tl-name">Selection &amp; pairing</div>
+        <div class="tl-desc">The team reviews every application. We shortlist by craft — projects shipped, code read, taste shown.</div>
+      </div>
+      <div class="tl-phase">
+        <div class="tl-num"><i class="d"></i>Phase 03</div>
+        <div class="tl-date">Jul 16 → Jul 18</div>
+        <div class="tl-name">Mails &amp; team formation</div>
+        <div class="tl-desc">Shortlisted candidates are emailed and randomly paired — one designer with one engineer.</div>
+      </div>
+      <div class="tl-phase">
+        <div class="tl-num"><i class="d"></i>Phase 04</div>
+        <div class="tl-date">Jul 20 → Jul 23</div>
+        <div class="tl-name">The <em>72-hour</em> sprint</div>
+        <div class="tl-desc">Remote, three days, one prototype. Teams submit a working MVP and full design mockup.</div>
+      </div>
+      <div class="tl-phase">
+        <div class="tl-num"><i class="d"></i>Phase 05 · Finale</div>
+        <div class="tl-date">Aug 22</div>
+        <div class="tl-name">Port Harcourt <em>finale</em></div>
+        <div class="tl-desc">Top teams travel to Port Harcourt for a live coding sprint, presentations, and the awarding of job contracts.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPLY ============ -->
+<section class="section apply-wrap" id="apply">
+  <div class="wrap">
+    <div class="apply-grid">
+      <div class="fade-up">
+        <div class="section-head" style="margin-bottom:0">
+          <div class="eyebrow">Get notified</div>
+          <h2 class="display-2">Be first in line when applications open.</h2>
+          <p class="lede">Applications go live <strong style="color:var(--ink);font-weight:600">May 30, 2026</strong>. Drop your details now and we'll email you the moment they do — alongside the official brief, judging rubric and shortlist timeline.</p>
+        </div>
+        <ul class="apply-meta-list">
+          <li><span class="check">✓</span> Early access to the official brief and rubric</li>
+          <li><span class="check">✓</span> Direct email when applications open</li>
+          <li><span class="check">✓</span> Priority review for shortlist consideration</li>
+          <li><span class="check">✓</span> Talent pipeline access — 12+ partner startups</li>
+        </ul>
+      </div>
+
+      <form class="applybox fade-up d2" id="applyForm" novalidate>
+        <div class="form-h">Tell us who you are.</div>
+        <div class="form-sub">Free to submit. Takes 60 seconds.</div>
+
+        <div class="form-grid">
+          <div class="field full">
+            <label for="ap-name">Full name</label>
+            <input class="input" type="text" id="ap-name" name="name" required placeholder="e.g. Adaeze Okeke"/>
+          </div>
+          <div class="field">
+            <label for="ap-email">Email</label>
+            <input class="input" type="email" id="ap-email" name="email" required placeholder="you@email.com"/>
+          </div>
+          <div class="field">
+            <label for="ap-city">City &amp; country</label>
+            <input class="input" type="text" id="ap-city" name="city" placeholder="Port Harcourt, Nigeria"/>
+          </div>
+
+          <div class="field full">
+            <label>I'm applying as a…</label>
+            <div class="role-pick">
+              <div><input type="radio" name="role" id="r-d" value="designer" checked/><label for="r-d">Designer</label></div>
+              <div><input type="radio" name="role" id="r-e" value="engineer"/><label for="r-e">Engineer</label></div>
+              <div><input type="radio" name="role" id="r-b" value="either"/><label for="r-b">Either / both</label></div>
+            </div>
+          </div>
+
+          <div class="field full">
+            <label for="ap-url">Portfolio · GitHub · Dribbble</label>
+            <input class="input" type="url" id="ap-url" name="url" placeholder="https://"/>
+          </div>
+
+          <div class="field full">
+            <label for="ap-why">Why do you want in? <span style="text-transform:none;color:var(--mute-2);letter-spacing:0">(optional · 1–2 sentences)</span></label>
+            <textarea class="input" id="ap-why" name="why" placeholder="What pulls you to GSI? What's the last thing you shipped?"></textarea>
+          </div>
+        </div>
+
+        <div class="form-submit-row">
+          <div class="legal">By submitting you agree to receive Buildathon updates. Unsubscribe any time.</div>
+          <button class="form-submit" type="submit">
+            Get notified
+            <span class="mono">→</span>
+          </button>
+        </div>
+
+        <div class="form-success" id="apSuccess">
+          You're on the list. We'll email <strong style="margin-left:4px" id="apEmailEcho"></strong> the moment applications go live.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROLES ============ -->
+<section class="section" id="who">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="eyebrow">Founding roles</div>
+      <h2 class="display-2">Two roles. Founding equity.</h2>
+      <p class="lede">Every applicant is also a candidate for our partner startups — over a dozen firms looking for elite builders from the South/East to fill product and engineering seats.</p>
+    </div>
+
+    <div class="who-grid">
+      <div class="who-card fade-up">
+        <div class="role-tag">Role 01 · Design</div>
+        <h3>Founding<br><em>Product Designer</em></h3>
+        <ul>
+          <li>Owns the visual + interaction system of GSI from day one.</li>
+          <li>Comfortable in Figma, equally comfortable in code.</li>
+          <li>Taste for restraint over dashboard clutter.</li>
+          <li>Bonus: shipped to African or Global South audiences.</li>
+        </ul>
+        <div class="who-foot">
+          <span>Based</span>
+          <strong>Hybrid · Port Harcourt</strong>
+        </div>
+      </div>
+      <div class="who-card fade-up d2">
+        <div class="role-tag">Role 02 · Engineering</div>
+        <h3>Founding<br><em>Software Engineer</em></h3>
+        <ul>
+          <li>Full-stack, pragmatic, ships every week.</li>
+          <li>Familiar with Web3 plumbing — obsessed with hiding it.</li>
+          <li>Loves a calm, well-typed codebase. Reads OpenAlex docs for fun.</li>
+          <li>Bonus: open-source maintainer or DeSci contributor.</li>
+        </ul>
+        <div class="who-foot">
+          <span>Based</span>
+          <strong>Hybrid · Port Harcourt</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIZES ============ -->
+<section class="section" id="prizes">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="eyebrow">Prizes</div>
+      <h2 class="display-2">Beyond the cash.</h2>
+      <p class="lede">The real prize is the contract. But we've worked with Web3 sponsors and partner startups to make sure no one leaves Port Harcourt empty-handed.</p>
+    </div>
+
+    <div class="prize-grid">
+      <div class="prize featured fade-up">
+        <div class="rank">First place · The contract</div>
+        <h4>Founding <em>team offer</em> + ₦TBD cash prize</h4>
+        <div class="price">2 roles · live on stage</div>
+        <p>One designer. One engineer. Hired into the GSI founding team with equity, a relocation stipend, and the chance to build the platform from the first commit.</p>
+      </div>
+      <div class="prize fade-up d2">
+        <div class="rank">Second place</div>
+        <h4>Talent Pipeline fast-track</h4>
+        <div class="price">12+ partner startups</div>
+        <p>Skip the line. Direct introductions, with portfolio context, to every hiring partner in our network.</p>
+      </div>
+      <div class="prize fade-up d3">
+        <div class="rank">Third place</div>
+        <h4>DeSci grant + mentorship</h4>
+        <div class="price">Sponsored · Web3 partners</div>
+        <p>Micro-grant from our Web3 sponsors, plus 3 months of mentorship from senior product and engineering leads.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTNERS ============ -->
+<section class="section" id="partners">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="eyebrow">Partners</div>
+      <h2 class="display-2">Built with four kinds of partners.</h2>
+      <p class="lede">Final partner list publishes alongside applications on May 30. If you'd like to be on it — academic, community, startup or Web3 — we're listening.</p>
+    </div>
+
+    <div class="presenting fade-up">
+      <div class="mark" aria-hidden="true">—</div>
+      <div>
+        <div class="lab">Presented by</div>
+        <div class="name">Presenting partner — to be announced</div>
+        <div class="lab" style="margin-top:4px;color:var(--green)">In partnership with Global South Index · 2026</div>
+      </div>
+    </div>
+
+    <div class="partners-cats">
+      <div class="partners-cat fade-up">
+        <div class="cat-h">01 · Academic</div>
+        <div class="cat-t">Credibility &amp; reach</div>
+        <div class="cat-list">
+          <span class="placeholder">+ partner 01</span>
+          <span class="placeholder">+ partner 02</span>
+          <span class="placeholder">+ partner 03</span>
+          <span class="placeholder">+ partner 04</span>
+        </div>
+      </div>
+      <div class="partners-cat fade-up d2">
+        <div class="cat-h">02 · Community</div>
+        <div class="cat-t">Talent on the ground</div>
+        <div class="cat-list">
+          <span class="placeholder">+ partner 01</span>
+          <span class="placeholder">+ partner 02</span>
+          <span class="placeholder">+ partner 03</span>
+          <span class="placeholder">+ partner 04</span>
+        </div>
+      </div>
+      <div class="partners-cat fade-up d3">
+        <div class="cat-h">03 · Startups</div>
+        <div class="cat-t">Hiring pipeline</div>
+        <div class="cat-list">
+          <span class="placeholder">+ partner 01</span>
+          <span class="placeholder">+ partner 02</span>
+          <span class="placeholder">+ partner 03</span>
+        </div>
+      </div>
+      <div class="partners-cat fade-up d4">
+        <div class="cat-h">04 · Web3 / DeSci</div>
+        <div class="cat-t">Grants &amp; rails</div>
+        <div class="cat-list">
+          <span class="placeholder">+ sponsor 01</span>
+          <span class="placeholder">+ sponsor 02</span>
+          <span class="placeholder">+ sponsor 03</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="eyebrow">FAQ</div>
+      <h2 class="display-2">Frequently asked.</h2>
+      <p class="lede">Anything we've missed? Email <a href="/cdn-cgi/l/email-protection#ddb5b8b1b1b29dbaaeb4f3bcbbafb4bebc" style="color:var(--ink);border-bottom:1px solid var(--line-3);transition:border-color .2s"><span class="__cf_email__" data-cfemail="c2aaa7aeaead82a5b1abeca3a4b0aba1a3">[email&#160;protected]</span></a> — the team gets back within 24 hours.</p>
+    </div>
+    <div class="faq-list fade-up">
+      <div class="faq-item open">
+        <div class="faq-q">Do I need Web3 / blockchain experience to apply?</div>
+        <div class="icn" aria-hidden="true"></div>
+        <div class="faq-a">No. The whole point of the challenge is to hide the chain. We're looking for engineers who can read docs and ship clean APIs, and designers who can make complex systems feel obvious. Web3 plumbing is a bonus, not a baseline.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is the Buildathon open to candidates outside Nigeria?</div>
+        <div class="icn" aria-hidden="true"></div>
+        <div class="faq-a">Phase 01 prioritises Southern and Eastern Nigeria for the founding-team hire. Future editions will open to the wider Global South — Lagos, Nairobi, Lahore, Lima, Accra, Manila and beyond.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does it cost anything to enter?</div>
+        <div class="icn" aria-hidden="true"></div>
+        <div class="faq-a">No. Entry is free. Travel and accommodation to the Port Harcourt finale are sponsored for shortlisted teams.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I apply solo? With a friend?</div>
+        <div class="icn" aria-hidden="true"></div>
+        <div class="faq-a">Apply solo. We pair you — one designer with one engineer — after the shortlist. This keeps the sample clean and forces fast, real collaboration under pressure.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Who owns the code we write during the sprint?</div>
+        <div class="icn" aria-hidden="true"></div>
+        <div class="faq-a">All participants sign a simple agreement that GSI retains rights to the code produced during the 72-hour challenge. You retain full credit, attribution, and the right to showcase your work publicly afterwards.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if I'm not picked for the founding team?</div>
+        <div class="icn" aria-hidden="true"></div>
+        <div class="faq-a">Every shortlisted candidate enters our Talent Pipeline — a curated list shared with 12+ partner startups and tech firms across Africa. Many strong applicants are hired this way.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>GSI Buildathon</span>
+        </a>
+        <p>A community-owned scholarly index, built on open infrastructure, for researchers the rest of the world keeps overlooking.</p>
+        <div class="socials">
+          <a class="soc" href="#" aria-label="Twitter / X" title="Twitter / X">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2H21.5l-7.5 8.57L23 22h-6.844l-5.36-7.012L4.5 22H1.244l8.03-9.176L1 2h7l4.85 6.41L18.244 2zm-2.4 18h1.9L7.25 4H5.25l10.594 16z"/></svg>
+          </a>
+          <a class="soc" href="#" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.6 0h4.36v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.44h-4.55v-6.6c0-1.58-.03-3.6-2.19-3.6-2.2 0-2.54 1.72-2.54 3.5V22H7.83V8z"/></svg>
+          </a>
+          <a class="soc" href="#" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a class="soc" href="#" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.5 3.18-1.18 3.18-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+          </a>
+          <a class="soc" href="#" aria-label="YouTube" title="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.13-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.37.56A3.02 3.02 0 0 0 .5 6.2 31.7 31.7 0 0 0 0 12a31.7 31.7 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.13 2.14C4.49 20.5 12 20.5 12 20.5s7.51 0 9.37-.56a3.02 3.02 0 0 0 2.13-2.14A31.7 31.7 0 0 0 24 12a31.7 31.7 0 0 0-.5-5.8zM9.6 15.57V8.43L15.82 12 9.6 15.57z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h5>Event</h5>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#challenge">Challenge</a></li>
+          <li><a href="#timeline">Timeline</a></li>
+          <li><a href="#prizes">Prizes</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Partner with us</h5>
+        <ul>
+          <li><a href="/cdn-cgi/l/email-protection#7909180b0d171c0b0a391e0a1057181f0b101a18">Academic</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#abdbcad9dfc5ced9d8ebccd8c285cacdd9c2c8ca">Community</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#1868796a6c767d6a6b587f6b7136797e6a717b79">Startup hiring</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#1f6f7e6d6b717a6d6c5f786c76317e796d767c7e">Web3 sponsors</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bot">
+      <span>© 2026 Global South Index · Port Harcourt, Nigeria</span>
+      <span>Code of Conduct · Privacy · Terms</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ---------- Countdown ---------- */
+(function(){
+  const target = new Date('2026-05-30T00:00:00+01:00').getTime();
+  const els = {
+    d: document.querySelector('[data-cd="d"]'),
+    h: document.querySelector('[data-cd="h"]'),
+    m: document.querySelector('[data-cd="m"]'),
+    s: document.querySelector('[data-cd="s"]'),
+  };
+  function pad(n){return String(Math.max(0,n)).padStart(2,'0')}
+  function tick(){
+    let diff = target - Date.now();
+    if(diff < 0){
+      Object.values(els).forEach(e=>e.textContent='00');
+      const msg = document.querySelector('.countdown .cd-msg');
+      if(msg) msg.textContent = 'Applications are live';
+      return;
+    }
+    const d = Math.floor(diff/86400000); diff -= d*86400000;
+    const h = Math.floor(diff/3600000);  diff -= h*3600000;
+    const m = Math.floor(diff/60000);    diff -= m*60000;
+    const s = Math.floor(diff/1000);
+    els.d.textContent=pad(d);els.h.textContent=pad(h);els.m.textContent=pad(m);els.s.textContent=pad(s);
+  }
+  tick();setInterval(tick,1000);
+})();
+
+/* ---------- FAQ accordion ---------- */
+document.querySelectorAll('.faq-item').forEach(it=>{
+  it.addEventListener('click',()=>it.classList.toggle('open'));
+});
+
+/* ---------- Smooth anchor scrolling ---------- */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id = a.getAttribute('href');
+    if(id.length<2) return;
+    const el = document.querySelector(id);
+    if(!el) return;
+    e.preventDefault();
+    const top = el.getBoundingClientRect().top + window.pageYOffset - 70;
+    window.scrollTo({top, behavior:'smooth'});
+  });
+});
+
+/* ---------- Apply form ---------- */
+(function(){
+  const form = document.getElementById('applyForm');
+  if(!form) return;
+  const success = document.getElementById('apSuccess');
+  const echo = document.getElementById('apEmailEcho');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    if(!data.email || !data.name){
+      form.querySelector('input[required]').focus();
+      return;
+    }
+    try{
+      const list = JSON.parse(localStorage.getItem('gsi.applicants')||'[]');
+      list.push({...data, ts: Date.now()});
+      localStorage.setItem('gsi.applicants', JSON.stringify(list));
+    }catch(_){}
+    echo.textContent = data.email;
+    success.classList.add('show');
+    const btn = form.querySelector('.form-submit');
+    btn.innerHTML = 'Saved';
+    btn.style.background = 'var(--ink)';
+    setTimeout(()=>{
+      const top = success.getBoundingClientRect().top + window.pageYOffset - 120;
+      window.scrollTo({top, behavior:'smooth'});
+    }, 60);
+  });
+})();
+
+/* ---------- Fade-up on scroll ---------- */
+(function(){
+  if(!('IntersectionObserver' in window)){
+    document.querySelectorAll('.fade-up').forEach(el=>el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.fade-up:not(.in)').forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
