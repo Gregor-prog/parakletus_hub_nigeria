@@ -148,7 +148,7 @@ export default function AboutPage() {
           <div className="nav__right">
             <div className="nav__status">
               <span className="nav__status-dot" />
-              <span className="nav__status-label">LAGOS LIVE</span>
+              <span className="nav__status-label">PHC LIVE</span>
               <span className="nav__status-sep">/</span>
               <span className="nav__status-time">{timeStr}</span>
               <span className="nav__status-zone">WAT</span>
@@ -185,7 +185,7 @@ export default function AboutPage() {
             <span className="serif-italic">Africa&rsquo;s</span> infrastructure.
           </h1>
           <p className="about-hero__lede reveal" data-delay="2">
-            Parakletus Hub Nigeria is a Lagos-based technology and publishing company. We build
+            Parakletus Hub Nigeria is a Port Harcourt-based technology and publishing company. We build
             school management software, stablecoin payment rails, and peer-reviewed educational
             literature — all engineered for the operational realities of the Global South.
           </p>
@@ -197,7 +197,7 @@ export default function AboutPage() {
         <div className="about-mission__inner">
           <div className="about-mission__stat">
             <span className="about-mission__k">2021</span>
-            <span className="about-mission__v">Founded in Lagos</span>
+            <span className="about-mission__v">Founded in Port Harcourt, Nigeria</span>
           </div>
           <div className="about-mission__stat">
             <span className="about-mission__k">3</span>
@@ -283,7 +283,7 @@ export default function AboutPage() {
             Partner With <span className="serif-italic">Parakletus</span> today.
           </h2>
           <p className="cta__lede reveal" data-delay="2">
-            Whether you&rsquo;re a school director, fintech builder, or academic writer — our Lagos desk is ready.
+            Whether you&rsquo;re a school director, fintech builder, or academic writer — our Port Harcourt desk is ready.
           </p>
           <div className="cta__lanes">
             <div className="lane reveal" data-delay="1">
@@ -310,8 +310,7 @@ export default function AboutPage() {
         <div className="footer__inner">
           <div className="footer__brand">
             <div className="footer__lockup">
-              <img src="/favicon.png" alt="Parakletus Hub Nigeria" width="24" height="24" style={{ objectFit: "contain", display: "block" }} />
-              <span className="footer__name">PARAKLETUS HUB NIGERIA</span>
+              <img src="/favicon.png" alt="Parakletus Hub Nigeria" width="36" height="36" style={{ objectFit: "contain", display: "block" }} />
             </div>
             <p className="footer__caption">Rigorous technology and educational systems built for African institutional realities.</p>
             <div className="footer__cac">RC NUMBER: 1845920</div>
@@ -322,7 +321,7 @@ export default function AboutPage() {
               <ul>
                 <li><Link href="/#solutions">ParaLearn</Link></li>
                 <li><Link href="/#solutions">Ayọ̀lọ̀ Payments</Link></li>
-                <li><Link href="/#solutions">SabiNote Pubs</Link></li>
+                <li><a href="https://sabinote.pln.ng" target="_blank" rel="noopener noreferrer">SabiNote</a></li>
               </ul>
             </div>
             <div className="footer__col">
@@ -344,7 +343,7 @@ export default function AboutPage() {
             <div className="footer__col">
               <div className="footer__h">Desk</div>
               <ul>
-                <li>Lagos, Nigeria</li>
+                <li>Port Harcourt, Nigeria</li>
                 <li><a href="mailto:onboarding@parakletushub.ng" style={{ textDecoration: "underline" }}>Email Desk</a></li>
               </ul>
             </div>

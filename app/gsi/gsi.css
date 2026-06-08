@@ -88,12 +88,7 @@
 .gsi-root .nav-inner{max-width:var(--maxw);margin:0 auto;padding:14px var(--gutter);display:flex;align-items:center;gap:28px}
 .gsi-root .brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:600;letter-spacing:-.014em;font-size:15px}
 .gsi-root .brand-mark{
-  width:22px;height:22px;border-radius:6px;background:var(--green);
-  display:grid;place-items:center;flex:0 0 auto;
-}
-.gsi-root .brand-mark::after{
-  content:"";width:10px;height:13px;background:#fff;
-  clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);
+  width:120px;height:48px;flex:0 0 auto;object-fit:contain;
 }
 .gsi-root .nav-links{display:none;gap:28px;margin-left:32px;font-size:14px;color:var(--mute)}
 @media(min-width:980px){.gsi-root .nav-links{display:flex}}

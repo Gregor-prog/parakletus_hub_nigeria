@@ -279,7 +279,7 @@ export default function Home() {
           <div className="nav__right">
             <div className="nav__status">
               <span className="nav__status-dot" />
-              <span className="nav__status-label">LAGOS LIVE</span>
+              <span className="nav__status-label">PHC LIVE</span>
               <span className="nav__status-sep">/</span>
               <span className="nav__status-time">{timeStr}</span>
               <span className="nav__status-zone">WAT</span>
@@ -581,7 +581,7 @@ export default function Home() {
               Lecture notes, peer-reviewed summaries, and study guides — built collaboratively by students.
             </p>
             <div className="sol__foot" style={{ marginTop: "auto" }}>
-              <a href="#contact" className="sol__more">Browse SabiNote Hub →</a>
+              <a href="https://sabinote.pln.ng" target="_blank" rel="noopener noreferrer" className="sol__more">Browse SabiNote Hub →</a>
             </div>
           </div>
 
@@ -737,7 +737,7 @@ export default function Home() {
             Partner With <span className="serif-italic">Parakletus</span> today.
           </h2>
           <p className="cta__lede reveal" data-delay="2">
-            Whether you're a school director integrating ParaLearn, a business running on stablecoin rails, or an academic writer seeking publication — our Lagos desk is ready.
+            Whether you're a school director integrating ParaLearn, a business running on stablecoin rails, or an academic writer seeking publication — our Port Harcourt desk is ready.
           </p>
 
           <div className="cta__lanes">
@@ -765,8 +765,7 @@ export default function Home() {
         <div className="footer__inner">
           <div className="footer__brand">
             <div className="footer__lockup">
-              <img src="/favicon.png" alt="Parakletus Hub Nigeria" width="24" height="24" style={{ objectFit: "contain", display: "block" }} />
-              <span className="footer__name">PARAKLETUS HUB NIGERIA</span>
+              <img src="/favicon.png" alt="Parakletus Hub Nigeria" width="36" height="36" style={{ objectFit: "contain", display: "block" }} />
             </div>
             <p className="footer__caption">
               Rigorous technology and educational systems built for African institutional realities.
@@ -780,7 +779,7 @@ export default function Home() {
               <ul>
                 <li><a href="#solutions">ParaLearn</a></li>
                 <li><a href="#solutions">Ayọ̀lọ̀ Payments</a></li>
-                <li><a href="#solutions">SabiNote Pubs</a></li>
+                <li><a href="https://sabinote.pln.ng" target="_blank" rel="noopener noreferrer">SabiNote</a></li>
               </ul>
             </div>
             <div className="footer__col">
@@ -802,7 +801,7 @@ export default function Home() {
             <div className="footer__col">
               <div className="footer__h">Desk</div>
               <ul>
-                <li>Lagos, Nigeria</li>
+                <li>Port Harcourt, Nigeria</li>
                 <li><a href="mailto:onboarding@parakletushub.ng" style={{ textDecoration: "underline" }}>Email Desk</a></li>
               </ul>
             </div>

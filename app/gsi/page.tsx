@@ -112,8 +112,7 @@ export default function GsiPage() {
       <nav className="gsi-nav">
         <div className="nav-inner">
           <a className="brand" href="#">
-            <span className="brand-mark" aria-hidden="true" />
-            <span>GSI Buildathon</span>
+            <img src="/gsi-logo.png" alt="GSI Buildathon" className="brand-mark" width="120" height="48" style={{ objectFit: "contain", display: "block" }} />
           </a>
           <div className="nav-links">
             <a href="#about">About</a>
@@ -489,8 +488,7 @@ export default function GsiPage() {
           <div className="foot-grid">
             <div className="foot-brand">
               <a className="brand" href="#">
-                <span className="brand-mark" aria-hidden="true" />
-                <span>GSI Buildathon</span>
+                <img src="/gsi-logo.png" alt="GSI Buildathon" className="brand-mark" width="120" height="48" style={{ objectFit: "contain", display: "block" }} />
               </a>
               <p>A community-owned scholarly index, built on open infrastructure, for researchers the rest of the world keeps overlooking.</p>
               <div className="socials">
