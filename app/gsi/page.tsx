@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/10nOWu3snYjOfWdxA2wcIkZeZTBFhdSmUkXeVR9nW9wI/viewform";
 
 function pad(n: number) { return String(Math.max(0, n)).padStart(2, "0"); }
 
@@ -34,12 +36,8 @@ const faqs = [
 ];
 
 export default function GsiPage() {
-  const cd = useCountdown("2026-07-01T00:00:00+01:00");
+  const cd = useCountdown("2026-07-20T00:00:00+01:00");
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
-  const [role, setRole] = useState("designer");
-  const [formDone, setFormDone] = useState(false);
-  const [submittedEmail, setSubmittedEmail] = useState("");
-  const formRef = useRef<HTMLFormElement>(null);
 
   // fade-up observer
   useEffect(() => {
@@ -72,30 +70,17 @@ export default function GsiPage() {
     return () => document.removeEventListener("click", handler);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
-    if (!data.email || !data.name) return;
-    try {
-      const list = JSON.parse(localStorage.getItem("gsi.applicants") || "[]");
-      list.push({ ...data, ts: Date.now() });
-      localStorage.setItem("gsi.applicants", JSON.stringify(list));
-    } catch (_) {}
-    setSubmittedEmail(String(data.email));
-    setFormDone(true);
-  };
-
   const stripContent = Array.from({ length: 2 }, (_, i) => (
     <React.Fragment key={i}>
       <span><span className="dot" />GSI Buildathon · Vol. 01</span>
       <span className="sep">·</span>
       <span>Port Harcourt · Aug 22, 2026</span>
       <span className="sep">·</span>
-      <span>72-hour remote sprint · Jul 20–23</span>
+      <span>Applications are open — apply now</span>
       <span className="sep">·</span>
       <span>2 founding roles on offer</span>
       <span className="sep">·</span>
-      <span>Register now — applications open</span>
+      <span>72-hour remote sprint · Jul 20–23</span>
       <span className="sep">·</span>
     </React.Fragment>
   ));
@@ -118,12 +103,14 @@ export default function GsiPage() {
             <a href="#about">About</a>
             <a href="#challenge">Challenge</a>
             <a href="#timeline">Timeline</a>
+            <a href="#roadmap">Roadmap</a>
             <a href="#apply">Apply</a>
+            <a href="#volunteer">Volunteer</a>
             <a href="#prizes">Prizes</a>
             <a href="#faq">FAQ</a>
           </div>
           <a className="nav-cta" href="#apply">
-            <span className="dot" />Get notified
+            <span className="dot" />Apply now
           </a>
         </div>
       </nav>
@@ -135,7 +122,7 @@ export default function GsiPage() {
             <div className="hero-main">
               <div className="hero-status fade-up in">
                 <span className="dot" />
-                <span>Something significant is coming · Aug 22, 2026</span>
+                <span>Applications are open · Aug 22, 2026</span>
               </div>
               <h1 className="hero-title fade-up in d1">
                 African research deserves<br />a <span className="accent">global stage.</span>
@@ -148,14 +135,20 @@ export default function GsiPage() {
               </div>
               <div className="hero-bridge fade-up in d3">
                 <span className="line" />
-                <span className="text">Something significant is coming. <strong>Stay close.</strong></span>
+                <span className="text">Applications are open. <strong>Apply before they close.</strong></span>
+              </div>
+              <div className="hero-vol fade-up in d4">
+                <a href="https://forms.gle/gP9ZpNdm7dcmJx4N8" target="_blank" rel="noopener noreferrer" className="hero-vol-btn">
+                  Become a volunteer →
+                </a>
+                <span className="hero-vol-hint">7 roles · Port Harcourt · Aug 22</span>
               </div>
             </div>
 
             <aside className="vitals fade-up in d2">
               <div className="vitals-head">
                 <span className="vitals-tag">Buildathon · Vol. 01</span>
-                <span className="vitals-live"><span className="d" />Coming</span>
+                <span className="vitals-live"><span className="d" />Applications Open</span>
               </div>
               <dl className="vitals-list">
                 <div className="vitals-row"><dt>Finale</dt><dd>Aug 22, 2026<span>Port Harcourt, Nigeria</span></dd></div>
@@ -165,8 +158,8 @@ export default function GsiPage() {
               </dl>
               <div className="vitals-cd">
                 <div className="vitals-cd-head">
-                  <span className="vitals-cd-lab">{cd.live ? "Applications are live" : "Applications open in"}</span>
-                  <span className="vitals-cd-date">Jul 1</span>
+                  <span className="vitals-cd-lab">{cd.live ? "Sprint has begun" : "Sprint begins in"}</span>
+                  <span className="vitals-cd-date">Jul 20</span>
                 </div>
                 <div className="vitals-cd-grid">
                   <div><span className="n">{cd.d}</span><span className="u">Days</span></div>
@@ -176,7 +169,7 @@ export default function GsiPage() {
                 </div>
               </div>
               <div className="vitals-cta">
-                <a className="btn btn-primary" href="#apply">Get notified <span className="arr">→</span></a>
+                <a className="btn btn-primary" href="#apply">Apply now <span className="arr">→</span></a>
                 <a className="btn btn-ghost" href="#about">About the Buildathon</a>
               </div>
             </aside>
@@ -295,56 +288,127 @@ export default function GsiPage() {
         </div>
       </section>
 
+      {/* ROADMAP */}
+      <section className="section" id="roadmap">
+        <div className="wrap">
+          <div className="section-head fade-up">
+            <div className="eyebrow">The Platform</div>
+            <h2 className="display-2">The researcher&rsquo;s wishlist.</h2>
+            <p className="lede">Here&rsquo;s what we&rsquo;ve committed to building — decided, scoped, and funded for the first release. Plus what comes next.</p>
+          </div>
+          <div className="roadmap-grid">
+            <div className="roadmap-col fade-up">
+              <div className="roadmap-col-label">Committed to ship</div>
+              <div className="roadmap-list">
+                {[
+                  { h: "OpenAlex publication import", sub: "Full history: papers, citations, co-authorships in one view." },
+                  { h: "Transparent GSI Score", sub: "Explainable, fair scoring that rewards depth — not Western citation politics." },
+                  { h: "One-click blockchain save", sub: "No wallets, no gas, no seed phrases. A professor should never see crypto jargon." },
+                  { h: "Journal onboarding dashboard", sub: "The MVP every researcher meets first — calm, fast, mobile-friendly." },
+                ].map((item) => (
+                  <div key={item.h} className="roadmap-item">
+                    <div className="roadmap-icon roadmap-icon--done" aria-hidden="true">
+                      <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" /></svg>
+                    </div>
+                    <div className="roadmap-item-text">
+                      <div className="roadmap-item-h">{item.h}</div>
+                      <div className="roadmap-item-sub">{item.sub}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="roadmap-col fade-up d2">
+              <div className="roadmap-col-label">Roadmap</div>
+              <div className="roadmap-list">
+                {[
+                  { h: "Public researcher profiles", sub: "Citation graphs, impact scores, and publication history — shareable by link." },
+                  { h: "Institution-level indexing", sub: "Department and faculty dashboards for universities and research centres." },
+                  { h: "Semantic Scholar cross-reference", sub: "Expand beyond OpenAlex — deeper coverage for Global South outputs." },
+                  { h: "Open API for institutions", sub: "Structured access so third-party tools can build on GSI data." },
+                  { h: "Mobile-first offline access", sub: "Fieldwork researchers shouldn’t need a stable connection to submit work." },
+                  { h: "Community peer review layer", sub: "Researcher-moderated quality signals, separate from the score algorithm." },
+                ].map((item) => (
+                  <div key={item.h} className="roadmap-item">
+                    <div className="roadmap-icon roadmap-icon--todo" aria-hidden="true" />
+                    <div className="roadmap-item-text">
+                      <div className="roadmap-item-h">{item.h}</div>
+                      <div className="roadmap-item-sub">{item.sub}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* APPLY */}
       <section className="section apply-wrap" id="apply">
         <div className="wrap">
           <div className="apply-grid">
             <div className="fade-up">
               <div className="section-head" style={{ marginBottom: 0 }}>
-                <div className="eyebrow">Get notified</div>
-                <h2 className="display-2">Be first in line when applications open.</h2>
-                <p className="lede">Applications go live <strong style={{ color: "var(--ink)", fontWeight: 600 }}>Jul 1, 2026</strong>. Drop your details now and we'll email you the moment they do — alongside the official brief, judging rubric and shortlist timeline.</p>
+                <div className="eyebrow">Apply</div>
+                <h2 className="display-2">Applications are open.</h2>
+                <p className="lede">Submit your application now. We review every submission personally — shortlisted candidates are emailed within 5 days of the close date alongside the official brief, judging rubric, and sprint timeline.</p>
               </div>
               <ul className="apply-meta-list">
-                {["Early access to the official brief and rubric","Direct email when applications open","Priority review for shortlist consideration","Talent pipeline access — 12+ partner startups"].map((t) => (
+                {["Official brief and judging rubric on acceptance","Direct email notification on shortlist decision","Priority consideration for the founding team offer","Talent pipeline access — 12+ partner startups"].map((t) => (
                   <li key={t}><span className="check">✓</span>{t}</li>
                 ))}
               </ul>
             </div>
-            <form className="applybox fade-up d2" onSubmit={handleSubmit} ref={formRef} noValidate>
-              <div className="form-h">Tell us who you are.</div>
-              <div className="form-sub">Free to submit. Takes 60 seconds.</div>
-              <div className="form-grid">
-                <div className="field full"><label htmlFor="ap-name">Full name</label><input className="input" type="text" id="ap-name" name="name" required placeholder="e.g. Adaeze Okeke" /></div>
-                <div className="field"><label htmlFor="ap-email">Email</label><input className="input" type="email" id="ap-email" name="email" required placeholder="you@email.com" /></div>
-                <div className="field"><label htmlFor="ap-city">City &amp; country</label><input className="input" type="text" id="ap-city" name="city" placeholder="Port Harcourt, Nigeria" /></div>
-                <div className="field full">
-                  <label>I&apos;m applying as a…</label>
-                  <div className="role-pick">
-                    {[{ v: "designer", l: "Designer" },{ v: "engineer", l: "Engineer" },{ v: "either", l: "Either / both" }].map((r) => (
-                      <div key={r.v}>
-                        <input type="radio" name="role" id={`r-${r.v}`} value={r.v} checked={role === r.v} onChange={() => setRole(r.v)} />
-                        <label htmlFor={`r-${r.v}`}>{r.l}</label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="field full"><label htmlFor="ap-url">Portfolio · GitHub · Dribbble</label><input className="input" type="url" id="ap-url" name="url" placeholder="https://" /></div>
-                <div className="field full">
-                  <label htmlFor="ap-why">Why do you want in? <span style={{ textTransform: "none", color: "var(--mute-2)", letterSpacing: 0 }}>(optional · 1–2 sentences)</span></label>
-                  <textarea className="input" id="ap-why" name="why" placeholder="What pulls you to GSI? What's the last thing you shipped?" />
-                </div>
+            <div className="apply-gcta fade-up d2">
+              <span className="apply-gcta-badge">Official Application</span>
+              <h3 className="apply-gcta-h">Apply now.</h3>
+              <p className="apply-gcta-p">
+                The application is on Google Forms — takes 3 minutes, no account required. We review every submission personally and email shortlisted candidates within 5 days of close.
+              </p>
+              <a
+                href={GOOGLE_FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="apply-gcta-btn"
+              >
+                Open Application Form <span className="arr">→</span>
+              </a>
+              <div className="apply-gcta-note">
+                Sprint begins <strong>Jul 20, 2026</strong> · Finale Aug 22 in Port Harcourt.
               </div>
-              <div className="form-submit-row">
-                <div className="legal">By submitting you agree to receive Buildathon updates. Unsubscribe any time.</div>
-                <button className="form-submit" type="submit">{formDone ? "Saved ✓" : <>Get notified <span className="mono">→</span></>}</button>
+              <div className="apply-gcta-divider" />
+              <div className="apply-gcta-privacy">
+                Your information is used only for this Buildathon. We don&rsquo;t sell, share, or spam.
               </div>
-              {formDone && (
-                <div className="form-success show">
-                  You&apos;re on the list. We&apos;ll email <strong style={{ marginLeft: 4 }}>{submittedEmail}</strong> the moment applications go live.
-                </div>
-              )}
-            </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* VOLUNTEER */}
+      <section className="vol-section" id="volunteer">
+        <div className="wrap">
+          <div className="vol-inner fade-up">
+            <div className="vol-text">
+              <div className="vol-eyebrow">
+                <span className="dot" />
+                <span>Volunteer</span>
+              </div>
+              <h2 className="vol-title">Help make the<br />event happen.</h2>
+              <p className="vol-body">
+                Seven roles. One event in Port Harcourt. Whether you&rsquo;re managing the stage schedule, keeping teams compliant, handling VIP protocol, overseeing logistics, or covering it on social media — pick your function and help us run the buildathon that finds Nigeria&rsquo;s next great builders.
+              </p>
+            </div>
+            <div className="vol-cta-col">
+              <a href="https://forms.gle/gP9ZpNdm7dcmJx4N8" target="_blank" rel="noopener noreferrer" className="vol-btn">
+                Become a volunteer →
+              </a>
+              <div className="vol-roles">
+                {["Event Day Programmes", "Compliance & Continuity", "Branding & Design", "Registration & Correspondence", "Protocol", "Budget & Finance", "Welfare & Logistics"].map((r) => (
+                  <span key={r} className="vol-role-tag">{r}</span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -476,8 +540,8 @@ export default function GsiPage() {
       <section className="endcap">
         <div className="wrap">
           <h2>Build something the <em>world needs.</em></h2>
-          <p>Applications open Jul 1, 2026. Three days to ship. Two founding jobs on the line. One stage in Port Harcourt.</p>
-          <a className="btn btn-primary" href="#apply">Get notified <span className="arr">→</span></a>
+          <p>Applications are open now. Three days to ship. Two founding jobs on the line. One stage in Port Harcourt.</p>
+          <a className="btn btn-primary" href="#apply">Apply now <span className="arr">→</span></a>
           <div className="endcap-foot">GSI Buildathon Vol. 01 · Port Harcourt, Nigeria · August 22, 2026</div>
         </div>
       </section>
@@ -508,8 +572,10 @@ export default function GsiPage() {
                 <li><a href="#about">About</a></li>
                 <li><a href="#challenge">Challenge</a></li>
                 <li><a href="#timeline">Timeline</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
                 <li><a href="#prizes">Prizes</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li><a href="#volunteer">Volunteer</a></li>
               </ul>
             </div>
             <div>

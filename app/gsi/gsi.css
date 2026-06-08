@@ -372,3 +372,192 @@
   .gsi-root .strip-track{animation:none}
   .gsi-root .nav-cta .dot{animation:none}
 }
+
+/* ── Hero Volunteer CTA ── */
+.gsi-root .hero-vol{display:flex;align-items:center;gap:16px;margin-top:28px;flex-wrap:wrap}
+.gsi-root .hero-vol-btn{
+  display:inline-flex;align-items:center;
+  padding:10px 20px;border:1.5px solid var(--line-2);border-radius:100px;
+  font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;
+  transition:border-color .18s,background .18s;
+}
+.gsi-root .hero-vol-btn:hover{border-color:var(--green);background:var(--green-tint);color:var(--green)}
+.gsi-root .hero-vol-hint{font-size:13px;color:var(--mute)}
+
+/* ── Volunteer Section ── */
+.gsi-root .vol-section{
+  background:var(--green-deep);padding:80px 0;
+}
+.gsi-root .vol-inner{
+  display:grid;grid-template-columns:1fr auto;gap:64px;align-items:center;
+}
+.gsi-root .vol-eyebrow{
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.55);margin-bottom:16px;
+}
+.gsi-root .vol-eyebrow .dot{background:#6ee89c}
+.gsi-root .vol-title{
+  font-size:clamp(28px,3.5vw,42px);font-weight:700;
+  letter-spacing:-0.03em;line-height:1.15;color:#f2faf4;margin-bottom:16px;
+}
+.gsi-root .vol-body{
+  font-size:16px;line-height:1.68;color:rgba(242,250,244,0.72);max-width:52ch;
+}
+.gsi-root .vol-cta-col{
+  display:flex;flex-direction:column;gap:20px;align-items:flex-start;flex-shrink:0;
+}
+.gsi-root .vol-btn{
+  display:inline-flex;align-items:center;white-space:nowrap;
+  padding:14px 28px;background:#f2faf4;color:var(--green-deep);
+  border-radius:100px;font-size:15px;font-weight:700;letter-spacing:-0.01em;
+  transition:opacity .18s var(--ease);
+}
+.gsi-root .vol-btn:hover{opacity:.88}
+.gsi-root .vol-roles{display:flex;flex-wrap:wrap;gap:8px;max-width:280px}
+.gsi-root .vol-role-tag{
+  padding:5px 12px;border:1px solid rgba(255,255,255,0.18);
+  border-radius:100px;font-size:12px;font-weight:500;
+  color:rgba(242,250,244,0.65);white-space:nowrap;
+}
+@media(max-width:900px){
+  .gsi-root .vol-inner{grid-template-columns:1fr;gap:36px}
+  .gsi-root .vol-cta-col{align-items:flex-start}
+  .gsi-root .vol-section{padding:60px 0}
+}
+
+/* ── GSI 404 ── */
+.gsi-root .gsi-404{
+  min-height:100svh;display:flex;align-items:center;
+  padding:80px var(--gutter);background:var(--bg);
+}
+.gsi-root .gsi-404__wrap{max-width:580px;width:100%;margin:0 auto}
+.gsi-root .gsi-404__num{
+  display:block;font-size:clamp(100px,18vw,180px);font-weight:700;
+  line-height:1;letter-spacing:-0.04em;
+  color:var(--green-tint);margin-bottom:28px;user-select:none;
+}
+.gsi-root .gsi-404__title{
+  font-size:clamp(24px,4vw,36px);font-weight:700;
+  letter-spacing:-0.025em;line-height:1.15;color:var(--ink);margin-bottom:8px;
+}
+.gsi-root .gsi-404__sub{font-size:16px;color:var(--mute);margin-bottom:48px}
+.gsi-root .gsi-404__vol{
+  background:var(--green-deep);border-radius:20px;
+  padding:40px;margin-bottom:36px;color:#f2faf4;
+}
+.gsi-root .gsi-404__vol-eyebrow{
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  opacity:0.65;margin-bottom:16px;
+}
+.gsi-root .gsi-404__dot{
+  width:6px;height:6px;border-radius:50%;background:#6ee89c;flex-shrink:0;
+  animation:pulse-dot 2.4s ease-in-out infinite;
+}
+.gsi-root .gsi-404__vol-title{
+  font-size:clamp(20px,2.8vw,28px);font-weight:700;
+  letter-spacing:-0.022em;line-height:1.2;margin-bottom:14px;
+}
+.gsi-root .gsi-404__vol-body{
+  font-size:15px;line-height:1.68;opacity:0.8;max-width:52ch;margin-bottom:28px;
+}
+.gsi-root .gsi-404__vol-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.gsi-root .gsi-404__vol-cta{
+  display:inline-flex;align-items:center;padding:11px 22px;
+  background:#f2faf4;color:var(--green-deep);
+  border-radius:100px;font-size:14px;font-weight:700;letter-spacing:-0.01em;
+  transition:opacity .18s;
+}
+.gsi-root .gsi-404__vol-cta:hover{opacity:.88}
+.gsi-root .gsi-404__vol-learn{
+  font-size:14px;color:rgba(242,250,244,.65);
+  text-decoration:underline;text-underline-offset:3px;transition:color .15s;
+}
+.gsi-root .gsi-404__vol-learn:hover{color:#f2faf4}
+
+/* ── Roadmap / Wishlist ── */
+.gsi-root .roadmap-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  border:1px solid var(--line-2);border-radius:20px;overflow:hidden;margin-top:56px;
+}
+.gsi-root .roadmap-col{padding:40px}
+.gsi-root .roadmap-col:first-child{border-right:1px solid var(--line-2)}
+.gsi-root .roadmap-col-label{
+  font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:28px;
+  display:flex;align-items:center;gap:8px;
+}
+.gsi-root .roadmap-col-label::before{
+  content:"";width:22px;height:1px;background:var(--line-3);flex-shrink:0;
+}
+.gsi-root .roadmap-list{display:flex;flex-direction:column;gap:0}
+.gsi-root .roadmap-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:16px 0;border-bottom:1px solid var(--line);
+}
+.gsi-root .roadmap-item:last-child{border-bottom:none;padding-bottom:0}
+.gsi-root .roadmap-item:first-child{padding-top:0}
+.gsi-root .roadmap-icon{
+  width:20px;height:20px;flex-shrink:0;margin-top:1px;
+  display:grid;place-items:center;
+}
+.gsi-root .roadmap-icon--done{
+  background:var(--green);border-radius:50%;color:#fff;
+}
+.gsi-root .roadmap-icon--done svg{width:11px;height:11px;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.gsi-root .roadmap-icon--todo{
+  width:16px;height:16px;border-radius:50%;
+  border:1.5px solid var(--line-3);background:transparent;margin:2px;
+}
+.gsi-root .roadmap-item-text{}
+.gsi-root .roadmap-item-h{font-size:14px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:3px}
+.gsi-root .roadmap-item-sub{font-size:13px;color:var(--mute);line-height:1.45}
+@media(max-width:720px){
+  .gsi-root .roadmap-grid{grid-template-columns:1fr}
+  .gsi-root .roadmap-col:first-child{border-right:none;border-bottom:1px solid var(--line-2)}
+  .gsi-root .roadmap-col{padding:28px 24px}
+}
+
+/* ── Apply · Google Form CTA ── */
+.gsi-root .apply-gcta{
+  background:var(--surface);border:1px solid var(--line-2);
+  border-radius:20px;padding:48px 40px;
+  display:flex;flex-direction:column;gap:0;
+}
+.gsi-root .apply-gcta-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--green);margin-bottom:20px;
+}
+.gsi-root .apply-gcta-badge::before{
+  content:"";width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;
+}
+.gsi-root .apply-gcta-h{
+  font-size:clamp(22px,2.8vw,30px);font-weight:700;letter-spacing:-0.025em;
+  line-height:1.2;color:var(--ink);margin-bottom:14px;
+}
+.gsi-root .apply-gcta-p{
+  font-size:15px;line-height:1.65;color:var(--mute);
+  max-width:46ch;margin-bottom:32px;
+}
+.gsi-root .apply-gcta-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;background:var(--green);color:#fff;
+  border-radius:100px;font-size:15px;font-weight:600;letter-spacing:-0.01em;
+  width:fit-content;transition:background .2s var(--ease);
+}
+.gsi-root .apply-gcta-btn:hover{background:var(--green-hover)}
+.gsi-root .apply-gcta-note{
+  font-size:13px;color:var(--mute);margin-top:16px;
+}
+.gsi-root .apply-gcta-note strong{color:var(--ink);font-weight:600}
+.gsi-root .apply-gcta-divider{
+  height:1px;background:var(--line);margin:28px 0;
+}
+.gsi-root .apply-gcta-privacy{
+  font-size:12px;color:var(--mute-2);
+}
+@media(max-width:640px){
+  .gsi-root .apply-gcta{padding:32px 24px}
+}
