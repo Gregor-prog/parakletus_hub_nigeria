@@ -105,7 +105,7 @@ const Technologies = () => {
                     Ayọ̀lọ̀
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    A cutting-edge, stablecoin-powered on-chain platform facilitating secure, low-cost, and instantaneous cross-border payments and remittances for Africans and the African diaspora.
+                    A planned tuition ledger concept designed to support future low-cost digital school fee settlements.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>

@@ -93,7 +93,7 @@ const Home = () => {
                   </div>
                   <CardTitle>Ayọ̀lọ̀</CardTitle>
                   <CardDescription>
-                    A cutting-edge, stablecoin-powered on-chain platform facilitating secure, low-cost, and instantaneous cross-border payments and remittances for Africans and the African diaspora.
+                    A planned tuition ledger concept designed to support future low-cost digital school fee settlements.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

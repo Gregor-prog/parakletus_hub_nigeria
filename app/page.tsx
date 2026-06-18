@@ -328,7 +328,7 @@ export default function Home() {
 
           <div className="hero__row">
             <p className="hero__lede">
-              Parakletus Hub Nigeria builds the educational and technological infrastructure the Global South needs to compete, innovate, and lead.
+              Parakletus Hub Nigeria builds ParaLearn and SabiNote, the educational and technological platforms the Global South needs to compete, innovate, and lead.
             </p>
             <div className="hero__ctas">
               <a href="#solutions" className="btn btn--primary">
@@ -408,21 +408,20 @@ export default function Home() {
               {/* Floating Card 3 — bottom right */}
               <div className="stage__card stage__card--br">
                 <div className="stage__card-row">
-                  <div className="stage__card-icon" style={{ background: "rgba(238,124,36,0.12)", color: "var(--c-ember-deep)" }}>
+                  <div className="stage__card-icon" style={{ background: "rgba(28,94,60,0.1)", color: "var(--c-grove)" }}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <rect x="2" y="5" width="20" height="14" rx="2" />
-                      <line x1="2" y1="10" x2="22" y2="10" />
+                      <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
                     </svg>
                   </div>
                   <div>
-                    <div className="stage__card-name">Ayọ̀lọ̀ Ledger</div>
-                    <div className="stage__card-meta">Stablecoin Rail</div>
+                    <div className="stage__card-name">SabiNote Hub</div>
+                    <div className="stage__card-meta">Collaborative Study Guides</div>
                   </div>
                 </div>
                 <div className="stage__card-bar">
-                  <span style={{ width: "94%", background: "linear-gradient(90deg,var(--c-grove),var(--c-ember))" }} />
+                  <span style={{ width: "88%", background: "linear-gradient(90deg,var(--c-grove),var(--c-grove-mid))" }} />
                 </div>
-                <div className="stage__card-foot">Cross-Border Settlement: <b>94% speedup</b></div>
+                <div className="stage__card-foot">Curriculum Coverage: <b>88% aligned</b></div>
               </div>
             </div>
           </div>
@@ -432,7 +431,7 @@ export default function Home() {
             <span className="hero__strip-label">CORE FOCUS AREAS</span>
             <ul className="hero__strip-list">
               <li>School Management</li>
-              <li>Stablecoin Rails</li>
+              <li>Collaborative Study Guides</li>
               <li>Educational Publishing</li>
               <li>Professional Skill Bootcamps</li>
             </ul>
@@ -556,14 +555,14 @@ export default function Home() {
                   <line x1="2" y1="10" x2="22" y2="10" />
                 </svg>
               </div>
-              <span className="sol__tag">ON-CHAIN FINANCE</span>
+              <span className="sol__tag">ROADMAP CONCEPT</span>
             </div>
-            <h3 className="sol__name">Ayọ̀lọ̀ Settlement Rail</h3>
+            <h3 className="sol__name">Ayọ̀lọ̀ Systems</h3>
             <p className="sol__desc">
-              Stablecoin-powered payment rails enabling secure, compliant, near-zero-fee remittance and settlements for developers and businesses across West Africa.
+              Proposed tuition ledger concept designed to support future low-cost digital school fee settlements (no active development or progress currently).
             </p>
             <div className="sol__foot" style={{ marginTop: "auto" }}>
-              <a href="#contact" className="sol__more">Read Technical Spec →</a>
+              <span className="sol__more" style={{ opacity: 0.5, cursor: "not-allowed" }}>Coming Soon (Unreleased)</span>
             </div>
           </div>
 
@@ -574,11 +573,11 @@ export default function Home() {
                   <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
                 </svg>
               </div>
-              <span className="sol__tag">DIGITAL LITERACY</span>
+              <span className="sol__tag">FLAGSHIP CO-PUBLISHING</span>
             </div>
             <h3 className="sol__name">SabiNote</h3>
             <p className="sol__desc">
-              Lecture notes, peer-reviewed summaries, and study guides — built collaboratively by students.
+              Our open study note network and curriculum-aligned digital publishing hub, enabling thousands of students to access peer-reviewed guides collaboratively.
             </p>
             <div className="sol__foot" style={{ marginTop: "auto" }}>
               <a href="https://sabinote.pln.ng" target="_blank" rel="noopener noreferrer" className="sol__more">Browse SabiNote Hub →</a>
@@ -666,10 +665,10 @@ export default function Home() {
           <div className="brandcard reveal" data-delay="2">
             <div className="brandcard__top">
               <span className="brandcard__code">AYỌ̀LỌ̀</span>
-              <span className="brandcard__idx">02 // TECH</span>
+              <span className="brandcard__idx">02 // ROADMAP</span>
             </div>
             <h3 className="brandcard__name">Ayọ̀lọ̀ Systems</h3>
-            <p className="brandcard__desc">Distributed ledger gateways and stablecoin infrastructure powering compliant business transactions across West Africa.</p>
+            <p className="brandcard__desc">Proposed payment ledger gateways designed to handle future low-cost digital school fees (currently unreleased concept).</p>
           </div>
 
           <div className="brandcard reveal" data-delay="3">
@@ -702,10 +701,10 @@ export default function Home() {
             </div>
           </div>
           <div className="impactrow reveal" data-delay="2">
-            <div className="impactrow__k" data-target="₦8.5B">₦8.5B</div>
+            <div className="impactrow__k" data-target="85k+">85k+</div>
             <div className="impactrow__body">
-              <div className="impactrow__label">Settled Value</div>
-              <div className="impactrow__note">Processed across our stablecoin rails.</div>
+              <div className="impactrow__label">Study Guides Read</div>
+              <div className="impactrow__note">Accessed collaboratively on SabiNote.</div>
             </div>
           </div>
           <div className="impactrow reveal" data-delay="3">
@@ -737,7 +736,7 @@ export default function Home() {
             Partner With <span className="serif-italic">Parakletus</span> today.
           </h2>
           <p className="cta__lede reveal" data-delay="2">
-            Whether you're a school director integrating ParaLearn, a business running on stablecoin rails, or an academic writer seeking publication — our Port Harcourt desk is ready.
+            Whether you're a school director integrating ParaLearn, a student/academic looking to publish guides on SabiNote, or an academic writer seeking publication — our Port Harcourt desk is ready.
           </p>
 
           <div className="cta__lanes">
@@ -747,9 +746,9 @@ export default function Home() {
               <p className="lane__meta">Request custom software onboarding &amp; edge node deployment.</p>
             </div>
             <div className="lane reveal" data-delay="2">
-              <span className="lane__kicker">FINANCIAL BILLING</span>
-              <h3 className="lane__title">Utilize Ayọ̀lọ̀ Rails</h3>
-              <p className="lane__meta">Apply for API keys to support stablecoin settlements.</p>
+              <span className="lane__kicker">ACADEMIC HUB</span>
+              <h3 className="lane__title">Contribute to SabiNote</h3>
+              <p className="lane__meta">Publish study materials and guides aligned with curricula.</p>
             </div>
             <div className="lane reveal" data-delay="3">
               <span className="lane__kicker">ACADEMIC PRESS</span>
@@ -778,7 +777,7 @@ export default function Home() {
               <div className="footer__h">Solutions</div>
               <ul>
                 <li><a href="#solutions">ParaLearn</a></li>
-                <li><a href="#solutions">Ayọ̀lọ̀ Payments</a></li>
+                <li><a href="#solutions">Ayọ̀lọ̀ (Roadmap)</a></li>
                 <li><a href="https://sabinote.pln.ng" target="_blank" rel="noopener noreferrer">SabiNote</a></li>
               </ul>
             </div>

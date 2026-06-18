@@ -9,16 +9,20 @@ const team = [
     name:     "Evander Ikechukwu",
     role:     "CEO & FOUNDER",
     label:    "EXECUTIVE",
-    bio:      "Directing the overall vision and operational strategy of Parakletus Hub Nigeria across technology, publishing, and finance.",
+    bio:      "Directing the overall vision and operational strategy of Parakletus Hub Nigeria across technology, publishing, and education.",
     bg:       "linear-gradient(135deg,#BDE8CE 0%,#F7FCF9 100%)",
+    linkedin: "https://linkedin.com/in/evander-ikechukwu-placeholder",
+    github:   "https://github.com/evander-ikechukwu-placeholder",
   },
   {
     initials: "OE",
     name:     "Olajide Emmanuel",
     role:     "CHIEF TECHNOLOGY OFFICER",
     label:    "TECHNOLOGY",
-    bio:      "Architecting the microservices backbone, stablecoin rail infrastructure, and the core ParaLearn software platform.",
+    bio:      "Architecting the product engineering systems and the core ParaLearn software infrastructure.",
     bg:       "linear-gradient(135deg,#C8EDD9 0%,#F2FAF5 100%)",
+    linkedin: "https://linkedin.com/in/olajide-emmanuel-placeholder",
+    github:   "https://github.com/olajide-emmanuel-placeholder",
   },
   {
     initials: "IU",
@@ -27,14 +31,18 @@ const team = [
     label:    "PRODUCT",
     bio:      "Owning the product roadmap, coordinating cross-functional delivery, and ensuring every build ships on time and on spec.",
     bg:       "linear-gradient(135deg,#D0EEE2 0%,#F2FAF5 100%)",
+    linkedin: "https://linkedin.com/in/ifunaya-udeh-placeholder",
+    github:   "https://github.com/ifunaya-udeh-placeholder",
   },
   {
-    initials: "TW",
-    name:     "Taiwo",
+    initials: "TA",
+    name:     "Taiwo Adebayo",
     role:     "DESIGN LEAD",
     label:    "DESIGN",
     bio:      "Crafting the visual identity, design system, and user experience across every Parakletus product and brand touchpoint.",
     bg:       "linear-gradient(135deg,#D6F0E4 0%,#FEFFFC 100%)",
+    linkedin: "https://linkedin.com/in/taiwo-adebayo-placeholder",
+    github:   "https://github.com/taiwo-adebayo-placeholder",
   },
 ];
 
@@ -186,7 +194,7 @@ export default function AboutPage() {
           </h1>
           <p className="about-hero__lede reveal" data-delay="2">
             Parakletus Hub Nigeria is a Port Harcourt-based technology and publishing company. We build
-            school management software, stablecoin payment rails, and peer-reviewed educational
+            school management software (ParaLearn), collaborative study guide networks (SabiNote), and peer-reviewed educational
             literature — all engineered for the operational realities of the Global South.
           </p>
         </div>
@@ -239,6 +247,20 @@ export default function AboutPage() {
               <span className="member__role">{member.role}</span>
               <h3 className="member__name">{member.name}</h3>
               <p className="member__bio">{member.bio}</p>
+              <div className="member__socials" style={{ display: "flex", gap: 12, marginTop: 12 }}>
+                <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="member__social-link" style={{ color: "var(--c-muted)", display: "flex", alignItems: "center", gap: 4, fontSize: 13 }} aria-label={`${member.name} LinkedIn`}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.6 0h4.36v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.44h-4.55v-6.6c0-1.58-.03-3.6-2.19-3.6-2.2 0-2.54 1.72-2.54 3.5V22H7.83V8z" />
+                  </svg>
+                  <span>LinkedIn</span>
+                </a>
+                <a href={member.github} target="_blank" rel="noopener noreferrer" className="member__social-link" style={{ color: "var(--c-muted)", display: "flex", alignItems: "center", gap: 4, fontSize: 13 }} aria-label={`${member.name} GitHub`}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.197 22 16.44 22 12.017 22 6.484 17.522 2 12 2z" />
+                  </svg>
+                  <span>GitHub</span>
+                </a>
+              </div>
             </div>
           ))}
         </div>
@@ -283,7 +305,7 @@ export default function AboutPage() {
             Partner With <span className="serif-italic">Parakletus</span> today.
           </h2>
           <p className="cta__lede reveal" data-delay="2">
-            Whether you&rsquo;re a school director, fintech builder, or academic writer — our Port Harcourt desk is ready.
+            Whether you&rsquo;re a school director, student looking to contribute study guides, or academic writer — our Port Harcourt desk is ready.
           </p>
           <div className="cta__lanes">
             <div className="lane reveal" data-delay="1">
@@ -292,9 +314,9 @@ export default function AboutPage() {
               <p className="lane__meta">Request custom software onboarding &amp; edge node deployment.</p>
             </div>
             <div className="lane reveal" data-delay="2">
-              <span className="lane__kicker">FINANCIAL BILLING</span>
-              <h3 className="lane__title">Utilize Ayọ̀lọ̀ Rails</h3>
-              <p className="lane__meta">Apply for API keys to support stablecoin settlements.</p>
+              <span className="lane__kicker">ACADEMIC HUB</span>
+              <h3 className="lane__title">Contribute to SabiNote</h3>
+              <p className="lane__meta">Publish study materials and guides aligned with curricula.</p>
             </div>
             <div className="lane reveal" data-delay="3">
               <span className="lane__kicker">ACADEMIC PRESS</span>

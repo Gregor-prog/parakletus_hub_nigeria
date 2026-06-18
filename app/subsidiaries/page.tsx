@@ -36,12 +36,12 @@ const subsidiaries = [
   },
   {
     code:    "AYỌ̀LỌ̀",
-    idx:     "04 // FINTECH",
+    idx:     "04 // ROADMAP",
     name:    "Ayọ̀lọ̀ Systems",
-    tagline: "Stablecoin Settlement Rails",
-    desc:    "Distributed ledger gateways and stablecoin infrastructure powering compliant, near-zero-fee business transactions across West Africa.",
+    tagline: "Proposed Tuition Settlement Concept",
+    desc:    "A future conceptual design for stablecoin-based payment rails to enable low-fee tuition settlement (currently in early concept and design phase, no active development).",
     href:    null,
-    tag:     "COMING SOON",
+    tag:     "PLANNED ROADMAP",
     sector:  "TECHNOLOGY",
   },
   {
