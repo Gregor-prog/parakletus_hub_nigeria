@@ -816,9 +816,9 @@ export default function Home() {
             <div className="footer__col">
               <div className="footer__h">Directors</div>
               <ul>
-                <li><a href="#team">Leadership</a></li>
-                <li><a href="#team">Advisory Board</a></li>
-                <li><a href="#team">CAC Status</a></li>
+                <li><a href="/about#team">Leadership</a></li>
+                <li><a href="/about#team">Advisory Board</a></li>
+                <li><a href="/about#team">CAC Status</a></li>
               </ul>
             </div>
             <div className="footer__col">

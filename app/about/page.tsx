@@ -216,7 +216,7 @@ export default function AboutPage() {
       </section>
 
       {/* TEAM */}
-      <section className="team about-team">
+      <section className="team about-team" id="team">
         <div className="team__head reveal">
           <div className="section-eyebrow">
             <span className="section-eyebrow__dot" />
@@ -360,9 +360,9 @@ export default function AboutPage() {
             <div className="footer__col">
               <div className="footer__h">Team</div>
               <ul>
-                <li><Link href="/about">Leadership</Link></li>
-                <li><Link href="/about">Advisory Board</Link></li>
-                <li><Link href="/about">CAC Status</Link></li>
+                <li><Link href="/about#team">Leadership</Link></li>
+                <li><Link href="/about#team">Advisory Board</Link></li>
+                <li><Link href="/about#team">CAC Status</Link></li>
               </ul>
             </div>
             <div className="footer__col">
