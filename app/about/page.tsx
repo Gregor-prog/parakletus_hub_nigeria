@@ -11,8 +11,9 @@ const team = [
     label:    "EXECUTIVE",
     bio:      "Directing the overall vision and operational strategy of Parakletus Hub Nigeria across technology, publishing, and education.",
     bg:       "linear-gradient(135deg,#BDE8CE 0%,#F7FCF9 100%)",
-    linkedin: "https://linkedin.com/in/evander-ikechukwu-placeholder",
-    github:   "https://github.com/evander-ikechukwu-placeholder",
+    linkedin: "https://www.linkedin.com/in/evander-ikechukwu-371904202/",
+    github:   undefined,
+    image:    "/evander.png",
   },
   {
     initials: "OE",
@@ -21,8 +22,9 @@ const team = [
     label:    "TECHNOLOGY",
     bio:      "Architecting the product engineering systems and the core ParaLearn software infrastructure.",
     bg:       "linear-gradient(135deg,#C8EDD9 0%,#F2FAF5 100%)",
-    linkedin: "https://linkedin.com/in/olajide-emmanuel-placeholder",
-    github:   "https://github.com/olajide-emmanuel-placeholder",
+    linkedin: "https://www.linkedin.com/in/emmanuel-olajide-0b7a39297/",
+    github:   "https://github.com/Gregor-prog",
+    image:    "/olajide.jpg",
   },
   {
     initials: "IU",
@@ -31,18 +33,9 @@ const team = [
     label:    "PRODUCT",
     bio:      "Owning the product roadmap, coordinating cross-functional delivery, and ensuring every build ships on time and on spec.",
     bg:       "linear-gradient(135deg,#D0EEE2 0%,#F2FAF5 100%)",
-    linkedin: "https://linkedin.com/in/ifunaya-udeh-placeholder",
-    github:   "https://github.com/ifunaya-udeh-placeholder",
-  },
-  {
-    initials: "TA",
-    name:     "Taiwo Adebayo",
-    role:     "DESIGN LEAD",
-    label:    "DESIGN",
-    bio:      "Crafting the visual identity, design system, and user experience across every Parakletus product and brand touchpoint.",
-    bg:       "linear-gradient(135deg,#D6F0E4 0%,#FEFFFC 100%)",
-    linkedin: "https://linkedin.com/in/taiwo-adebayo-placeholder",
-    github:   "https://github.com/taiwo-adebayo-placeholder",
+    linkedin: "https://www.linkedin.com/in/ifunaya-udeh-769825353/",
+    github:   undefined,
+    image:    "/ifunaya.jpg",
   },
 ];
 
@@ -212,11 +205,11 @@ export default function AboutPage() {
             <span className="about-mission__v">Core subsidiaries</span>
           </div>
           <div className="about-mission__stat">
-            <span className="about-mission__k">140+</span>
+            <span className="about-mission__k">10+</span>
             <span className="about-mission__v">Institutions served</span>
           </div>
           <div className="about-mission__stat">
-            <span className="about-mission__k">24k</span>
+            <span className="about-mission__k">2k+</span>
             <span className="about-mission__v">Students on platform</span>
           </div>
         </div>
@@ -239,9 +232,15 @@ export default function AboutPage() {
         <div className="team__grid about-team__grid">
           {team.map((member, i) => (
             <div key={member.initials} className="member reveal" data-delay={String(i + 1)}>
-              <div className="member__portrait">
-                <div className="member__portrait-bg" style={{ background: member.bg }} />
-                <div className="member__monogram">{member.initials}</div>
+              <div className="member__portrait" style={{ position: "relative", overflow: "hidden" }}>
+                {member.image ? (
+                  <img src={member.image} alt={member.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                ) : (
+                  <>
+                    <div className="member__portrait-bg" style={{ background: member.bg }} />
+                    <div className="member__monogram">{member.initials}</div>
+                  </>
+                )}
                 <div className="member__placeholder">{member.label}</div>
               </div>
               <span className="member__role">{member.role}</span>
@@ -254,12 +253,14 @@ export default function AboutPage() {
                   </svg>
                   <span>LinkedIn</span>
                 </a>
-                <a href={member.github} target="_blank" rel="noopener noreferrer" className="member__social-link" style={{ color: "var(--c-muted)", display: "flex", alignItems: "center", gap: 4, fontSize: 13 }} aria-label={`${member.name} GitHub`}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.197 22 16.44 22 12.017 22 6.484 17.522 2 12 2z" />
-                  </svg>
-                  <span>GitHub</span>
-                </a>
+                {member.github && (
+                  <a href={member.github} target="_blank" rel="noopener noreferrer" className="member__social-link" style={{ color: "var(--c-muted)", display: "flex", alignItems: "center", gap: 4, fontSize: 13 }} aria-label={`${member.name} GitHub`}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.197 22 16.44 22 12.017 22 6.484 17.522 2 12 2z" />
+                    </svg>
+                    <span>GitHub</span>
+                  </a>
+                )}
               </div>
             </div>
           ))}
@@ -341,9 +342,11 @@ export default function AboutPage() {
             <div className="footer__col">
               <div className="footer__h">Solutions</div>
               <ul>
-                <li><Link href="/#solutions">ParaLearn</Link></li>
-                <li><Link href="/#solutions">Ayọ̀lọ̀ Payments</Link></li>
+                <li><a href="https://pln.ng" target="_blank" rel="noopener noreferrer">ParaLearn</a></li>
                 <li><a href="https://sabinote.pln.ng" target="_blank" rel="noopener noreferrer">SabiNote</a></li>
+                <li><a href="https://ijsds.org" target="_blank" rel="noopener noreferrer">IJSDS Journal</a></li>
+                <li><a href="https://gsi.parakletushub.com" target="_blank" rel="noopener noreferrer">GSI Buildathon</a></li>
+                <li><Link href="/#solutions">Ayọ̀lọ̀ (Roadmap)</Link></li>
               </ul>
             </div>
             <div className="footer__col">

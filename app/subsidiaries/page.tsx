@@ -19,7 +19,7 @@ const subsidiaries = [
     idx:     "02 // EDTECH",
     name:    "ParaLearn",
     tagline: "Educational Infrastructure Software",
-    desc:    "Cloud-based school and learning management system built for low-bandwidth African classrooms. Grade books, timetables, fee management, and offline learning modules in one platform.",
+    desc:    "Cloud-based school and learning management system built for low-bandwidth African classrooms. Grade books, timetables, and offline learning modules in one platform.",
     href:    "https://pln.ng",
     tag:     "LIVE",
     sector:  "TECHNOLOGY",
@@ -63,6 +63,16 @@ const subsidiaries = [
     href:    null,
     tag:     "COMING SOON",
     sector:  "EDUCATION",
+  },
+  {
+    code:    "GSI",
+    idx:     "07 // TECH",
+    name:    "GSI Buildathon",
+    tagline: "Global South Index Initiative",
+    desc:    "Our annual remote sprint and collaborative engineering ecosystem, bringing together African builders to design and run research tools for the Global South.",
+    href:    "https://gsi.parakletushub.com",
+    tag:     "LIVE",
+    sector:  "TECHNOLOGY",
   },
 ];
 
@@ -295,6 +305,7 @@ export default function SubsidiariesPage() {
                 <li><a href="https://ijsds.org" target="_blank" rel="noopener noreferrer">IJSDS</a></li>
                 <li><a href="https://pln.ng" target="_blank" rel="noopener noreferrer">ParaLearn</a></li>
                 <li><a href="https://sabinote.pln.ng" target="_blank" rel="noopener noreferrer">SabiNote</a></li>
+                <li><a href="https://gsi.parakletushub.com" target="_blank" rel="noopener noreferrer">GSI Buildathon</a></li>
               </ul>
             </div>
             <div className="footer__col">

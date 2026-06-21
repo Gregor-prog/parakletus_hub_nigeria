@@ -234,7 +234,7 @@ export default function GsiPage() {
               <div className="preview" aria-hidden="true">
                 <div className="preview-bar">
                   <div className="lights"><span /><span /><span /></div>
-                  <span>gsi.app / onboarding</span>
+                  <span>gsi.app</span>
                 </div>
                 <div className="preview-body">
                   <div className="prev-h">Welcome back.</div>

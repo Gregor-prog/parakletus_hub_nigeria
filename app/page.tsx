@@ -374,10 +374,8 @@ export default function Home() {
               {/* Floating Card 1 — top left */}
               <div className="stage__card stage__card--tl">
                 <div className="stage__card-row">
-                  <div className="stage__card-icon" style={{ background: "rgba(28,94,60,0.1)", color: "var(--c-grove)" }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M22 10v6M2 10l10-5 10 5-10 5zM6 12.5V16a6 6 0 0012 0v-3.5" />
-                    </svg>
+                  <div className="stage__card-icon" style={{ background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", padding: 2 }}>
+                    <img src="/paralearn-logo.png" alt="ParaLearn Logo" width="22" height="22" style={{ objectFit: "contain" }} />
                   </div>
                   <div>
                     <div className="stage__card-name">ParaLearn</div>
@@ -402,16 +400,14 @@ export default function Home() {
                     <div className="stage__card-meta">International Expo</div>
                   </div>
                 </div>
-                <div className="stage__card-amount">2,800+ <span>ATTENDEES</span></div>
+                <div className="stage__card-amount">1,500+ <span>ATTENDEES</span></div>
               </div>
 
               {/* Floating Card 3 — bottom right */}
               <div className="stage__card stage__card--br">
                 <div className="stage__card-row">
-                  <div className="stage__card-icon" style={{ background: "rgba(28,94,60,0.1)", color: "var(--c-grove)" }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
-                    </svg>
+                  <div className="stage__card-icon" style={{ width: "auto", height: "18px", display: "flex", alignItems: "center", background: "transparent", border: "none", padding: 0 }}>
+                    <img src="/sabinote-logo.svg" alt="SabiNote Logo" style={{ height: "100%", width: "auto", objectFit: "contain" }} />
                   </div>
                   <div>
                     <div className="stage__card-name">SabiNote Hub</div>
@@ -523,19 +519,17 @@ export default function Home() {
         </div>
 
         <div className="solutions__bento">
-          <div className="sol sol--lg sol--ember reveal" data-delay="1">
+          <a href="https://pln.ng" target="_blank" rel="noopener noreferrer" className="sol sol--lg sol--ember reveal" data-delay="1" style={{ textDecoration: "none" }}>
             <div className="sol__head">
-              <div className="sol__icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5zM6 12.5V16a6 6 0 0012 0v-3.5" />
-                </svg>
+              <div className="sol__icon" style={{ display: "flex", alignItems: "center", justifyContent: "center", background: "#fff", padding: 4 }}>
+                <img src="/paralearn-logo.png" alt="ParaLearn Logo" width="32" height="32" style={{ objectFit: "contain" }} />
               </div>
               <span className="sol__tag">FLAGSHIP SOFTWARE</span>
             </div>
             <h3 className="sol__name">ParaLearn Platform</h3>
             <p className="sol__desc">
               School and learning management built for low-bandwidth classrooms. Grade books, timetables,
-              fee management, and offline learning modules — in one platform.
+              and offline learning modules — in one platform.
             </p>
             <ul className="sol__chips" style={{ marginTop: 16 }}>
               <li>Offline Synchronous Sync</li>
@@ -543,11 +537,41 @@ export default function Home() {
               <li>Automated Grading Engine</li>
             </ul>
             <div className="sol__foot">
-              <a href="#contact" className="sol__more">Request Institutional Demo →</a>
+              <span className="sol__more">Visit ParaLearn Platform →</span>
             </div>
-          </div>
+          </a>
 
-          <div className="sol sol--md sol--ink reveal" data-delay="2">
+          <a href="https://sabinote.pln.ng" target="_blank" rel="noopener noreferrer" className="sol sol--md sol--cream reveal" data-delay="2" style={{ textDecoration: "none" }}>
+            <div className="sol__head">
+              <div className="sol__icon" style={{ width: "auto", height: "28px", display: "flex", alignItems: "center", background: "transparent", border: "none", padding: 0 }}>
+                <img src="/sabinote-logo.svg" alt="SabiNote Logo" style={{ height: "100%", width: "auto", objectFit: "contain" }} />
+              </div>
+              <span className="sol__tag">FLAGSHIP CO-PUBLISHING</span>
+            </div>
+            <p className="sol__desc">
+              Our open study note network and curriculum-aligned digital publishing hub, enabling thousands of students to access peer-reviewed guides collaboratively.
+            </p>
+            <div className="sol__foot" style={{ marginTop: "auto" }}>
+              <span className="sol__more">Browse SabiNote Hub →</span>
+            </div>
+          </a>
+
+          <a href="https://ijsds.org" target="_blank" rel="noopener noreferrer" className="sol sol--md sol--cream reveal" data-delay="3" style={{ textDecoration: "none" }}>
+            <div className="sol__head">
+              <div className="sol__icon" style={{ width: "auto", height: "30px", display: "flex", alignItems: "center", background: "transparent", border: "none", padding: 0 }}>
+                <img src="/ijsds-logo.png" alt="IJSDS Logo" style={{ height: "100%", width: "auto", objectFit: "contain" }} />
+              </div>
+              <span className="sol__tag">FLAGSHIP RESEARCH</span>
+            </div>
+            <p className="sol__desc">
+              International Journal of Social Work and Development Studies — our peer-reviewed, open-access academic journal indexing and amplifying rigorous African research.
+            </p>
+            <div className="sol__foot" style={{ marginTop: "auto" }}>
+              <span className="sol__more">Browse IJSDS Journal →</span>
+            </div>
+          </a>
+
+          <div className="sol sol--md sol--ink reveal" data-delay="4">
             <div className="sol__head">
               <div className="sol__icon">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -566,25 +590,22 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="sol sol--md sol--cream reveal" data-delay="3">
+          <a href="https://gsi.parakletushub.com" target="_blank" rel="noopener noreferrer" className="sol sol--gsi sol--cream reveal" data-delay="5" style={{ textDecoration: "none" }}>
             <div className="sol__head">
-              <div className="sol__icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
-                </svg>
+              <div className="sol__icon" style={{ width: "auto", height: "24px", display: "flex", alignItems: "center", background: "transparent", border: "none", padding: 0 }}>
+                <img src="/gsi-logo.png" alt="GSI Logo" style={{ height: "100%", width: "auto", objectFit: "contain" }} />
               </div>
-              <span className="sol__tag">FLAGSHIP CO-PUBLISHING</span>
+              <span className="sol__tag">BUILDATHON INITIATIVE</span>
             </div>
-            <h3 className="sol__name">SabiNote</h3>
             <p className="sol__desc">
-              Our open study note network and curriculum-aligned digital publishing hub, enabling thousands of students to access peer-reviewed guides collaboratively.
+              The GSI Buildathon is our annual remote sprint and collaborative engineering ecosystem, bringing together African builders to design and run research tools for the Global South.
             </p>
             <div className="sol__foot" style={{ marginTop: "auto" }}>
-              <a href="https://sabinote.pln.ng" target="_blank" rel="noopener noreferrer" className="sol__more">Browse SabiNote Hub →</a>
+              <span className="sol__more">Browse GSI Platform →</span>
             </div>
-          </div>
+          </a>
 
-          <div className="sol sol--flag reveal" data-delay="4">
+          <div className="sol sol--flag reveal" data-delay="6">
             <div className="sol-flag__pulse">
               <span /><span /><span />
             </div>
@@ -682,7 +703,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* IMPACT */}
+      {/* IMPACT
       <section id="impact" className="impact">
         <div className="impact__head reveal">
           <div className="section-eyebrow">
@@ -694,7 +715,7 @@ export default function Home() {
 
         <div className="impact__grid">
           <div className="impactrow reveal" data-delay="1">
-            <div className="impactrow__k" data-target="24k">24k</div>
+            <div className="impactrow__k" data-target="2k+">2k+</div>
             <div className="impactrow__body">
               <div className="impactrow__label">Students Enrolled</div>
               <div className="impactrow__note">Active daily across our LMS platform.</div>
@@ -708,7 +729,7 @@ export default function Home() {
             </div>
           </div>
           <div className="impactrow reveal" data-delay="3">
-            <div className="impactrow__k" data-target="140+">140+</div>
+            <div className="impactrow__k" data-target="10+">10+</div>
             <div className="impactrow__body">
               <div className="impactrow__label">Institutions</div>
               <div className="impactrow__note">Primary and secondary schools integrated.</div>
@@ -723,6 +744,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      */}
 
       {/* GLOBAL CTA */}
       <section id="contact" className="cta">
@@ -776,9 +798,11 @@ export default function Home() {
             <div className="footer__col">
               <div className="footer__h">Solutions</div>
               <ul>
-                <li><a href="#solutions">ParaLearn</a></li>
-                <li><a href="#solutions">Ayọ̀lọ̀ (Roadmap)</a></li>
+                <li><a href="https://pln.ng" target="_blank" rel="noopener noreferrer">ParaLearn</a></li>
                 <li><a href="https://sabinote.pln.ng" target="_blank" rel="noopener noreferrer">SabiNote</a></li>
+                <li><a href="https://ijsds.org" target="_blank" rel="noopener noreferrer">IJSDS Journal</a></li>
+                <li><a href="https://gsi.parakletushub.com" target="_blank" rel="noopener noreferrer">GSI Buildathon</a></li>
+                <li><a href="#solutions">Ayọ̀lọ̀ (Roadmap)</a></li>
               </ul>
             </div>
             <div className="footer__col">
