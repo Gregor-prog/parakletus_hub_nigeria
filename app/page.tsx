@@ -328,7 +328,7 @@ export default function Home() {
 
           <div className="hero__row">
             <p className="hero__lede">
-              Parakletus Hub Nigeria builds ParaLearn and SabiNote, the educational and technological platforms the Global South needs to compete, innovate, and lead.
+              Parakletus Hub Nigeria builds ParaLearn and SabiNote — education technology for K-12 schools and the teeming Nigerian youth — advancing SDG 4 across the Global South.
             </p>
             <div className="hero__ctas">
               <a href="#solutions" className="btn btn--primary">
@@ -428,8 +428,8 @@ export default function Home() {
             <ul className="hero__strip-list">
               <li>School Management</li>
               <li>Collaborative Study Guides</li>
-              <li>Educational Publishing</li>
-              <li>Professional Skill Bootcamps</li>
+              <li>Academic Publishing</li>
+              <li>K-12 Digital Skills Training</li>
             </ul>
           </div>
         </div>
@@ -491,11 +491,11 @@ export default function Home() {
             <span className="pillar__kicker">LITERATURE</span>
             <h3 className="pillar__title">Parakletus Publishing</h3>
             <p className="pillar__lede">
-              We edit, design, and publish peer-reviewed textbooks, professional journals, and cultural literature aligned to African curricula and voices.
+              Our academic publishing division gives young writers and researchers access to affordable, reliable publishing — from manuscript to market.
             </p>
             <div className="pillar__surface">
-              <span className="pillar__surface-label">EDITORIAL REACH</span>
-              <p>Textbooks aligned with national curricula, digital-first distribution.</p>
+              <span className="pillar__surface-label">EDITORIAL SERVICES</span>
+              <p>Ghostwriting, copy &amp; developmental editing, proofreading, book cover design, report and SOP writing.</p>
             </div>
             <a href="#solutions" className="pillar__link">Explore Catalogues</a>
             <div className="pillar__etch">
@@ -532,9 +532,9 @@ export default function Home() {
               and offline learning modules — in one platform.
             </p>
             <ul className="sol__chips" style={{ marginTop: 16 }}>
-              <li>Offline Synchronous Sync</li>
-              <li>SMS Notification API</li>
-              <li>Automated Grading Engine</li>
+              <li>Learning Management System</li>
+              <li>Student/Staff Information System</li>
+              <li>Result Management System</li>
             </ul>
             <div className="sol__foot">
               <span className="sol__more">Visit ParaLearn Platform →</span>
@@ -583,7 +583,7 @@ export default function Home() {
             </div>
             <h3 className="sol__name">Ayọ̀lọ̀ Systems</h3>
             <p className="sol__desc">
-              Proposed tuition ledger concept designed to support future low-cost digital school fee settlements (no active development or progress currently).
+              Stablecoin rails for cross-border payments and remittances — low-fee settlement infrastructure connecting Africa to the world.
             </p>
             <div className="sol__foot" style={{ marginTop: "auto" }}>
               <span className="sol__more" style={{ opacity: 0.5, cursor: "not-allowed" }}>Coming Soon (Unreleased)</span>
@@ -656,7 +656,7 @@ export default function Home() {
             <div className="zebra__quote-mark">"</div>
             <div>
               <p>
-                By building operating software for schools and settlement rails for engineers, we lay the groundwork for sustainable development that starts from within.
+                By building operating software for schools and stablecoin rails for cross-border payments, we lay the groundwork for sustainable development that starts from within.
               </p>
             </div>
           </div>
@@ -680,7 +680,7 @@ export default function Home() {
               <span className="brandcard__idx">01 // EDU</span>
             </div>
             <h3 className="brandcard__name">ParaLearn Academy</h3>
-            <p className="brandcard__desc">Technical competence through focused software bootcamps and executive digital training programs.</p>
+            <p className="brandcard__desc">Digital skill training for K-12 students — software development, product design, smartphone graphics &amp; video editing, and Google Suite for K-12.</p>
           </div>
 
           <div className="brandcard reveal" data-delay="2">
@@ -689,7 +689,7 @@ export default function Home() {
               <span className="brandcard__idx">02 // ROADMAP</span>
             </div>
             <h3 className="brandcard__name">Ayọ̀lọ̀ Systems</h3>
-            <p className="brandcard__desc">Proposed payment ledger gateways designed to handle future low-cost digital school fees (currently unreleased concept).</p>
+            <p className="brandcard__desc">Stablecoin rails for cross-border payments and remittances, engineered for low-fee settlement across the Global South.</p>
           </div>
 
           <div className="brandcard reveal" data-delay="3">
@@ -698,7 +698,7 @@ export default function Home() {
               <span className="brandcard__idx">03 // PUB</span>
             </div>
             <h3 className="brandcard__name">Parakletus Publishing</h3>
-            <p className="brandcard__desc">High-quality textbooks, study aids, and peer-reviewed literature designed for Nigerian students and institutions.</p>
+            <p className="brandcard__desc">Academic publishing for young writers — ghostwriting, copy editing, developmental editing, proofreading, book cover design, and SOP writing.</p>
           </div>
         </div>
       </section>
@@ -791,7 +791,7 @@ export default function Home() {
             <p className="footer__caption">
               Rigorous technology and educational systems built for African institutional realities.
             </p>
-            <div className="footer__cac">RC NUMBER: 1845920</div>
+            <div className="footer__cac">CAC BN: 1909664</div>
           </div>
 
           <div className="footer__cols">
@@ -825,7 +825,14 @@ export default function Home() {
               <div className="footer__h">Desk</div>
               <ul>
                 <li>Port Harcourt, Nigeria</li>
-                <li><a href="mailto:onboarding@parakletushub.ng" style={{ textDecoration: "underline" }}>Email Desk</a></li>
+                <li><a href="tel:+2348148876125">Call/WhatsApp: 0814 887 6125</a></li>
+                <li><a href="mailto:parakletus70@gmail.com" style={{ textDecoration: "underline" }}>parakletus70@gmail.com</a></li>
+                <li>
+                  <a href="https://t.me/parakletus_ng" target="_blank" rel="noopener noreferrer">Telegram</a>{" · "}
+                  <a href="https://www.facebook.com/dparakletus" target="_blank" rel="noopener noreferrer">Facebook</a>{" · "}
+                  <a href="https://www.twitter.com/parakletus_ng" target="_blank" rel="noopener noreferrer">Twitter</a>{" · "}
+                  <a href="https://www.instagram.com/parakletus_ng" target="_blank" rel="noopener noreferrer">Instagram</a>
+                </li>
               </ul>
             </div>
           </div>

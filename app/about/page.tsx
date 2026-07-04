@@ -186,9 +186,11 @@ export default function AboutPage() {
             <span className="serif-italic">Africa&rsquo;s</span> infrastructure.
           </h1>
           <p className="about-hero__lede reveal" data-delay="2">
-            Parakletus Hub Nigeria is a Port Harcourt-based technology and publishing company. We build
-            school management software (ParaLearn), collaborative study guide networks (SabiNote), and peer-reviewed educational
-            literature — all engineered for the operational realities of the Global South.
+            Parakletus Hub Nigeria is a Port Harcourt-based education technology and publishing company
+            serving K-12 schools and giving the teeming Nigerian youth access to quality education by
+            leveraging technology — advancing SDG 4. We operate two divisions: an e-learning division,
+            ParaLearn, and an academic publishing division, Parakletus Publishing. Registered with the
+            C.A.C. under business number 1909664.
           </p>
         </div>
       </section>
@@ -201,8 +203,8 @@ export default function AboutPage() {
             <span className="about-mission__v">Founded in Port Harcourt, Nigeria</span>
           </div>
           <div className="about-mission__stat">
-            <span className="about-mission__k">3</span>
-            <span className="about-mission__v">Core subsidiaries</span>
+            <span className="about-mission__k">2</span>
+            <span className="about-mission__v">Operating divisions</span>
           </div>
           <div className="about-mission__stat">
             <span className="about-mission__k">10+</span>
@@ -211,6 +213,37 @@ export default function AboutPage() {
           <div className="about-mission__stat">
             <span className="about-mission__k">2k+</span>
             <span className="about-mission__v">Students on platform</span>
+          </div>
+        </div>
+      </section>
+
+      {/* MISSION & VISION */}
+      <section className="about-values">
+        <div className="about-values__inner">
+          <div className="about-values__head reveal">
+            <div className="section-eyebrow">
+              <span className="section-eyebrow__dot" />
+              Mission &amp; Vision
+            </div>
+            <h2 className="section-title">Why we exist</h2>
+          </div>
+          <div className="about-mv__grid">
+            <div className="about-values__item reveal" data-delay="1">
+              <span className="about-values__num">MISSION</span>
+              <h3 className="about-values__k">Sustainable e-learning for Africa</h3>
+              <p className="about-values__v">
+                Our mission is to effect sustainable e-learning solutions in the African learning
+                ecosystem and to change the narrative about technology in education in Africa.
+              </p>
+            </div>
+            <div className="about-values__item reveal" data-delay="2">
+              <span className="about-values__num">VISION</span>
+              <h3 className="about-values__k">A frontier in digitized learning</h3>
+              <p className="about-values__v">
+                Our vision is to be a beacon of hope to the learning populace and a frontier in
+                digitized learning.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -336,7 +369,7 @@ export default function AboutPage() {
               <img src="/favicon.png" alt="Parakletus Hub Nigeria" width="36" height="36" style={{ objectFit: "contain", display: "block" }} />
             </div>
             <p className="footer__caption">Rigorous technology and educational systems built for African institutional realities.</p>
-            <div className="footer__cac">RC NUMBER: 1845920</div>
+            <div className="footer__cac">CAC BN: 1909664</div>
           </div>
           <div className="footer__cols">
             <div className="footer__col">
@@ -369,7 +402,14 @@ export default function AboutPage() {
               <div className="footer__h">Desk</div>
               <ul>
                 <li>Port Harcourt, Nigeria</li>
-                <li><a href="mailto:onboarding@parakletushub.ng" style={{ textDecoration: "underline" }}>Email Desk</a></li>
+                <li><a href="tel:+2348148876125">Call/WhatsApp: 0814 887 6125</a></li>
+                <li><a href="mailto:parakletus70@gmail.com" style={{ textDecoration: "underline" }}>parakletus70@gmail.com</a></li>
+                <li>
+                  <a href="https://t.me/parakletus_ng" target="_blank" rel="noopener noreferrer">Telegram</a>{" · "}
+                  <a href="https://www.facebook.com/dparakletus" target="_blank" rel="noopener noreferrer">Facebook</a>{" · "}
+                  <a href="https://www.twitter.com/parakletus_ng" target="_blank" rel="noopener noreferrer">Twitter</a>{" · "}
+                  <a href="https://www.instagram.com/parakletus_ng" target="_blank" rel="noopener noreferrer">Instagram</a>
+                </li>
               </ul>
             </div>
           </div>

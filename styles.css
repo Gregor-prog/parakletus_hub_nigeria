@@ -1878,6 +1878,7 @@ ul { list-style: none; padding: 0; margin: 0; }
   border-radius: 16px; padding: 36px 28px;
   display: flex; flex-direction: column; gap: 12px;
 }
+.about-mv__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
 .about-values__num { font-family: var(--f-mono); font-size: 11px; color: var(--c-grove-soft); letter-spacing: 0.08em; }
 .about-values__k { font-family: var(--f-display); font-size: 18px; font-weight: 600; color: var(--c-cream); line-height: 1.3; }
 .about-values__v { font-family: var(--f-body); font-size: 14px; line-height: 1.65; color: rgba(242,250,245,0.55); }
@@ -1894,6 +1895,7 @@ ul { list-style: none; padding: 0; margin: 0; }
   .about-team__grid { grid-template-columns: 1fr !important; }
   .about-values { padding: 64px 24px; }
   .about-values__grid { grid-template-columns: 1fr; }
+  .about-mv__grid { grid-template-columns: 1fr; }
 }
 
 /* ═══════════════════════════════════════════════════════════════

@@ -19,7 +19,7 @@ const subsidiaries = [
     idx:     "02 // EDTECH",
     name:    "ParaLearn",
     tagline: "Educational Infrastructure Software",
-    desc:    "Cloud-based school and learning management system built for low-bandwidth African classrooms. Grade books, timetables, and offline learning modules in one platform.",
+    desc:    "School management software that automates the entire school process — admission, teaching/learning, assessment, and result processing — with three core features: LMS, Student/Staff Information System (SIS), and Result Management System (RMS).",
     href:    "https://pln.ng",
     tag:     "LIVE",
     sector:  "TECHNOLOGY",
@@ -38,8 +38,8 @@ const subsidiaries = [
     code:    "AYỌ̀LỌ̀",
     idx:     "04 // ROADMAP",
     name:    "Ayọ̀lọ̀ Systems",
-    tagline: "Proposed Tuition Settlement Concept",
-    desc:    "A future conceptual design for stablecoin-based payment rails to enable low-fee tuition settlement (currently in early concept and design phase, no active development).",
+    tagline: "Stablecoin Cross-Border Payment Rails",
+    desc:    "Stablecoin rails for cross-border payments and remittances — low-fee settlement infrastructure connecting Africa to the world (currently on the roadmap).",
     href:    null,
     tag:     "PLANNED ROADMAP",
     sector:  "TECHNOLOGY",
@@ -48,8 +48,8 @@ const subsidiaries = [
     code:    "PUBLISHING",
     idx:     "05 // PUB",
     name:    "Parakletus Publishing",
-    tagline: "Academic & Cultural Press",
-    desc:    "High-quality textbooks, study aids, and peer-reviewed literature designed for Nigerian students and institutions. Aligned to national curricula.",
+    tagline: "Academic Publishing",
+    desc:    "Our academic publishing division giving young writers access to affordable, reliable publishing services — ghostwriting, copy editing, developmental editing, book cover design, proofreading, report writing, and Statement of Purpose (SOP) writing.",
     href:    null,
     tag:     "COMING SOON",
     sector:  "PUBLISHING",
@@ -58,8 +58,8 @@ const subsidiaries = [
     code:    "ACADEMY",
     idx:     "06 // EDU",
     name:    "ParaLearn Academy",
-    tagline: "Technical Training Programs",
-    desc:    "Software bootcamps and executive digital training programs building technical competence for professionals across Nigeria.",
+    tagline: "K-12 Digital Skill Training",
+    desc:    "Our digital skill acquisition academy training K-12 students in software development, product design, smartphone graphics design and video editing, Google Suite for K-12, and more.",
     href:    null,
     tag:     "COMING SOON",
     sector:  "EDUCATION",
@@ -222,7 +222,7 @@ export default function SubsidiariesPage() {
             The <span className="serif-italic">Subsidiaries</span>
           </h1>
           <p className="subs-hero__lede reveal" data-delay="2">
-            Six operating units. One mandate: build the infrastructure the Global South needs to
+            Seven operating units. One mandate: build the infrastructure the Global South needs to
             educate, transact, and publish on its own terms.
           </p>
         </div>
@@ -296,7 +296,7 @@ export default function SubsidiariesPage() {
               <img src="/favicon.png" alt="Parakletus Hub Nigeria" width="36" height="36" style={{ objectFit: "contain", display: "block" }} />
             </div>
             <p className="footer__caption">Rigorous technology and educational systems built for African institutional realities.</p>
-            <div className="footer__cac">RC NUMBER: 1845920</div>
+            <div className="footer__cac">CAC BN: 1909664</div>
           </div>
           <div className="footer__cols">
             <div className="footer__col">
@@ -320,7 +320,14 @@ export default function SubsidiariesPage() {
               <div className="footer__h">Desk</div>
               <ul>
                 <li>Port Harcourt, Nigeria</li>
-                <li><a href="mailto:onboarding@parakletushub.ng" style={{ textDecoration: "underline" }}>Email Desk</a></li>
+                <li><a href="tel:+2348148876125">Call/WhatsApp: 0814 887 6125</a></li>
+                <li><a href="mailto:parakletus70@gmail.com" style={{ textDecoration: "underline" }}>parakletus70@gmail.com</a></li>
+                <li>
+                  <a href="https://t.me/parakletus_ng" target="_blank" rel="noopener noreferrer">Telegram</a>{" · "}
+                  <a href="https://www.facebook.com/dparakletus" target="_blank" rel="noopener noreferrer">Facebook</a>{" · "}
+                  <a href="https://www.twitter.com/parakletus_ng" target="_blank" rel="noopener noreferrer">Twitter</a>{" · "}
+                  <a href="https://www.instagram.com/parakletus_ng" target="_blank" rel="noopener noreferrer">Instagram</a>
+                </li>
               </ul>
             </div>
           </div>

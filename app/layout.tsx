@@ -30,7 +30,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Parakletus Hub Nigeria — A New Horizon for the Global South",
-  description: "Parakletus Hub Nigeria builds the educational and technological infrastructure the Global South needs to compete, innovate and lead.",
+  description: "Parakletus Hub Nigeria builds e-learning and academic publishing infrastructure for K-12 schools and Nigerian youth — advancing SDG 4 through ParaLearn and Parakletus Publishing.",
   icons: { icon: "/favicon.png" },
 };
 
