@@ -379,11 +379,11 @@ export default function Home() {
                   </div>
                   <div>
                     <div className="stage__card-name">ParaLearn</div>
-                    <div className="stage__card-meta">Educational Infrastructure software</div>
+                    <div className="stage__card-meta">Modern Result Management</div>
                   </div>
                 </div>
                 <div className="stage__card-bar"><span style={{ width: "78%" }} /></div>
-                <div className="stage__card-foot">Active Operations: <b>78% Efficiency</b></div>
+                <div className="stage__card-foot">School Setup Wizard: <b>under 30 minutes</b></div>
               </div>
 
               {/* Floating Card 2 — center */}
@@ -410,14 +410,14 @@ export default function Home() {
                     <img src="/sabinote-logo.svg" alt="SabiNote Logo" style={{ height: "100%", width: "auto", objectFit: "contain" }} />
                   </div>
                   <div>
-                    <div className="stage__card-name">SabiNote Hub</div>
-                    <div className="stage__card-meta">Collaborative Study Guides</div>
+                    <div className="stage__card-name">SabiNote</div>
+                    <div className="stage__card-meta">AI Lesson Note Generator</div>
                   </div>
                 </div>
                 <div className="stage__card-bar">
-                  <span style={{ width: "88%", background: "linear-gradient(90deg,var(--c-grove),var(--c-grove-mid))" }} />
+                  <span style={{ width: "100%", background: "linear-gradient(90deg,var(--c-grove),var(--c-grove-mid))" }} />
                 </div>
-                <div className="stage__card-foot">Curriculum Coverage: <b>88% aligned</b></div>
+                <div className="stage__card-foot">Scheme Coverage: <b>36 state curricula</b></div>
               </div>
             </div>
           </div>
@@ -426,8 +426,8 @@ export default function Home() {
           <div className="hero__strip">
             <span className="hero__strip-label">CORE FOCUS AREAS</span>
             <ul className="hero__strip-list">
-              <li>School Management</li>
-              <li>Collaborative Study Guides</li>
+              <li>Result Management</li>
+              <li>AI Lesson Note Generation</li>
               <li>Academic Publishing</li>
               <li>K-12 Digital Skills Training</li>
             </ul>
@@ -471,7 +471,7 @@ export default function Home() {
             <span className="pillar__kicker">INFRASTRUCTURE</span>
             <h3 className="pillar__title">Parakletus Technologies</h3>
             <p className="pillar__lede">
-              We design and deploy cloud networks, school management platforms, and blockchain tools calibrated for African operational constraints.
+              We design and deploy cloud networks, result management platforms, and blockchain tools calibrated for African operational constraints.
             </p>
             <div className="pillar__surface">
               <span className="pillar__surface-label">ENGINEERING STANDARD</span>
@@ -528,13 +528,13 @@ export default function Home() {
             </div>
             <h3 className="sol__name">ParaLearn Platform</h3>
             <p className="sol__desc">
-              School and learning management built for low-bandwidth classrooms. Grade books, timetables,
-              and offline learning modules — in one platform.
+              Modern result management for African schools — from chaos to calm. ParaLearn RMS moves
+              results, assessments, and reporting from paperwork to one unified digital system.
             </p>
             <ul className="sol__chips" style={{ marginTop: 16 }}>
-              <li>Learning Management System</li>
-              <li>Student/Staff Information System</li>
-              <li>Result Management System</li>
+              <li>Real-Time Master Broadsheet</li>
+              <li>Offline Score Entry</li>
+              <li>Secure CBT Exams</li>
             </ul>
             <div className="sol__foot">
               <span className="sol__more">Visit ParaLearn Platform →</span>
@@ -546,13 +546,13 @@ export default function Home() {
               <div className="sol__icon" style={{ width: "auto", height: "28px", display: "flex", alignItems: "center", background: "transparent", border: "none", padding: 0 }}>
                 <img src="/sabinote-logo.svg" alt="SabiNote Logo" style={{ height: "100%", width: "auto", objectFit: "contain" }} />
               </div>
-              <span className="sol__tag">FLAGSHIP CO-PUBLISHING</span>
+              <span className="sol__tag">FLAGSHIP AI TOOL</span>
             </div>
             <p className="sol__desc">
-              Our open study note network and curriculum-aligned digital publishing hub, enabling thousands of students to access peer-reviewed guides collaboratively.
+              NERDC-compliant lesson notes, generated in seconds. SabiNote pulls your state&rsquo;s official scheme of work and writes complete, classroom-ready lesson notes — trusted by 4,000+ Nigerian educators.
             </p>
             <div className="sol__foot" style={{ marginTop: "auto" }}>
-              <span className="sol__more">Browse SabiNote Hub →</span>
+              <span className="sol__more">Visit SabiNote →</span>
             </div>
           </a>
 
@@ -722,10 +722,10 @@ export default function Home() {
             </div>
           </div>
           <div className="impactrow reveal" data-delay="2">
-            <div className="impactrow__k" data-target="85k+">85k+</div>
+            <div className="impactrow__k" data-target="4k+">4k+</div>
             <div className="impactrow__body">
-              <div className="impactrow__label">Study Guides Read</div>
-              <div className="impactrow__note">Accessed collaboratively on SabiNote.</div>
+              <div className="impactrow__label">Educators on SabiNote</div>
+              <div className="impactrow__note">Generating NERDC-compliant lesson notes.</div>
             </div>
           </div>
           <div className="impactrow reveal" data-delay="3">
@@ -758,19 +758,19 @@ export default function Home() {
             Partner With <span className="serif-italic">Parakletus</span> today.
           </h2>
           <p className="cta__lede reveal" data-delay="2">
-            Whether you're a school director integrating ParaLearn, a student/academic looking to publish guides on SabiNote, or an academic writer seeking publication — our Port Harcourt desk is ready.
+            Whether you're a school director integrating ParaLearn, a teacher generating lesson notes on SabiNote, or an academic writer seeking publication — our Port Harcourt desk is ready.
           </p>
 
           <div className="cta__lanes">
             <div className="lane reveal" data-delay="1">
               <span className="lane__kicker">SCHOOL OPERATION</span>
               <h3 className="lane__title">Integrate ParaLearn</h3>
-              <p className="lane__meta">Request custom software onboarding &amp; edge node deployment.</p>
+              <p className="lane__meta">Set up your school&rsquo;s digital result system in under 30 minutes.</p>
             </div>
             <div className="lane reveal" data-delay="2">
-              <span className="lane__kicker">ACADEMIC HUB</span>
-              <h3 className="lane__title">Contribute to SabiNote</h3>
-              <p className="lane__meta">Publish study materials and guides aligned with curricula.</p>
+              <span className="lane__kicker">TEACHER TOOLS</span>
+              <h3 className="lane__title">Plan with SabiNote</h3>
+              <p className="lane__meta">Generate NERDC-compliant lesson notes from your state&rsquo;s scheme of work.</p>
             </div>
             <div className="lane reveal" data-delay="3">
               <span className="lane__kicker">ACADEMIC PRESS</span>

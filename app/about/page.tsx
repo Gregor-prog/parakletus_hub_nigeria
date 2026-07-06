@@ -339,18 +339,18 @@ export default function AboutPage() {
             Partner With <span className="serif-italic">Parakletus</span> today.
           </h2>
           <p className="cta__lede reveal" data-delay="2">
-            Whether you&rsquo;re a school director, student looking to contribute study guides, or academic writer — our Port Harcourt desk is ready.
+            Whether you&rsquo;re a school director, a teacher generating lesson notes, or an academic writer — our Port Harcourt desk is ready.
           </p>
           <div className="cta__lanes">
             <div className="lane reveal" data-delay="1">
               <span className="lane__kicker">SCHOOL OPERATION</span>
               <h3 className="lane__title">Integrate ParaLearn</h3>
-              <p className="lane__meta">Request custom software onboarding &amp; edge node deployment.</p>
+              <p className="lane__meta">Set up your school&rsquo;s digital result system in under 30 minutes.</p>
             </div>
             <div className="lane reveal" data-delay="2">
-              <span className="lane__kicker">ACADEMIC HUB</span>
-              <h3 className="lane__title">Contribute to SabiNote</h3>
-              <p className="lane__meta">Publish study materials and guides aligned with curricula.</p>
+              <span className="lane__kicker">TEACHER TOOLS</span>
+              <h3 className="lane__title">Plan with SabiNote</h3>
+              <p className="lane__meta">Generate NERDC-compliant lesson notes from your state&rsquo;s scheme of work.</p>
             </div>
             <div className="lane reveal" data-delay="3">
               <span className="lane__kicker">ACADEMIC PRESS</span>
