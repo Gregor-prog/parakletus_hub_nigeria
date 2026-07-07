@@ -36,7 +36,7 @@ const faqs = [
 ];
 
 export default function GsiPage() {
-  const cd = useCountdown("2026-07-20T00:00:00+01:00");
+  const cd = useCountdown("2026-08-21T12:00:00+01:00");
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
 
   // fade-up observer
@@ -76,11 +76,11 @@ export default function GsiPage() {
       <span className="sep">·</span>
       <span>Port Harcourt · Aug 22, 2026</span>
       <span className="sep">·</span>
-      <span>Applications are open — apply now</span>
+      <span>Applications close Aug 1 — apply now</span>
       <span className="sep">·</span>
-      <span>2 founding roles on offer</span>
+      <span>2 winners (1 physical + 1 virtual)</span>
       <span className="sep">·</span>
-      <span>72-hour remote sprint · Jul 20–23</span>
+      <span>6-hour sprint · Aug 21</span>
       <span className="sep">·</span>
     </React.Fragment>
   ));
@@ -122,7 +122,7 @@ export default function GsiPage() {
             <div className="hero-main">
               <div className="hero-status fade-up in">
                 <span className="dot" />
-                <span>Applications are open · Aug 22, 2026</span>
+                <span>Applications close Aug 1 · Finale Aug 22, 2026</span>
               </div>
               <h1 className="hero-title fade-up in d1">
                 African research deserves<br />a <span className="accent">global stage.</span>
@@ -151,15 +151,15 @@ export default function GsiPage() {
                 <span className="vitals-live"><span className="d" />Applications Open</span>
               </div>
               <dl className="vitals-list">
-                <div className="vitals-row"><dt>Finale</dt><dd>Aug 22, 2026<span>Port Harcourt, Nigeria</span></dd></div>
-                <div className="vitals-row"><dt>Sprint</dt><dd>72 hours<span>Remote · Jul 20–23</span></dd></div>
-                <div className="vitals-row"><dt>Format</dt><dd>2 builders / team<span>1 designer + 1 engineer</span></dd></div>
-                <div className="vitals-row"><dt>Reward</dt><dd>Founding team offer<span>+ talent pipeline</span></dd></div>
+                <div className="vitals-row"><dt>Finale</dt><dd>Aug 22, 2026<span>Port Harcourt (Live + Virtual)</span></dd></div>
+                <div className="vitals-row"><dt>Sprint</dt><dd>6 Hours<span>Aug 21, 2026 · 12pm WAT</span></dd></div>
+                <div className="vitals-row"><dt>Format</dt><dd>Product Teams<span>PMs, designers, engineers</span></dd></div>
+                <div className="vitals-row"><dt>Reward</dt><dd>2 Winners Hired<span>1 Physical + 1 Virtual</span></dd></div>
               </dl>
               <div className="vitals-cd">
                 <div className="vitals-cd-head">
                   <span className="vitals-cd-lab">{cd.live ? "Sprint has begun" : "Sprint begins in"}</span>
-                  <span className="vitals-cd-date">Jul 20</span>
+                  <span className="vitals-cd-date">Aug 21</span>
                 </div>
                 <div className="vitals-cd-grid">
                   <div><span className="n">{cd.d}</span><span className="u">Days</span></div>
@@ -183,7 +183,7 @@ export default function GsiPage() {
           <div className="section-head fade-up">
             <div className="eyebrow">The Buildathon</div>
             <h2 className="display-2">And this is how we build it.</h2>
-            <p className="lede">The GSI Buildathon is how we're hiring the founding team — and how we're mapping the top 1% of design and engineering talent across Southern and Eastern Nigeria. Three days. Two builders per team. One MVP that has to feel inevitable.</p>
+            <p className="lede">The GSI Buildathon is how we're hiring the founding team — and how we're mapping the top 1% of design and engineering talent across Southern and Eastern Nigeria. 6-hour sprint. Balanced product teams. One MVP that has to feel inevitable.</p>
           </div>
           <div className="about-grid">
             <div className="about-left fade-up">
@@ -197,11 +197,11 @@ export default function GsiPage() {
               </div>
               <div className="stat">
                 <div className="stat-num">2</div>
-                <div className="stat-body"><h3>Founding roles on offer</h3><p>One product designer. One software engineer. Hired live from the finale stage.</p></div>
+                <div className="stat-body"><h3>Founding roles on offer</h3><p>Hiring key designers, developers, and product leads live from the finale stage.</p></div>
               </div>
               <div className="stat">
-                <div className="stat-num">72<sup>h</sup></div>
-                <div className="stat-body"><h3>Remote sprint</h3><p>Three days to ship a working MVP — the Journal Onboarding Flow.</p></div>
+                <div className="stat-num">6<sup>h</sup></div>
+                <div className="stat-body"><h3>Live sprint</h3><p>A fast-paced sprint to build and ship the "Proof of Impact" Academic Node.</p></div>
               </div>
             </div>
           </div>
@@ -213,16 +213,17 @@ export default function GsiPage() {
         <div className="wrap">
           <div className="section-head fade-up">
             <div className="eyebrow">The brief</div>
-            <h2 className="display-2">Build the onboarding a professor would actually use.</h2>
-            <p className="lede">Your task is the MVP every researcher meets first — the Journal Onboarding Flow. A clean dashboard that pulls academic history from OpenAlex, calculates a researcher's GSI Score, and writes their journal to the blockchain. The hard part isn't the chain — it's making the chain disappear.</p>
+            <h2 className="display-2">Build the &quot;Proof of Impact&quot; Academic Node.</h2>
+            <p className="lede">Currently, Western platforms rank research strictly by global citations, ignoring local impact. <strong>Your task is to build a &quot;Proof of Impact&quot; Academic Portal.</strong> Teams must build a lightweight Web3 application where a researcher can upload the metadata of a local African research paper (e.g., Title, Abstract, Field, Local Policy Mentions, and Open-Access Citations). The system must process this data, calculate a unique <strong>&quot;GSI Score&quot;</strong>, and display the indexed paper on a clean public dashboard.</p>
           </div>
           <div className="chal-grid">
             <div className="chal-steps fade-up">
               {[
-                { n: "01", h: "Pull academic history", p: "Use the OpenAlex API to import a researcher's publications, citations and co-authorships into a single, calm view." },
-                { n: "02", h: "Compute the GSI Score", p: "Transparent, fair and explainable — the score should reward depth and rigour, not Western citation politics." },
-                { n: "03", h: "Save to the blockchain — invisibly", p: "One button. No wallets. No gas. No seed phrases on screen. If a professor sees crypto jargon, you've already lost." },
-                { n: "04", h: "Make it feel inevitable", p: "Prestigious-meets-modern. Bold typography, generous whitespace, real data, no slop. Ship something a VC would screenshot." },
+                { n: "01", h: "Algorithms & Logic (25 pts)", p: "Write a backend algorithm or smart contract that processes inputs (like local citations, government policy mentions, and NGO adoptions) and calculates a weighted GSI Score. Utilize Space and Time (SXT) SQL queries or Avalanche smart contracts to store and process this logic." },
+                { n: "02", h: "Design & UI/UX (20 pts)", p: "Build the frontend interface containing a submission form for researchers and a public dashboard showing scores. Keep the design clean, intuitive, and accessible for older professors, avoiding Web3/crypto complexity." },
+                { n: "03", h: "Usecase & Viability (20 pts)", p: "Ensure the product directly aligns with GSI's mission to highlight Global South research. Show practical value that an institution's VC would immediately recognize, bypassing traditional paywalls." },
+                { n: "04", h: "Collaboration (15 pts)", p: "Work seamlessly as a cohesive unit during the 6-hour sprint. Show a balanced, active commit history in GitHub across product design, frontend, and backend components." },
+                { n: "05", h: "Presentation (20 pts)", p: "Deliver a compelling 5-minute pitch (3 minutes for a live working demo, 2 minutes explaining your Web3 architecture) followed by Q&A with the judges." },
               ].map((s) => (
                 <div key={s.n} className="chal-step">
                   <div className="n">{s.n}</div>
@@ -251,10 +252,25 @@ export default function GsiPage() {
                   <div className="prev-cta"><span>Save journal · permanent record</span><span className="mono">→</span></div>
                 </div>
               </div>
-              <div className="no-crypto">
+              <div className="no-crypto" style={{ marginBottom: "20px" }}>
                 <span>No</span>
                 {["gas fees","wallets","seed phrases",'"Web3 magic"'].map((s) => <span key={s} className="strike">{s}</span>)}
                 <span className="ok">— just product.</span>
+              </div>
+              <div className="protip-card" style={{
+                background: "rgba(31, 138, 91, 0.04)",
+                border: "1px solid rgba(31, 138, 91, 0.15)",
+                padding: "20px",
+                borderRadius: "10px",
+                fontSize: "14px",
+                lineHeight: "1.55"
+              }}>
+                <div style={{ fontWeight: 700, color: "var(--green)", marginBottom: "8px", textTransform: "uppercase", fontSize: "11px", letterSpacing: "1px" }}>
+                  💡 Pro-Tip for the Briefing Session
+                </div>
+                <div style={{ fontStyle: "italic", color: "var(--ink-mute)" }}>
+                  &ldquo;Do not spend 4 hours arguing about the perfect math formula. Spend 30 minutes designing a basic algorithm, and spend the remaining 5.5 hours making sure the data flows smoothly from the user interface, through your algorithm, and onto the blockchain/database. We are scoring execution, not just ideas.&rdquo;
+                </div>
               </div>
             </div>
           </div>
@@ -266,16 +282,16 @@ export default function GsiPage() {
         <div className="wrap">
           <div className="section-head fade-up">
             <div className="eyebrow">Timeline</div>
-            <h2 className="display-2">Five phases, one finale.</h2>
-            <p className="lede">From open call to live hiring on stage in Port Harcourt — here's how the next four months unfold.</p>
+            <h2 className="display-2">Five phases, one stage.</h2>
+            <p className="lede">From application deadline to the live finale in Port Harcourt — here's how the timeline unfolds.</p>
           </div>
           <div className="tl fade-up">
             {[
-              { now: true,  label: "Phase 01 · Now", date: "May 30 → Jul 1",  name: <>Marketing &amp; <em>applications</em></>, desc: "Open call across community chapters, GDGs, and tech hubs in the South and East. We collect portfolios and GitHub." },
-              { now: false, label: "Phase 02",        date: "Jul 1 → Jul 15", name: "Selection & pairing",                    desc: "The team reviews every application. We shortlist by craft — projects shipped, code read, taste shown." },
-              { now: false, label: "Phase 03",        date: "Jul 16 → Jul 18",name: "Mails & team formation",                 desc: "Shortlisted candidates are emailed and randomly paired — one designer with one engineer." },
-              { now: false, label: "Phase 04",        date: "Jul 20 → Jul 23",name: <>The <em>72-hour</em> sprint</>,         desc: "Remote, three days, one prototype. Teams submit a working MVP and full design mockup." },
-              { now: false, label: "Phase 05 · Finale",date:"Aug 22",         name: <>Port Harcourt <em>finale</em></>,       desc: "Top teams travel to Port Harcourt for a live coding sprint, presentations, and the awarding of job contracts." },
+              { now: true,  label: "Phase 01 · Now", date: "August 1",  name: <>Application <em>deadline</em></>, desc: "Open call for all tracks closes. Ensure your portfolio and GitHub profile are fully updated and submitted." },
+              { now: false, label: "Phase 02",        date: "August 2",  name: "Grouping & task allocation", desc: "Shortlisted candidates are grouped into balanced product teams and assigned build slots." },
+              { now: false, label: "Phase 03",        date: "August 15", name: "Onboarding & briefs", desc: "Official briefing session, developer environment setups, and distribution of APIs/contracts." },
+              { now: false, label: "Phase 04",        date: "August 21 @ 12pm",name: <>Submission <em>portal opens</em></>, desc: "Portal opens for code pushes and design mocks. Teams prepare to finalize and launch." },
+              { now: false, label: "Phase 05 · Finale",date:"August 22",         name: <>Port Harcourt <em>finale</em></>,       desc: "Two phases merged to one stage. Top teams gather live in Port Harcourt to present, pitch, and demo to the judges." },
             ].map((p) => (
               <div key={p.label} className={`tl-phase${p.now ? " now" : ""}`}>
                 <div className="tl-num"><i className="d" />{p.label}</div>
@@ -374,7 +390,7 @@ export default function GsiPage() {
                 Open Application Form <span className="arr">→</span>
               </a>
               <div className="apply-gcta-note">
-                Sprint begins <strong>Jul 20, 2026</strong> · Finale Aug 22 in Port Harcourt.
+                Sprint begins <strong>August 21, 2026</strong> · Finale August 22 in Port Harcourt.
               </div>
               <div className="apply-gcta-divider" />
               <div className="apply-gcta-privacy">
@@ -418,32 +434,30 @@ export default function GsiPage() {
         <div className="wrap">
           <div className="section-head fade-up">
             <div className="eyebrow">Founding roles</div>
-            <h2 className="display-2">Two roles. Founding equity.</h2>
-            <p className="lede">Every applicant is also a candidate for our partner startups — over a dozen firms looking for elite builders from the South/East to fill product and engineering seats.</p>
+            <h2 className="display-2">Six roles. Founding equity.</h2>
+            <p className="lede">Every applicant is also a candidate for our partner startups — over a dozen firms looking for elite builders from the South/East to fill product, design, and engineering seats.</p>
           </div>
           <div className="who-grid">
-            <div className="who-card fade-up">
-              <div className="role-tag">Role 01 · Design</div>
-              <h3>Founding<br /><em>Product Designer</em></h3>
-              <ul>
-                <li>Owns the visual + interaction system of GSI from day one.</li>
-                <li>Comfortable in Figma, equally comfortable in code.</li>
-                <li>Taste for restraint over dashboard clutter.</li>
-                <li>Bonus: shipped to African or Global South audiences.</li>
-              </ul>
-              <div className="who-foot"><span>Based</span><strong>Hybrid · Port Harcourt</strong></div>
-            </div>
-            <div className="who-card fade-up d2">
-              <div className="role-tag">Role 02 · Engineering</div>
-              <h3>Founding<br /><em>Software Engineer</em></h3>
-              <ul>
-                <li>Full-stack, pragmatic, ships every week.</li>
-                <li>Familiar with Web3 plumbing — obsessed with hiding it.</li>
-                <li>Loves a calm, well-typed codebase. Reads OpenAlex docs for fun.</li>
-                <li>Bonus: open-source maintainer or DeSci contributor.</li>
-              </ul>
-              <div className="who-foot"><span>Based</span><strong>Hybrid · Port Harcourt</strong></div>
-            </div>
+            {[
+              { tag: "Role 01 · Strategy", title: <>Founding <br /><em>Product Manager</em></>, bullet1: "Coordinates team focus and maps buildathon timelines.", bullet2: "Ensures the GSI score is understandable, clear and viable.", bullet3: "Familiar with research metrics and user-centric flows.", bullet4: "Bridges user interface layout with database queries." },
+              { tag: "Role 02 · Engineering", title: <>Founding <br /><em>Frontend Engineer</em></>, bullet1: "Builds lightweight, calm, mobile-friendly interfaces.", bullet2: "Master of responsive layouts, visual hierarchy, and performance.", bullet3: "Works closely with the designer to implement precise UI flows.", bullet4: "Ensures the blockchain interactions run completely invisibly." },
+              { tag: "Role 03 · Engineering", title: <>Founding <br /><em>Backend Engineer</em></>, bullet1: "Integrates APIs (like OpenAlex) and indexes data.", bullet2: "Processes scoring logic and weighted criteria efficiently.", bullet3: "Ensures robust backend microservices and reliable architecture.", bullet4: "Builds structured, well-typed database schemas and REST APIs." },
+              { tag: "Role 04 · Engineering", title: <>Founding <br /><em>Fullstack Engineer</em></>, bullet1: "Bridges client views with server data pipelines.", bullet2: "Pragmatic, fast-moving, and ships every week.", bullet3: "Able to build a clean dashboard and link database nodes.", bullet4: "Loves to read documentation and solve direct end-user needs." },
+              { tag: "Role 05 · Blockchain", title: <>Founding <br /><em>Blockchain Engineer</em></>, bullet1: "Handles Web3 plumbing: Avalanche/SXT smart contracts.", bullet2: "Obsessed with hiding complexity and removing wallet jargon.", bullet3: "Ensures secure, tamper-proof academic index saves.", bullet4: "Coordinates with frontend engineers on web3 event listening." },
+              { tag: "Role 06 · Design", title: <>Founding <br /><em>Product Designer</em></>, bullet1: "Owns the GSI visual identity and typography systems.", bullet2: "Obsessed with clean spaces, breathing room, and alignment.", bullet3: "Familiar with design systems and standard Figma practices.", bullet4: "Bonus: shipped to African or Global South audiences." },
+            ].map((r, idx) => (
+              <div key={idx} className={`who-card fade-up${idx > 0 ? ` d${idx + 1}` : ""}`}>
+                <div className="role-tag">{r.tag}</div>
+                <h3>{r.title}</h3>
+                <ul>
+                  <li>{r.bullet1}</li>
+                  <li>{r.bullet2}</li>
+                  <li>{r.bullet3}</li>
+                  <li>{r.bullet4}</li>
+                </ul>
+                <div className="who-foot"><span>Track</span><strong>Physical / Virtual</strong></div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -458,22 +472,22 @@ export default function GsiPage() {
           </div>
           <div className="prize-grid">
             <div className="prize featured fade-up">
-              <div className="rank">First place · The contract</div>
+              <div className="rank">Physical Track Winner</div>
               <h4>Founding <em>team offer</em> + ₦TBD cash prize</h4>
-              <div className="price">2 roles · live on stage</div>
-              <p>One designer. One engineer. Hired into the GSI founding team with equity, a relocation stipend, and the chance to build the platform from the first commit.</p>
+              <div className="price">Live on stage · Port Harcourt</div>
+              <p>Hired into the GSI founding team with equity, relocation stipend, and full-time role to build GSI from the first commit.</p>
             </div>
-            <div className="prize fade-up d2">
-              <div className="rank">Second place</div>
-              <h4>Talent Pipeline fast-track</h4>
-              <div className="price">12+ partner startups</div>
-              <p>Skip the line. Direct introductions, with portfolio context, to every hiring partner in our network.</p>
+            <div className="prize featured fade-up d2">
+              <div className="rank">Virtual Track Winner</div>
+              <h4>Founding <em>team offer</em> + ₦TBD cash prize</h4>
+              <div className="price">Remote contract · Global South</div>
+              <p>Hired into the GSI founding team with equity, remote working contract, and same core opportunities to develop GSI systems.</p>
             </div>
             <div className="prize fade-up d3">
-              <div className="rank">Third place</div>
-              <h4>DeSci grant + mentorship</h4>
-              <div className="price">Sponsored · Web3 partners</div>
-              <p>Micro-grant from our Web3 sponsors, plus 3 months of mentorship from senior product and engineering leads.</p>
+              <div className="rank">Talent Pipeline</div>
+              <h4>Direct placements &amp; grants</h4>
+              <div className="price">12+ partner startups</div>
+              <p>Skip the line. Direct introductions, portfolio context, and hiring fast-track to partner startups and tech firms across Africa.</p>
             </div>
           </div>
         </div>
@@ -485,7 +499,7 @@ export default function GsiPage() {
           <div className="section-head fade-up">
             <div className="eyebrow">Partners</div>
             <h2 className="display-2">Built with four kinds of partners.</h2>
-            <p className="lede">Final partner list publishes alongside applications on Jul 1. If you'd like to be on it — academic, community, startup or Web3 — we're listening.</p>
+            <p className="lede">Final partner list publishes alongside applications on August 1. If you'd like to be on it — academic, community, startup or Web3 — we're listening.</p>
           </div>
           <div className="presenting fade-up">
             <div className="mark" aria-hidden="true">—</div>
