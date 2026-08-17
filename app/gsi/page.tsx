@@ -119,7 +119,7 @@ export default function GsiPage() {
       <span className="sep">·</span>
       <span>Port Harcourt · Aug 22, 2026</span>
       <span className="sep">·</span>
-      <span>Applications close Aug 1 — apply now</span>
+      <span>Applications closed — register for the finale</span>
       <span className="sep">·</span>
       <span>2 winners (1 physical + 1 virtual)</span>
       <span className="sep">·</span>
@@ -153,14 +153,14 @@ export default function GsiPage() {
             <a href="#challenge">Challenge</a>
             <a href="#timeline">Timeline</a>
             <a href="#roadmap">Roadmap</a>
-            <a href="#apply">Apply</a>
+            <a href="#apply">Register</a>
             <a href="#volunteer">Volunteer</a>
             <a href="#prizes">Prizes</a>
             <a href="#faq">FAQ</a>
           </div>
-          <a className="nav-cta" href="#apply">
-            <span className="dot" />
-            Apply now
+          <a className="nav-cta" href="https://luma.com/97j679e0" target="_blank" rel="noopener noreferrer">
+            <span className="dot" style={{ background: "#e05638", boxShadow: "0 0 8px #e05638" }} />
+            Register now
           </a>
         </div>
       </nav>
@@ -171,8 +171,8 @@ export default function GsiPage() {
           <div className="hero-layout">
             <div className="hero-main">
               <div className="hero-status fade-up in">
-                <span className="dot" />
-                <span>Applications close Aug 1 · Finale Aug 22, 2026</span>
+                <span className="dot" style={{ background: "#e05638", boxShadow: "0 0 8px #e05638", animation: "none" }} />
+                <span>Applications Closed · Register for the Event</span>
               </div>
               <h1 className="hero-title fade-up in d1">
                 African research deserves
@@ -199,8 +199,8 @@ export default function GsiPage() {
               <div className="hero-bridge fade-up in d3">
                 <span className="line" />
                 <span className="text">
-                  Applications are open.{" "}
-                  <strong>Apply before they close.</strong>
+                  Applications are closed.{" "}
+                  <strong>Register to attend the live Finale.</strong>
                 </span>
               </div>
               <div className="hero-vol fade-up in d4">
@@ -221,9 +221,9 @@ export default function GsiPage() {
             <aside className="vitals fade-up in d2">
               <div className="vitals-head">
                 <span className="vitals-tag">Buildathon · Vol. 01</span>
-                <span className="vitals-live">
-                  <span className="d" />
-                  Applications Open
+                <span className="vitals-live" style={{ color: "var(--ink-mute)" }}>
+                  <span className="d" style={{ background: "var(--ink-mute)", animation: "none" }} />
+                  Applications Closed
                 </span>
               </div>
               <dl className="vitals-list">
@@ -279,8 +279,13 @@ export default function GsiPage() {
                 </div>
               </div>
               <div className="vitals-cta">
-                <a className="btn btn-primary" href="#apply">
-                  Apply now <span className="arr">→</span>
+                <a
+                  className="btn btn-primary"
+                  href="https://luma.com/97j679e0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Register for Event <span className="arr">→</span>
                 </a>
                 <a className="btn btn-ghost" href="#about">
                   About the Buildathon
@@ -673,21 +678,18 @@ export default function GsiPage() {
           <div className="apply-grid">
             <div className="fade-up">
               <div className="section-head" style={{ marginBottom: 0 }}>
-                <div className="eyebrow">Apply</div>
-                <h2 className="display-2">Applications are open.</h2>
+                <div className="eyebrow">Event Registration</div>
+                <h2 className="display-2">Register to attend.</h2>
                 <p className="lede">
-                  Submit your application now. We review every submission
-                  personally — shortlisted candidates are emailed within 5 days
-                  of the close date alongside the official brief, judging
-                  rubric, and sprint timeline.
+                  Applications to participate as a team are now closed. However, you can register to attend the Port Harcourt finale to watch the live pitches, coding sprints, and the founding team selection.
                 </p>
               </div>
               <ul className="apply-meta-list">
                 {[
-                  "Official brief and judging rubric on acceptance",
-                  "Direct email notification on shortlist decision",
-                  "Priority consideration for the founding team offer",
-                  "Talent pipeline access — 12+ partner startups",
+                  "Access to the live finale in Port Harcourt",
+                  "Network with academic stakeholders and web3 developers",
+                  "Observe the 6-hour physical track live coding sprints",
+                  "Discover opportunities in our Talent Pipeline database",
                 ].map((t) => (
                   <li key={t}>
                     <span className="check">✓</span>
@@ -697,24 +699,21 @@ export default function GsiPage() {
               </ul>
             </div>
             <div className="apply-gcta fade-up d2">
-              <span className="apply-gcta-badge">Official Application</span>
-              <h3 className="apply-gcta-h">Apply now.</h3>
+              <span className="apply-gcta-badge" style={{ borderColor: "var(--ink-mute)", color: "var(--ink-mute)" }}>Applications Closed</span>
+              <h3 className="apply-gcta-h">Register for Event</h3>
               <p className="apply-gcta-p">
-                The application is on Google Forms — takes 3 minutes, no account
-                required. We review every submission personally and email
-                shortlisted candidates within 5 days of close.
+                Reserve your seat for the GSI Buildathon Finale via Luma. Registration is free but required for physical attendance.
               </p>
               <a
-                href={GOOGLE_FORM_URL}
+                href="https://luma.com/97j679e0"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="apply-gcta-btn"
               >
-                Open Application Form <span className="arr">→</span>
+                Register on Luma <span className="arr">→</span>
               </a>
               <div className="apply-gcta-note">
-                Sprint begins <strong>August 21, 2026</strong> · Finale August
-                22 in Port Harcourt.
+                Finale is on <strong>August 22, 2026</strong> in Port Harcourt.
               </div>
               <div className="apply-gcta-divider" />
               <div className="apply-gcta-privacy">
@@ -1052,11 +1051,15 @@ export default function GsiPage() {
             Build something the <em>world needs.</em>
           </h2>
           <p>
-            Applications are open now. Three days to ship. Two founding jobs on
-            the line. One stage in Port Harcourt.
+            Applications are closed. Register to attend the Port Harcourt finale live on August 22.
           </p>
-          <a className="btn btn-primary" href="#apply">
-            Apply now <span className="arr">→</span>
+          <a
+            className="btn btn-primary"
+            href="https://luma.com/97j679e0"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Register for Event <span className="arr">→</span>
           </a>
           <div className="endcap-foot">
             GSI Buildathon Vol. 01 · Port Harcourt, Nigeria · August 22, 2026
@@ -1157,7 +1160,12 @@ export default function GsiPage() {
           </div>
           <div className="foot-bot">
             <span>© 2026 Global South Index · Port Harcourt, Nigeria</span>
-            <span>Code of Conduct · Privacy · Terms</span>
+            <span>
+              Code of Conduct · Privacy ·{" "}
+              <a href="/gsi/terms" style={{ textDecoration: "underline" }}>
+                Terms
+              </a>
+            </span>
           </div>
         </div>
       </footer>
