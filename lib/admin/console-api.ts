@@ -129,3 +129,26 @@ export type SabiNoteTransactions = {
   }[];
   pagination: Page;
 };
+
+export type IjsdsSummary = {
+  submissions: { byStatus: Partial<Record<"submitted" | "under_review" | "revision_requested" | "accepted" | "rejected", number>>; last30d: number };
+  reviews: { awaitingResponse: number; inProgress: number; overdue: number; submitted30d: number };
+  articles: { published: number; published30d: number; crossref: { registered: number; pending: number; failed: number; notDeposited: number } };
+  people: { authors: number; reviewers: number; editors: number; reviewerApplicationsPending: number };
+  ijsds2: { manuscriptsByState: Record<string, number>; payments30d: { count: number; naira: number }; paymentsNeedingReview: number };
+  generatedAt: string;
+};
+export type IjsdsSubmissions = {
+  submissions: {
+    id: string;
+    status: "submitted" | "under_review" | "revision_requested" | "accepted" | "rejected";
+    submission_type: string;
+    submitted_at: string;
+    updated_at: string;
+    title: string | null;
+    author: string | null;
+    affiliation: string | null;
+    reviews: { total: number; submitted: number; overdue: number };
+  }[];
+  pagination: Page;
+};

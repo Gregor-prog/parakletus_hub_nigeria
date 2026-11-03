@@ -821,6 +821,35 @@ section > .stats + .stats { margin-top: 14px; }
   text-align: center;
 }
 
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.chip {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--c-line-2);
+  background: var(--c-card);
+  font-family: var(--f-display);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--c-ink-mute);
+}
+.chip:hover { border-color: var(--c-grove-soft); color: var(--c-ink); }
+.chip.is-active { background: var(--c-ink); border-color: var(--c-ink); color: var(--c-paper); }
+.table th.wrap { white-space: normal; min-width: 280px; max-width: 520px; }
+.status { font-size: 13px; font-weight: 600; }
+.status--submitted { color: var(--c-ink-mute); }
+.status--under_review { color: var(--c-grove); }
+.status--revision_requested { color: var(--warn); }
+.status--accepted { color: #146B45; }
+.status--rejected { color: var(--bad); }
+.overdue {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--bad);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .adm *, .adm *::before { animation: none !important; transition: none !important; }
 }

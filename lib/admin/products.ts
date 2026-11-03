@@ -111,15 +111,11 @@ export const PRODUCTS: Product[] = [
     logo: "/ijsds-logo.png",
     publicUrl: "https://ijsds.org",
     services: [
-      { key: "api", label: "API", envPrefix: "IJSDS", healthPath: "/", repo: "Gregor-prog/IJSDSBackend" },
+      { key: "api", label: "API", envPrefix: "IJSDS", healthPath: "/health", repo: "Gregor-prog/IJSDSBackend" },
     ],
-    views: [],
+    views: [{ key: "submissions", label: "Submissions", service: "api" }],
     modules: [
-      { key: "submissions", label: "Submissions", description: "Manuscripts by stage, from received to accepted.", service: "api" },
-      { key: "reviews", label: "Reviews", description: "Reviewer assignments, turnaround and overdue reviews.", service: "api" },
-      { key: "articles", label: "Published articles", description: "Issues, monthly batches and Crossref deposits.", service: "api" },
-      { key: "requests", label: "Role requests", description: "Reviewer applications and role requests.", service: "api" },
-      { key: "payments", label: "Payments", description: "Article processing charges and their status.", service: "api" },
+      { key: "issues", label: "Issues & batches", description: "Monthly release batches and their articles.", service: "api" },
     ],
   },
   {

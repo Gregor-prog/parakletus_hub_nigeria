@@ -82,6 +82,7 @@ export function Pager({
   base,
   tab,
   q,
+  status,
   page,
   totalPages,
   total,
@@ -90,6 +91,7 @@ export function Pager({
   base: string;
   tab: string;
   q?: string;
+  status?: string;
   page: number;
   totalPages: number;
   total: number;
@@ -105,14 +107,14 @@ export function Pager({
       {totalPages > 1 && (
         <span className="pager__links">
           {page > 1 ? (
-            <Link className="adm-btn adm-btn--ghost" href={href(base, { tab, q, page: String(page - 1) })}>
+            <Link className="adm-btn adm-btn--ghost" href={href(base, { tab, q, status, page: String(page - 1) })}>
               ← Previous
             </Link>
           ) : (
             <span className="adm-btn adm-btn--ghost is-disabled">← Previous</span>
           )}
           {page < totalPages ? (
-            <Link className="adm-btn adm-btn--ghost" href={href(base, { tab, q, page: String(page + 1) })}>
+            <Link className="adm-btn adm-btn--ghost" href={href(base, { tab, q, status, page: String(page + 1) })}>
               Next →
             </Link>
           ) : (
@@ -120,6 +122,36 @@ export function Pager({
           )}
         </span>
       )}
+    </nav>
+  );
+}
+
+export function FilterChips({
+  base,
+  tab,
+  current,
+  options,
+}: {
+  base: string;
+  tab: string;
+  current?: string;
+  options: { value?: string; label: string }[];
+}) {
+  return (
+    <nav className="chips" aria-label="Filter">
+      {options.map((o) => {
+        const active = (o.value ?? "") === (current ?? "");
+        return (
+          <Link
+            key={o.label}
+            href={href(base, { tab, status: o.value })}
+            className={`chip ${active ? "is-active" : ""}`}
+            aria-current={active ? "true" : undefined}
+          >
+            {o.label}
+          </Link>
+        );
+      })}
     </nav>
   );
 }
