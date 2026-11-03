@@ -37,12 +37,13 @@ export async function login(_prev: LoginState, form: FormData): Promise<LoginSta
   const username = String(form.get("username") ?? "").trim().slice(0, 128);
   const password = String(form.get("password") ?? "").slice(0, 512);
 
-  if (!username || !password || !(await verifyAdminCredentials(username, password))) {
+  const canonical = username && password ? await verifyAdminCredentials(username, password) : null;
+  if (!canonical) {
     recordLoginFailure(ip);
     return { error: "That username and password don't match." };
   }
 
-  const token = createSessionToken(username);
+  const token = createSessionToken(canonical);
   if (!token) return { error: "Sign-in is unavailable. Contact the site administrator." };
 
   clearLoginFailures(ip);
