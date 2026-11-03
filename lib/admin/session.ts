@@ -9,6 +9,7 @@
  * and route handlers. Never import this from a client component.
  */
 import { createHmac, timingSafeEqual } from "node:crypto";
+import { adminUsername, sessionSecret } from "./config";
 
 export const SESSION_TTL_SECONDS = 60 * 60 * 8; // one working day
 
@@ -24,12 +25,8 @@ export type AdminSession = {
   exp: number; // expires at (unix seconds)
 };
 
-function getSecret(): string | null {
-  const secret = process.env.ADMIN_SESSION_SECRET;
-  // Fail closed: a short or missing secret means nobody can sign in.
-  if (!secret || secret.length < 32) return null;
-  return secret;
-}
+// Fail closed: a short or missing secret means nobody can sign in.
+const getSecret = sessionSecret;
 
 function sign(data: string, secret: string): string {
   return createHmac("sha256", secret).update(data).digest("base64url");
@@ -61,7 +58,7 @@ export function verifySessionToken(token: string | undefined | null): AdminSessi
     if (typeof payload.sub !== "string" || typeof payload.exp !== "number") return null;
     if (payload.exp <= Math.floor(Date.now() / 1000)) return null;
     // A session for a username that is no longer configured is void.
-    if (payload.sub !== process.env.ADMIN_USERNAME) return null;
+    if (payload.sub !== adminUsername()) return null;
     return payload;
   } catch {
     return null;
