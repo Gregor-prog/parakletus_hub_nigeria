@@ -5,9 +5,10 @@ import {
   type ParaLearnSchools,
   type ParaLearnSummary,
 } from "@/lib/admin/console-api";
-import { Empty, Pager, PanelError, SearchBox, Tiles, Updated, fmt, fmtDate, type Tile } from "./shared";
+import { Empty, Pager, PanelError, SearchBox, Tiles, Updated, fmt, type Tile } from "./shared";
 import type { PanelProps } from "./types";
 import { SchoolsTable } from "./schools-table";
+import { WorkspacesTable } from "./workspaces-table";
 
 export async function ParaLearnOverview() {
   const [core, cbt] = await Promise.all([
@@ -154,40 +155,7 @@ export async function ParaLearnCbtView({ base, page }: PanelProps) {
           <Empty>No workspaces yet.</Empty>
         ) : (
           <>
-            <div className="table-wrap">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Workspace</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Owner</th>
-                    <th scope="col" className="num">
-                      Exams
-                    </th>
-                    <th scope="col" className="num">
-                      Questions
-                    </th>
-                    <th scope="col" className="num">
-                      Credits
-                    </th>
-                    <th scope="col">Created</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {list.data.workspaces.map((w) => (
-                    <tr key={w.id}>
-                      <th scope="row">{w.name}</th>
-                      <td>{w.type === "INSTITUTION" ? "School" : "Exam hall"}</td>
-                      <td className="muted">{w.ownerName ?? "—"}</td>
-                      <td className="num">{fmt(w.exams)}</td>
-                      <td className="num">{fmt(w.questions)}</td>
-                      <td className="num">{fmt(w.credits)}</td>
-                      <td className="muted">{fmtDate(w.createdAt)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <WorkspacesTable workspaces={list.data.workspaces} />
             <Pager base={base} tab="cbt" noun="workspace" {...list.data.pagination} />
           </>
         )}
