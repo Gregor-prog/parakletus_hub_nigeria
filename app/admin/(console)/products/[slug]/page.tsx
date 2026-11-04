@@ -11,7 +11,7 @@ import { ExternalIcon, HealthPill, PageHead, StatusTag } from "../../../_compone
 import { PANELS } from "../../../_panels";
 
 type Params = { params: Promise<{ slug: string }> };
-type Search = { searchParams: Promise<{ tab?: string; page?: string; q?: string }> };
+type Search = { searchParams: Promise<{ tab?: string; page?: string; q?: string; status?: string }> };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
@@ -83,6 +83,7 @@ export default async function ProductPage({ params, searchParams }: Params & Sea
   const page = Math.max(1, Number.parseInt(sp.page ?? "1", 10) || 1);
   const q = sp.q?.trim().slice(0, 100) || undefined;
   const base = `/products/${product.slug}`;
+  const status = /^[a-z_]{1,40}$/.test(sp.status ?? "") ? sp.status : undefined;
 
   const configured = new Set(product.services.filter(isServiceConfigured).map((s) => s.key));
 
@@ -142,8 +143,8 @@ export default async function ProductPage({ params, searchParams }: Params & Sea
           )}
 
           {view && ViewPanel ? (
-            <Suspense key={`${view.key}-${page}-${q ?? ""}`} fallback={<PanelLoading label={view.label} />}>
-              <ViewPanel base={base} page={page} q={q} />
+            <Suspense key={`${view.key}-${page}-${q ?? ""}-${status ?? ""}`} fallback={<PanelLoading label={view.label} />}>
+              <ViewPanel base={base} page={page} q={q} status={status} />
             </Suspense>
           ) : (
             <>

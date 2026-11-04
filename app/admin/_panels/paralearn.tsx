@@ -7,6 +7,7 @@ import {
 } from "@/lib/admin/console-api";
 import { Empty, Pager, PanelError, SearchBox, Tiles, Updated, fmt, fmtDate, type Tile } from "./shared";
 import type { PanelProps } from "./types";
+import { SchoolsTable } from "./schools-table";
 
 export async function ParaLearnOverview() {
   const [core, cbt] = await Promise.all([
@@ -108,42 +109,7 @@ export async function ParaLearnSchoolsView({ base, page, q }: PanelProps) {
         <Empty>{q ? `No schools match “${q}”.` : "No schools yet."}</Empty>
       ) : (
         <>
-          <div className="table-wrap">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">School</th>
-                  <th scope="col">Subdomain</th>
-                  <th scope="col">Status</th>
-                  <th scope="col" className="num">
-                    Students
-                  </th>
-                  <th scope="col" className="num">
-                    Teachers
-                  </th>
-                  <th scope="col" className="num">
-                    Classes
-                  </th>
-                  <th scope="col">Joined</th>
-                </tr>
-              </thead>
-              <tbody>
-                {res.data.schools.map((s) => (
-                  <tr key={s.id}>
-                    <th scope="row">{s.name}</th>
-                    <td className="mono">{s.subdomain}</td>
-                    <td>
-                      <span className={`check ${s.isActive ? "is-on" : "is-bad"}`}>{s.isActive ? "Active" : "Inactive"}</span>
-                    </td>
-                    <td className="num">{fmt(s.students)}</td>
-                    <td className="num">{fmt(s.teachers)}</td>
-                    <td className="num">{fmt(s.classes)}</td>
-                    <td className="muted">{fmtDate(s.createdAt)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <SchoolsTable schools={res.data.schools} />
           <Pager base={base} tab="schools" q={q} noun="school" {...res.data.pagination} />
         </>
       )}

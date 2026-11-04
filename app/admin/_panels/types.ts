@@ -3,4 +3,6 @@ export type PanelProps = {
   base: string;
   page: number;
   q?: string;
+  /** Optional filter value (e.g. a status) from ?status=. */
+  status?: string;
 };
