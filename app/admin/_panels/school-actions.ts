@@ -13,10 +13,10 @@ export type SchoolActionResult = { ok: true; message: string } | { ok: false; me
 
 const SCHOOL_ID = /^[A-Za-z0-9_-]{8,64}$/;
 
-async function call(path: string, body: unknown, actor: string): Promise<SchoolActionResult> {
+async function call(path: string, body: unknown, actor: string, service: "core" | "cbt" = "core"): Promise<SchoolActionResult> {
   let res: Response;
   try {
-    res = await serviceFetch("paralearn", "core", path, {
+    res = await serviceFetch("paralearn", service, path, {
       method: "POST",
       headers: { "content-type": "application/json", "x-console-actor": actor },
       body: JSON.stringify(body),
@@ -34,10 +34,17 @@ async function call(path: string, body: unknown, actor: string): Promise<SchoolA
 
   if (res.ok) return { ok: true, message: "" };
   if (res.status === 401 || res.status === 503) {
-    return { ok: false, message: "The console isn't connected to ParaLearn (check PARALEARN_API_TOKEN). Nothing was changed." };
+    const env = service === "cbt" ? "PARALEARN_CBT_API_TOKEN" : "PARALEARN_API_TOKEN";
+    return {
+      ok: false,
+      message: `The console isn't connected to ParaLearn${service === "cbt" ? " CBT" : ""} (check ${env}). Nothing was changed.`,
+    };
   }
   if (res.status === 404 && (!backendMessage || /^Cannot (POST|GET)/.test(backendMessage))) {
-    return { ok: false, message: "ParaLearn doesn't support this action yet. Deploy the latest core backend." };
+    return {
+      ok: false,
+      message: `ParaLearn ${service === "cbt" ? "CBT" : "core"} doesn't support this action yet. Deploy its latest backend.`,
+    };
   }
   return { ok: false, message: backendMessage || `ParaLearn answered HTTP ${res.status}.` };
 }
@@ -54,4 +61,11 @@ export async function deleteSchool(id: string, confirm: string): Promise<SchoolA
   if (!SCHOOL_ID.test(id) || typeof confirm !== "string" || !confirm.trim()) return { ok: false, message: "Invalid request." };
   const r = await call(`/console/schools/${id}/delete`, { confirm: confirm.trim().slice(0, 100) }, session.sub);
   return r.ok ? { ok: true, message: "School permanently deleted." } : r;
+}
+
+export async function deleteWorkspace(id: string, confirm: string): Promise<SchoolActionResult> {
+  const session = await requireSession();
+  if (!SCHOOL_ID.test(id) || typeof confirm !== "string" || !confirm.trim()) return { ok: false, message: "Invalid request." };
+  const r = await call(`/console/workspaces/${id}/delete`, { confirm: confirm.trim().slice(0, 200) }, session.sub, "cbt");
+  return r.ok ? { ok: true, message: "Workspace permanently deleted." } : r;
 }
