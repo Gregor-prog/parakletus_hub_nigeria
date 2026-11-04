@@ -850,6 +850,90 @@ section > .stats + .stats { margin-top: 14px; }
   color: var(--bad);
 }
 
+/* ── School actions: clickable rows, modal ───────────────────── */
+.table--clickable tbody tr { cursor: pointer; transition: background 0.15s ease; }
+.table--clickable tbody tr:hover { background: var(--c-grove-tint); }
+.row-open {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-family: var(--f-display);
+  font-weight: 500;
+  color: inherit;
+  text-align: left;
+}
+.row-open:hover { color: var(--c-grove); text-decoration: underline; }
+
+.adm-btn--warn { background: var(--warn); color: #fff; }
+.adm-btn--warn:hover:not(:disabled) { background: #8A4F00; }
+.adm-btn--warn-ghost { background: var(--c-card); color: var(--warn); border-color: #F0C98F; }
+.adm-btn--warn-ghost:hover:not(:disabled) { background: var(--warn-tint); }
+.adm-btn--danger { background: var(--bad); color: #fff; }
+.adm-btn--danger:hover:not(:disabled) { background: #A11E23; }
+.adm-btn--danger:disabled { opacity: 0.35; cursor: not-allowed; }
+.adm-btn--danger-ghost { background: var(--c-card); color: var(--bad); border-color: #F3C2C0; }
+.adm-btn--danger-ghost:hover:not(:disabled) { background: var(--bad-tint); }
+
+.modal {
+  /* The global reset removes <dialog>'s default centring; restore it. */
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  background: var(--c-card);
+  color: var(--c-ink);
+  box-shadow: 0 40px 80px -30px rgba(13, 40, 26, 0.45);
+  overflow: auto;
+}
+.modal[open] { animation: adm-modal-in 0.2s ease; }
+.modal::backdrop { background: rgba(13, 17, 16, 0.45); backdrop-filter: blur(3px); }
+@keyframes adm-modal-in { from { opacity: 0; transform: translateY(8px) scale(0.98); } }
+.modal__body { display: grid; gap: 18px; padding: 26px 26px 24px; }
+.modal__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.modal__title { margin: 6px 0 2px; font-family: var(--f-display); font-weight: 600; font-size: 28px; line-height: 1.1; letter-spacing: -0.02em; }
+.modal__sub { margin: 0; color: var(--c-muted); }
+.modal__x {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border: 1px solid var(--c-line); border-radius: 50%;
+  background: var(--c-card); font-size: 20px; line-height: 1; color: var(--c-ink-mute);
+}
+.modal__x:hover:not(:disabled) { background: var(--c-paper-2); }
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  background: var(--c-cream);
+  border: 1px solid var(--c-line);
+}
+.facts dt { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-muted); }
+.facts dd { margin: 4px 0 0; font-family: var(--f-display); font-weight: 600; font-size: 17px; }
+
+.action { display: grid; gap: 10px; justify-items: start; padding-top: 16px; border-top: 1px solid var(--c-line); }
+.action__title { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 17px; }
+.action--danger .action__title { color: var(--bad); }
+.action__desc { margin: 0; font-size: 14px; line-height: 1.55; color: var(--c-ink-mute); }
+.action__note { margin: 0; font-size: 13.5px; color: var(--c-muted); font-style: italic; }
+.action__confirm { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 14px; }
+.action__ask { flex-basis: 100%; font-weight: 600; color: var(--c-ink); }
+.action__type { display: grid; gap: 12px; width: 100%; }
+
+.toast {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin: 0 0 14px; padding: 12px 14px 12px 16px;
+  border-radius: 12px; background: var(--ok-tint); color: #146B45; font-size: 14px;
+}
+.toast__close { border: 0; background: none; font-size: 18px; color: inherit; padding: 0 4px; }
+
 @media (prefers-reduced-motion: reduce) {
   .adm *, .adm *::before { animation: none !important; transition: none !important; }
 }
