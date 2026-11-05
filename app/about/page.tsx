@@ -207,14 +207,17 @@ export default function AboutPage() {
             <span className="about-mission__v">Operating divisions</span>
           </div>
           <div className="about-mission__stat">
-            <span className="about-mission__k">10+</span>
-            <span className="about-mission__v">Institutions served</span>
+            <span className="about-mission__k">2</span>
+            <span className="about-mission__v">Schools using ParaLearn</span>
           </div>
           <div className="about-mission__stat">
-            <span className="about-mission__k">2k+</span>
-            <span className="about-mission__v">Students on platform</span>
+            <span className="about-mission__k">300</span>
+            <span className="about-mission__v">Students on ParaLearn</span>
           </div>
         </div>
+        <p className="about-mission__asof">
+          Figures as of November 2026: schools actively using ParaLearn and the students enrolled in them.
+        </p>
       </section>
 
       {/* MISSION & VISION */}
