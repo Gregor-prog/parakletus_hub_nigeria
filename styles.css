@@ -1862,6 +1862,10 @@ ul { list-style: none; padding: 0; margin: 0; }
   font-family: var(--f-body); font-size: 13px; font-weight: 500;
   color: var(--c-muted); text-transform: uppercase; letter-spacing: 0.06em;
 }
+.about-mission__asof {
+  max-width: 1180px; margin: 0 auto; padding: 0 80px 20px;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--c-muted);
+}
 
 .about-team { background: var(--c-paper); }
 .about-team__grid { grid-template-columns: repeat(3, 1fr) !important; }
@@ -1890,6 +1894,7 @@ ul { list-style: none; padding: 0; margin: 0; }
 @media (max-width: 640px) {
   .about-hero { padding: 140px 24px 64px; }
   .about-mission__inner { grid-template-columns: repeat(2, 1fr); padding: 0 24px; }
+  .about-mission__asof { padding: 0 56px 16px; }
   .about-mission__stat:nth-child(2) { border-right: none; }
   .about-mission__stat:nth-child(3) { border-top: 1px solid var(--c-line); }
   .about-team__grid { grid-template-columns: 1fr !important; }
