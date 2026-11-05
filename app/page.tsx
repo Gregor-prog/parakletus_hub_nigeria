@@ -549,7 +549,7 @@ export default function Home() {
               <span className="sol__tag">FLAGSHIP AI TOOL</span>
             </div>
             <p className="sol__desc">
-              NERDC-compliant lesson notes, generated in seconds. SabiNote pulls your state&rsquo;s official scheme of work and writes complete, classroom-ready lesson notes — trusted by 4,000+ Nigerian educators.
+              NERDC-compliant lesson notes, generated in seconds. SabiNote pulls your state&rsquo;s official scheme of work and writes complete, classroom-ready lesson notes — trusted by 50+ Nigerian educators.
             </p>
             <div className="sol__foot" style={{ marginTop: "auto" }}>
               <span className="sol__more">Visit SabiNote →</span>
